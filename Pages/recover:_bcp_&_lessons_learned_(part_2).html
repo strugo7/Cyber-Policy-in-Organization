@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Recover: BCP &amp; Lessons Learned (Part 2)</title>
+<script type='text/javascript' nonce='65D0nmi9MQ5QZcivXbbgZw==' src='https://contribution.usercontent.google.com/KHuLrNeSkmrUBQ-FJjoPT7t6QLF1wCUAbSzgz1AdPSFGO_VRAMsKfpNE5zCF_7AQj0zdluvJkms45INHg9w5vCr8lpY9-Q1CeLP9s8WuY0w_K8oPZYr6aZg8PTJ12lqYTTmlKyoDmLNmuN2zYg5hIqsKLYXLYDL_DB_4Yq-onec72AE4oX65CAnqkpPXtB63pZcYlmQscE-kewLSIcpdqX5uEUr3-su0UQdUnqUoHg_Sk7DrQs6z42rplJgbQjShfLDhDAahd8WvKN1CJD_PRRe9lEsapiVnJe5HIR_LFPubOOjPft4IiCHGGTyjgLMaZyhtAKfr44uSkGBzJzfHAcoo2eZQ42Su0zXP_ZFC6nb8o2uUB2bU5k_5TwrLTMcL3GDAMOpgiDweq1RiJtgF6JtVchopBTVl1arVJpT4GPo_KSnlDWIWv2x-IO7XITXJWPtAjeMSZF-4APUccl6Os18Oo9dR5hx5oKf40RA36GMMU2pyJ3RAU5q_abNen0KPARC4LoA7xWCBXr9FKwVcu9cgUQ1q8W3xSrEFOSjw_sjmm95GnjFdbR4FLwLQSlj4jGHDLhZlHWYHrlbTriyMlIgbpLTp1e2QsDZ8Q2wFa8rbNhR_yv1vVGStJNFmtTF7k2hVtSc5YdAeP6w3kTEtJMJQwCqhHJmM_JDx2mZHQ2714VLtYMEvA3en3kEuinBc_itjqythT744ed18PCDn3rw-y6rA6tkxQO9HbVOykmUdTQGVtBVXzyqDT9tb4d7hVKRL7Qs5pgSUt_c4F8L6fD6M-f62McrvMfb70w'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;family=Heebo:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#11d411",
+              "background-light": "#f6f8f6",
+              "background-dark": "#102210", 
+              "surface-dark": "#1a331a",
+              "surface-darker": "#0d180d",
+            },
+            fontFamily: {
+              "display": ["Heebo", "Manrope", "sans-serif"], 
+              "sans": ["Heebo", "Manrope", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for checklist if needed */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(17, 212, 17, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(17, 212, 17, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* Progress Ring Animation */
+        @keyframes progress-spin {
+            0% { stroke-dashoffset: 440; }
+            100% { stroke-dashoffset: 0; }
+        }
+        .progress-circle {
+            stroke-dasharray: 440;
+            stroke-dashoffset: 0; /* Fully complete */
+            transition: stroke-dashoffset 1s ease-in-out;
+        }
+        
+        /* Gradient text */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Subtle red glow fading out in corners to signify previous state */
+        .danger-residue {
+            background: radial-gradient(circle at top right, rgba(220, 38, 38, 0.08), transparent 40%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-display min-h-screen flex flex-col overflow-x-hidden selection:bg-primary selection:text-black">
+<!-- Top Navigation / Status Bar -->
+<header class="w-full h-16 border-b border-primary/10 bg-white/5 backdrop-blur-md sticky top-0 z-50 flex items-center justify-between px-6 lg:px-10">
+<div class="flex items-center gap-4">
+<div class="h-8 w-8 rounded bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-icons-round text-lg">shield</span>
+</div>
+<h1 class="font-bold text-lg tracking-wide hidden md:block">CYBER<span class="text-primary">GUARD</span></h1>
+</div>
+<div class="flex items-center gap-6">
+<!-- Phase Indicator -->
+<div class="hidden md:flex items-center gap-2 text-sm text-gray-400">
+<span>שלב 1: בלימה</span>
+<span class="material-icons-round text-xs">chevron_left</span>
+<span class="text-primary font-medium bg-primary/10 px-2 py-0.5 rounded">שלב 2: התאוששות</span>
+<span class="material-icons-round text-xs">chevron_left</span>
+<span>שלב 3: חזרה לשגרה</span>
+</div>
+<div class="h-6 w-px bg-white/10 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="relative">
+<div class="absolute -top-1 -right-1 h-2.5 w-2.5 bg-primary rounded-full animate-pulse"></div>
+<span class="material-icons-round text-gray-300">notifications</span>
+</div>
+<div class="h-8 w-8 rounded-full bg-surface-dark border border-primary/30 overflow-hidden">
+<img alt="User Avatar" class="h-full w-full object-cover" data-alt="User avatar icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Hy5MbapAJk26BCbyBHBgsKWaSu8PqcwRSMolZWWU6li68ZDUfUnjC1WU2LVsjiLDYVOks0XcJ21kOut7VOR1EIG5mA0SGRB11NW4TONPQBME4lnD7MrWpNaEt0kpFp43cuvu0ARb2KKLgC5iZsfoY7FT8_rFw4dmMge1sm0NvdQv3RRt3A6C2l7RJnzLuyDd0ERwkozVz_PfGtrt5yH56kPXeZwanLpzu5KTklx7SzKEqgJZomWk8QjgUVFaZVyWkv58f-vBSX0"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full max-w-7xl mx-auto p-6 lg:p-8 danger-residue relative">
+<!-- Header Section -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-1 rounded text-xs font-bold uppercase tracking-wider bg-primary/20 text-primary border border-primary/30">
+                        סטטוס: שוחזר
+                    </span>
+<span class="text-xs text-gray-400 font-mono">INC-2023-8842</span>
+</div>
+<h2 class="text-3xl md:text-4xl font-extrabold text-white mb-2 leading-tight">
+                    חלק ב': התאוששות והפקת לקחים
+                </h2>
+<p class="text-gray-400 max-w-2xl text-lg">
+                    המעבר משלב הבלימה וההכלה לשלב שיקום המערכות והבטחת ההמשכיות העסקית. כל המערכות חזרו לתפקוד מלא.
+                </p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-dark border border-white/10 hover:border-white/20 hover:bg-white/5 transition text-sm">
+<span class="material-icons-round text-base">print</span>
+                    ייצוא דוח
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-green-500 text-black font-bold transition text-sm shadow-[0_0_15px_rgba(17,212,17,0.3)]">
+<span class="material-icons-round text-base">check_circle</span>
+                    סיום אירוע
+                </button>
+</div>
+</div>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column: Progress & Metrics (Takes 4 cols) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- System Restoration Progress Card -->
+<div class="bg-surface-dark border border-primary/20 rounded-2xl p-6 shadow-lg relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-50"></div>
+<div class="relative z-10 flex flex-col items-center justify-center py-6">
+<div class="relative w-48 h-48">
+<!-- SVG Progress Circle -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 160 160">
+<circle cx="80" cy="80" fill="none" r="70" stroke="#2a452a" stroke-width="12"></circle>
+<circle class="progress-circle" cx="80" cy="80" fill="none" r="70" stroke="#11d411" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<!-- Inner Content -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-5xl font-bold text-white tracking-tighter">100%</span>
+<span class="text-xs text-primary font-bold uppercase tracking-widest mt-1">שוחזר במלואו</span>
+</div>
+</div>
+<h3 class="mt-6 text-xl font-bold text-white">סטטוס מערכת</h3>
+<p class="text-center text-gray-400 text-sm mt-2 px-4">
+                            כל השרתים ותחנות הקצה חזרו לפעילות תקינה ומאובטחת.
+                        </p>
+</div>
+<!-- Glowing success indicator at bottom -->
+<div class="mt-4 flex items-center justify-center gap-2 bg-primary/10 py-2 px-4 rounded-lg border border-primary/20">
+<div class="h-2 w-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#11d411]"></div>
+<span class="text-primary text-sm font-medium">המערכת ירוקה</span>
+</div>
+</div>
+<!-- Quick Stats / Ticker -->
+<div class="bg-surface-dark/50 border border-white/5 rounded-2xl p-4 flex flex-col gap-3">
+<div class="flex items-center justify-between p-3 bg-background-dark rounded-xl border border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-icons-round text-primary bg-primary/10 p-1.5 rounded-lg">timer</span>
+<div>
+<div class="text-xs text-gray-400">זמן השבתה (Downtime)</div>
+<div class="text-sm font-bold text-white">4 שעות, 23 דקות</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 bg-background-dark rounded-xl border border-white/5">
+<div class="flex items-center gap-3">
+<span class="material-icons-round text-primary bg-primary/10 p-1.5 rounded-lg">save</span>
+<div>
+<div class="text-xs text-gray-400">מידע שאבד (RPO)</div>
+<div class="text-sm font-bold text-white">0 בתים (שחזור מלא)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Comparison & Checklist (Takes 8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Comparison Section: DRP vs BCP -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- DRP Card (Technical/IT) -->
+<div class="bg-surface-dark rounded-2xl p-6 border border-white/10 relative overflow-hidden hover:border-primary/30 transition-colors duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-icons-round text-8xl text-white">dns</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-4">
+<div class="p-3 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400">
+<span class="material-icons-round">dns</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">DRP: התאוששות מאסון</h3>
+<p class="text-xs text-gray-400 uppercase tracking-wider">מיקוד טכנולוגי (IT)</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-400">שרתים פעילים</span>
+<span class="text-blue-400 font-mono">12/12</span>
+</div>
+<div class="w-full bg-background-dark h-2 rounded-full overflow-hidden">
+<div class="h-full bg-blue-500 rounded-full" style="width: 100%"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="bg-background-dark p-3 rounded-lg border border-white/5">
+<div class="text-xs text-gray-500 mb-1">בסיס נתונים</div>
+<div class="text-sm text-green-400 flex items-center gap-1">
+<span class="material-icons-round text-xs">check_circle</span>
+                                            מקוון
+                                        </div>
+</div>
+<div class="bg-background-dark p-3 rounded-lg border border-white/5">
+<div class="text-xs text-gray-500 mb-1">גיבויים</div>
+<div class="text-sm text-green-400 flex items-center gap-1">
+<span class="material-icons-round text-xs">check_circle</span>
+                                            אומתו
+                                        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- BCP Card (Business/People) -->
+<div class="bg-surface-dark rounded-2xl p-6 border border-white/10 relative overflow-hidden hover:border-primary/30 transition-colors duration-300">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-icons-round text-8xl text-white">business</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-4">
+<div class="p-3 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400">
+<span class="material-icons-round">business_center</span>
+</div>
+<div>
+<h3 class="text-lg font-bold text-white">BCP: המשכיות עסקית</h3>
+<p class="text-xs text-gray-400 uppercase tracking-wider">מיקוד ארגוני (People)</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-sm mb-1">
+<span class="text-gray-400">תפוקת עובדים</span>
+<span class="text-purple-400 font-mono">98%</span>
+</div>
+<div class="w-full bg-background-dark h-2 rounded-full overflow-hidden">
+<div class="h-full bg-purple-500 rounded-full" style="width: 98%"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-4">
+<div class="bg-background-dark p-3 rounded-lg border border-white/5">
+<div class="text-xs text-gray-500 mb-1">תקשורת</div>
+<div class="text-sm text-green-400 flex items-center gap-1">
+<span class="material-icons-round text-xs">check_circle</span>
+                                            תקינה
+                                        </div>
+</div>
+<div class="bg-background-dark p-3 rounded-lg border border-white/5">
+<div class="text-xs text-gray-500 mb-1">משרדים</div>
+<div class="text-sm text-green-400 flex items-center gap-1">
+<span class="material-icons-round text-xs">check_circle</span>
+                                            פתוחים
+                                        </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Post-Mortem Analysis Widget -->
+<div class="bg-surface-dark border border-white/10 rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-lg">
+<!-- Notepad Header Strip (Decorative) -->
+<div class="w-full md:w-16 bg-surface-darker border-l border-white/5 flex md:flex-col items-center justify-center gap-4 py-4 md:py-0 border-b md:border-b-0 md:border-l-0 md:border-r">
+<div class="w-3 h-3 rounded-full bg-red-500/20 border border-red-500"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500"></div>
+<div class="w-3 h-3 rounded-full bg-green-500/20 border border-green-500"></div>
+</div>
+<div class="flex-1 p-6">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-icons-round text-primary">assignment</span>
+                                תחקיר והפקת לקחים (Post-Mortem)
+                            </h3>
+<span class="text-xs bg-white/5 px-3 py-1 rounded-full text-gray-400 border border-white/5">בביצוע</span>
+</div>
+<div class="space-y-3">
+<!-- Checklist Item 1 -->
+<label class="flex items-start gap-4 p-4 rounded-xl bg-background-dark border border-white/5 hover:border-primary/30 transition cursor-pointer group">
+<div class="relative flex items-center mt-0.5">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-600 bg-surface-dark transition-all checked:border-primary checked:bg-primary hover:border-primary focus:ring-1 focus:ring-primary focus:ring-offset-0 focus:ring-offset-transparent" type="checkbox"/>
+<span class="material-icons-round absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-black opacity-0 transition-opacity peer-checked:opacity-100 font-bold">check</span>
+</div>
+<div class="flex-1">
+<div class="text-sm font-bold text-white group-hover:text-primary transition-colors">ניתוח גורמי שורש (RCA)</div>
+<p class="text-xs text-gray-400 mt-1">זיהוי וקטור התקיפה הראשוני (Patient Zero) וסגירת הפרצה.</p>
+</div>
+<div class="h-8 w-8 rounded-full bg-white/5 flex items-center justify-center">
+<span class="material-icons-round text-gray-400 text-sm">search</span>
+</div>
+</label>
+<!-- Checklist Item 2 -->
+<label class="flex items-start gap-4 p-4 rounded-xl bg-background-dark border border-white/5 hover:border-primary/30 transition cursor-pointer group">
+<div class="relative flex items-center mt-0.5">
+<input checked="" class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-600 bg-surface-dark transition-all checked:border-primary checked:bg-primary hover:border-primary focus:ring-1 focus:ring-primary focus:ring-offset-0 focus:ring-offset-transparent" type="checkbox"/>
+<span class="material-icons-round absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-black opacity-0 transition-opacity peer-checked:opacity-100 font-bold">check</span>
+</div>
+<div class="flex-1">
+<div class="text-sm font-bold text-white group-hover:text-primary transition-colors line-through decoration-primary/50 text-gray-400">עדכון נהלים (Playbooks Update)</div>
+<p class="text-xs text-gray-500 mt-1">עדכון ספרי ההפעלה להתאוששות בהתאם ללקחים שנלמדו.</p>
+</div>
+<div class="h-8 w-8 rounded-full bg-green-500/10 flex items-center justify-center">
+<span class="material-icons-round text-green-500 text-sm">check</span>
+</div>
+</label>
+<!-- Checklist Item 3 -->
+<label class="flex items-start gap-4 p-4 rounded-xl bg-background-dark border border-white/5 hover:border-primary/30 transition cursor-pointer group">
+<div class="relative flex items-center mt-0.5">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border border-gray-600 bg-surface-dark transition-all checked:border-primary checked:bg-primary hover:border-primary focus:ring-1 focus:ring-primary focus:ring-offset-0 focus:ring-offset-transparent" type="checkbox"/>
+<span class="material-icons-round absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[16px] text-black opacity-0 transition-opacity peer-checked:opacity-100 font-bold">check</span>
+</div>
+<div class="flex-1">
+<div class="text-sm font-bold text-white group-hover:text-primary transition-colors">עדכוני אבטחה (Patching &amp; Hardening)</div>
+<p class="text-xs text-gray-400 mt-1">ביצוע הקשחות רוחביות והתקנת טלאי אבטחה בכלל הארגון.</p>
+</div>
+<div class="h-8 w-8 rounded-full bg-white/5 flex items-center justify-center">
+<span class="material-icons-round text-gray-400 text-sm">security_update</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Map Background Image Overlay (Subtle) -->
+<div class="fixed inset-0 pointer-events-none z-[-1] opacity-5">
+<div class="w-full h-full bg-no-repeat bg-cover bg-center" data-alt="Abstract world map network showing connectivity" style="background-image: url(&#39;https://lh3.googleusercontent.com/aida-public/AB6AXuC7S8irD_781cVKa8vTy9v6ap0pS2fBeyW5q23VeQqWPuu5VEFPWlslDveO_u-28SH4tXv8l36rpijSGDLbvTOHKu8IRKKqRCM2F6mw6FaiJA6muNX02V8nwM3G-Yq8xUSPa2qVYQ8ewJ_C9xPXoJomYF-07ZkIvN_LQRXKdESlokcYiW7zXqQjskCaCvpaT0d3qSLxw6v-3x6ySkdqsve7PIgXDr3kYs2BHYawIlpdG76enwRd5u6CkRmTZdLSkxaTXXb7xj3F1II&#39;);"></div>
+</div>
+</body></html>

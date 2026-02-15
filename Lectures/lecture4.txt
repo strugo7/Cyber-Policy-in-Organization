@@ -1,0 +1,393 @@
+‫שיעור ‪4‬‬
+‫תורת ההגנה בסייבר ‪ 2.0‬של מערך הסייבר הישראלי‪.‬‬
+‫עיונים במסגור אבטחת הסייבר של ‪.ENISA‬‬
+
+‫‪62‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫מטרת השיעור‬
+
+‫הכרות עם תוכניות מקבילות ‪NIST‬‬
+‫•‬
+‫•‬
+‫•‬
+‫•‬
+
+‫‪63‬‬
+
+‫להכיר את התכניות‪ ,‬כיצד נוצרו ולמה נועדו‪.‬‬
+‫להבין כיצד ליישם את התכנית )אחת מהן( בארגונים השונים‪.‬‬
+‫לפתח גישה ביקורתית ויישומית למדיניות סייבר בארגונים!‬
+‫להבין כיצד התכניות שונות )ודומות( לתכנית ה‪.NIST-‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫סיבות הקמה‬
+
+‫סיבות להקמה‪/‬פרסום‬
+‫• איומים גוברים‪ :‬מתקפות סייבר הפכו לאיום ממשי המשפיע על תשתיות לאומיות‪,‬‬
+‫עסקים קטנים וגדולים‪ ,‬ומערכות ממשלתיות‪.‬‬
+‫• חוסר אחידות בהגנה‪ :‬ארגונים רבים התקשו להתמודד עם אתגרי הסייבר בצורה‬
+‫אחידה ויעילה‪ ,‬מה שדרש יצירת מסגרת אחידה‪.‬‬
+‫• פגיעה אפשרית במוניטין ובכלכלה‪ :‬מתקפות סייבר עלולות לגרום לנזקים כלכליים‬
+‫כבדים ולפגיעה באמון הציבור‪.‬‬
+
+‫‪64‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫תמצית התכנית‬
+
+‫‪65‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫היסטוריה‪ :‬למה מערך הסייבר הוקם ולמה המסמך פורסם‬
+
+‫צפוף מידי למצגת – אנא עיינו בעמוד ‪ 114-115‬במסמך‪:‬‬
+‫‪https://www.idi.org.il/media/19666/what-is-cyber-security-part-two.pdf‬‬
+
+‫‪66‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫תמצית התכנית‬
+
+‫קטגוריזציה‪:‬‬
+‫הארגונים מחולקים לשתי קטגוריות עיקריות לפי פוטנציאל הנזק מאירוע סייבר‪:‬‬
+‫• קטגוריה א'‪ :‬ארגונים עם פוטנציאל נזק בינוני‪-‬נמוך‪.‬‬
+‫• קטגוריה ב'‪ :‬ארגונים עם פוטנציאל נזק גבוה‪ ,‬הדורשים תהליכי ניהול סיכונים‬
+‫מורחבים‪.‬‬
+
+‫‪67‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫תמצית התכנית‬
+
+‫‪68‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫תמצית התכנית‬
+‫תהליך ניהול סיכונים‬
+‫• הגדרת קטגוריה‪ :‬מיפוי הארגון‪.‬‬
+‫• זיהוי ואפיון סיכונים‪ :‬הבנת האיומים והערכתם‪.‬‬
+‫• בניית תכנית פעולה‪ :‬הכנת תכנית מותאמת להקטנת סיכונים‪.‬‬
+‫• ביקורת ובקרה‪ :‬ביצוע בדיקות שוטפות לתקפות התכנית‪.‬‬
+‫עקרונות מרכזיים‬
+‫• אחריות הנהלה על ניהול הסיכונים‪.‬‬
+‫• שימוש במודיעין עדכני‪.‬‬
+‫• התאמת רמת ההגנה לפוטנציאל הנזק‪.‬‬
+
+‫‪69‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫תמצית התכנית‬
+
+‫‪70‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫תמצית התכנית‬
+
+‫‪71‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫תמצית התכנית‬
+
+‫‪72‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫תמצית התכנית‬
+
+‫‪73‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫קריאה מתוך התכנית עצמה‬
+
+: ‫מ ק ור‬
+https://www.gov.il/he/pages/
+cyber_security_methodolog
+y_2
+
+2025-2026
+
+‫ד״ר לב טופור‬
+
+74
+
+‫קריאה מתוך התכנית עצמה‬
+
+: ‫מ ק ור‬
+https://www.gov.il/he/pages/
+cyber_security_methodolog
+y_2
+
+2025-2026
+
+‫ד״ר לב טופור‬
+
+75
+
+‫ארגון ה‪The European Union Agency for Cybersecurity -‬‬
+
+‫שאלה‪ :‬מדוע יש צורך בארגון ומסמכי מדיניות‪/‬נהלים כלל‪-‬אירופאים?‬
+
+‫‪76‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫ארגון ה‪The European Union Agency for Cybersecurity -‬‬
+‫הק מה‬
+‫• ‪ ENISA‬הוקמה ב‪ 2004-‬בעקבות רגולציה ) )‪EC‬מס' ‪ 460/2004‬של הפרלמנט‬
+‫האירופי והמועצה‪.‬‬
+‫• הסיבות להקמה כללו את הצורך בתיאום ושיתוף פעולה בין מדינות האיחוד בתחום‬
+‫אבטחת הסייבר‪ ,‬במיוחד לאור העלייה באיומי סייבר והצורך בהגנה על תשתיות‬
+‫קריטיות‪.‬‬
+‫מטרות ותפקידים‬
+‫• ‪ ENISA‬שואפת להשיג רמה גבוהה ומשותפת של אבטחת סייבר ברחבי האיחוד‬
+‫האירופי‪.‬‬
+‫• הסוכנות תורמת למדיניות הסייבר של האיחוד‪ ,‬מחזקת את אמון הציבור במוצרים‪,‬‬
+‫שירותים ותהליכים דיגיטליים באמצעות תכניות הסמכה‪ ,‬ומשתפת פעולה עם‬
+‫מדינות החברות וגורמים נוספים‪.‬‬
+‫‪77‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+The European Union Agency for Cybersecurity -‫ארגון ה‬
+
+https://www.youtube.com/watch?v=6Nq9OgZ5gsM :‫מקור‬
+2025-2026
+
+‫ד״ר לב טופור‬
+
+78
+
+The European Union Agency for Cybersecurity -‫ארגון ה‬
+
+https://www.youtube.com/watch?v=03zxrb2Fc0A :‫מקור‬
+2025-2026
+
+‫ד״ר לב טופור‬
+
+79
+
+The European Union Agency for Cybersecurity -‫עיונים במסמכי ה‬
+
+‫עיונים‬
+‫בנושאים‬
+:‫ומסמכים‬
+https://www.
+enisa.europa.
+eu/topics
+
+2025-2026
+
+‫ד״ר לב טופור‬
+
+80
+
+‫מסגורים שונים ומשונים‬
+Country
+
+Framework
+
+USA
+
+Independent/
+Switzerland
+
+CrossEuropean
+
+Focus
+
+Strengths
+
+Weaknesses
+
+Target Audience
+
+NIST
+Cybersecurity
+Framework
+(CSF)
+
+Risk-based,
+voluntary
+
+Flexible,
+customizable,
+integrates with other
+frameworks
+
+Lacks prescriptive guidance, may
+be complex for small organizations
+
+Businesses of all sizes,
+government agencies
+
+ISO 27001:2013
+ISO 27002:2022
+
+Information
+security
+management,
+prescriptive
+
+Well-established,
+globally recognized,
+comprehensive
+
+Can be rigid, bureaucratic,
+expensive to implement
+
+Organizations of all sizes
+seeking certification
+
+ENISA
+Cybersecurity
+Framework
+
+Risk
+management,
+threat
+intelligence
+
+EU-focused,
+considers emerging
+threats, filtered!
+
+Less mature than other
+frameworks, limited adoption
+outside EU
+
+EU organizations, public
+administrations
+
+TC260
+
+National
+security,
+critical
+infrastructure
+
+Governmentbacked,
+compliance-driven
+
+Lacks transparency, limited
+international recognition
+
+Chinese organizations,
+critical infrastructure
+providers, personal use,
+by industry
+
+NCSC Cyber
+Essentials;
+Small Business
+Guide
+
+Basic cyber
+hygiene,
+essential
+controls
+
+Simple, affordable,
+good starting point
+
+Not as comprehensive as other
+frameworks, may not be sufficient
+for high-risk organizations
+
+Small and medium
+businesses,
+organizations with
+limited resources
+
+‫תכנית מוכנות‬
+‫ארגון למשבר‬
+;‫סייבר‬
+‫תורת ההגנה‬
+‫בסייבר‬
+
+Basic cyber
+hygiene,
+essential
+controls,
+Incident
+
+Simple, affordable,
+good starting point
+
+Not as comprehensive as other
+frameworks, may not be sufficient
+for high-risk organizations
+
+Management level,
+public
+
+China
+
+UK
+
+Israel
+
+2025-2026
+
+‫ד״ר לב טופור‬
+
+81
+
+‫סיכום ושאלות‬
+
+‫‪82‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+‫שיעור ‪5‬‬
+‫ה ס מ כ ו ת ו מ ס ג ו ר י ם ב י נ ל א ו מ יי ם ‪:‬‬
+‫ועוד ‪ISO2700X, SOC2, CSA, GDPR‬‬
+
+‫‪83‬‬
+
+‫ד״ר לב טופור‬
+
+‫‪2025-2026‬‬
+
+

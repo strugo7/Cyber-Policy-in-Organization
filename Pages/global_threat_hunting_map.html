@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global Threat Hunting Map</title>
+<script type='text/javascript' nonce='NbXuai99DleuDQzCT7Cxqw==' src='https://contribution.usercontent.google.com/oHe__X718fXCLSXVNqefxAkvX1ZkTipxm0QL3zv1zWDnoRQlEns8o88YGaoqFWoiKbelJueTN9rdoNVVR3BRbgI98oVsbfqUzpQ08HNp7RdPLL38Yy2Fe7grp5LibpOVl5xN5I2Zo4GoNzysnVh9RVs2DrsJSLoZxSM9Bn8wgQiCqkg8QX5dnKMJ-LsevYIhmGtIOONS1MUUrwexhbHRpzFZhwra3J4SqBmWSiWX_UDwsjiZx7f-PHrqUlIdgxvP7zl0Ww6QL9cPCyB-Ac2gF3lg79qyFw-lM5gq-f7wyUHmseOkwn5xFB73Kij0OwP8MpkY58MdNKfM9ZZD4IBBalDeZezrM7sJCAEqciawFiGJ2vL0bMOF6ugP3-SWaI60NXqNcHj9vrzLq8NpvR5UTurKi-ZaPAHDoeWPzv_4gjwEbzn1cAP53ChOiWtN0g7qZsmSj_piCDm74Wkn-W7aStV1POvrA3xOSZiIER3kdfCzDe-D-ieqkV4yMX09Xx5TSnj4EFer0sfqDD0oAh03DrS5dppKTvxpRtOfwsgjS0Upa3p59Rw00FXWVLVEZPIv6HsfQPwPaave9d-BkApWTOw1-UXx5bDbMBJZiHE3kI4PLT8calEtN_BADQADOa3x-1wZP2yMF4DdYoP31Wy7GvDTaW9BYuQ2SDp-q0BeF0cexgrhD1ae28CCyU_1rO2lSS0_1Y8u6lN-xGIxuWPlOeGdggcHYsXvQP0Ec0d5HOYcF4CQ90v3PsMjTqR9VwWxgLuECJPKq95swfbSeaL-39aLqRNtdL4y7fuO7g'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f131a", // Deepened for better contrast
+                        "surface-dark": "#1a202c",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom scrollbar for dark tech look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(17, 82, 212, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(17, 82, 212, 0.3);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(17, 82, 212, 0.6);
+        }
+
+        /* Glassmorphism utilities */
+        .glass-panel {
+            background: rgba(16, 22, 34, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(17, 82, 212, 0.15);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Neon Glows */
+        .neon-text-primary {
+            text-shadow: 0 0 10px rgba(17, 82, 212, 0.6);
+        }
+        .neon-text-red {
+            text-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(17, 82, 212, 0.2), inset 0 0 10px rgba(17, 82, 212, 0.1);
+        }
+
+        /* Map background animation simulation */
+        .map-bg {
+            background: radial-gradient(circle at center, #1e293b 0%, #0f131a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Grid overlay */
+        .grid-overlay {
+            background-image: 
+                linear-gradient(rgba(17, 82, 212, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(17, 82, 212, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.15;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+        }
+
+        /* Pulsating animation for hotspots */
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+        .hotspot-pulse {
+            animation: pulse-red 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-display overflow-hidden h-screen flex flex-col">
+<!-- Header -->
+<header class="h-16 glass-panel z-50 flex items-center justify-between px-6 shrink-0 border-b border-white/5 relative">
+<div class="flex items-center gap-4">
+<!-- Logo Area -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center shadow-[0_0_15px_rgba(17,82,212,0.5)]">
+<span class="material-icons text-white">security</span>
+</div>
+<h1 class="text-xl font-bold tracking-wide text-white">CYBER<span class="text-primary">DOME</span> <span class="text-xs font-normal opacity-60 mr-2">מערכת הגנה לאומית</span></h1>
+</div>
+</div>
+<!-- Global Search & Status -->
+<div class="flex items-center gap-6">
+<div class="relative group">
+<input class="bg-background-dark/50 border border-slate-700 rounded-lg py-2 pr-10 pl-4 w-96 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="חיפוש אנומליות, כתובות IP, או CVE..." type="text"/>
+<span class="material-icons absolute right-3 top-2.5 text-slate-500 group-focus-within:text-primary">search</span>
+</div>
+<div class="h-8 w-[1px] bg-slate-700"></div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 rounded bg-red-500/10 border border-red-500/30">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+<span class="text-xs font-bold text-red-400">מתקפה פעילה</span>
+</div>
+<button class="relative p-2 rounded-lg hover:bg-white/5 text-slate-400 hover:text-white transition-colors">
+<span class="material-icons">notifications</span>
+<span class="absolute top-2 left-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="w-9 h-9 rounded-full bg-gradient-to-tr from-primary to-blue-400 p-[1px]">
+<img alt="User Profile" class="w-full h-full rounded-full object-cover border-2 border-background-dark" data-alt="Profile picture of a security analyst" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYqOwhBmvPsZ2hz6_3jQXcbxiUyaQ_9dPegsV7PKXjR_Km1wKHdq5kXRQ-DOIRS-nKKDNucd4LNAQ8zGHQFDhl0cG4Ay6Uc7sZgb_ktUDUZDTKHtSsxxCXHiD17LtHnet3ifyxOby-9dhaa9p65at3KvXBVGEXwEI87mYOjzw6L5Vfd2hAxUNNrTTSWLFWfVu69Ewaa7li6yqlBPaEoPVw_6bbqb8VNBUwku5M6zk57s2uFV1lvZURwdvoXOJViiAgJNI9uSllF5E"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<!-- Right Sidebar (Navigation) -->
+<aside class="w-20 glass-panel border-l border-white/5 flex flex-col items-center py-6 gap-8 z-40 shrink-0">
+<nav class="flex flex-col gap-6 w-full px-2">
+<a class="group flex flex-col items-center gap-1 w-full p-2 rounded-lg bg-primary/20 text-primary border border-primary/30 neon-border" href="#">
+<span class="material-icons">dashboard</span>
+<span class="text-[10px] font-medium">ראשי</span>
+</a>
+<a class="group flex flex-col items-center gap-1 w-full p-2 rounded-lg text-slate-400 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-icons group-hover:text-primary transition-colors">travel_explore</span>
+<span class="text-[10px] font-medium">ציד</span>
+</a>
+<a class="group flex flex-col items-center gap-1 w-full p-2 rounded-lg text-slate-400 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-icons group-hover:text-primary transition-colors">warning</span>
+<span class="text-[10px] font-medium">תקריות</span>
+</a>
+<a class="group flex flex-col items-center gap-1 w-full p-2 rounded-lg text-slate-400 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-icons group-hover:text-primary transition-colors">analytics</span>
+<span class="text-[10px] font-medium">דוחות</span>
+</a>
+<a class="group flex flex-col items-center gap-1 w-full p-2 rounded-lg text-slate-400 hover:bg-white/5 hover:text-white transition-all" href="#">
+<span class="material-icons group-hover:text-primary transition-colors">settings_input_component</span>
+<span class="text-[10px] font-medium">מקורות</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-4">
+<a class="p-2 rounded-lg text-slate-400 hover:text-white transition-colors" href="#">
+<span class="material-icons">settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area (Map & Widgets) -->
+<main class="flex-1 relative bg-background-dark overflow-hidden">
+<!-- 3D Map Visualization Layer -->
+<div class="absolute inset-0 z-0">
+<!-- Abstract Map Background Image -->
+<div class="w-full h-full absolute inset-0 bg-cover bg-center opacity-60 mix-blend-screen" data-alt="Abstract dark blue digital world map with network connections" style="background-image: url(&#39;https://lh3.googleusercontent.com/aida-public/AB6AXuCtMZH4dgBUoek9yxeDzS7-M9aAQFyx2tFqe7rLPuRhJaD7HUdDuKlXovcIWGZr5tuhzC1zQ8TqPHrgRAzy9coN8S_SVJjhxhcWQEvrIyrvsMh1ktY_aOUynUu3fiiT9c4wbTde35b5WOUCuk3xeKZZ1CeG_GlqDLRMikewjq4NZ2miooZN1b0zX9NZNLm6YeyflnZrC46aQ7Zyr9cejUXpacnyJht6Niho-8FhEX9zXZPTH0oqdEz5ZWKI4B114MS_tqZVUj7Mrx4&#39;);"></div>
+<!-- Overlay Gradients to darken edges -->
+<div class="absolute inset-0 bg-radial-gradient from-transparent via-background-dark/40 to-background-dark pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-background-dark/80 pointer-events-none"></div>
+<!-- Grid Overlay Effect -->
+<div class="absolute inset-0 grid-overlay pointer-events-none"></div>
+<!-- Central Node (Israel) -->
+<div class="absolute top-[45%] right-[42%] transform translate-x-1/2 -translate-y-1/2 z-10">
+<div class="w-4 h-4 bg-primary rounded-full shadow-[0_0_30px_10px_rgba(17,82,212,0.8)] animate-pulse relative">
+<div class="absolute -inset-4 border border-primary/30 rounded-full animate-ping opacity-20"></div>
+<div class="absolute -inset-8 border border-primary/10 rounded-full opacity-20"></div>
+</div>
+<div class="absolute top-6 -right-12 whitespace-nowrap">
+<span class="text-xs font-bold text-white bg-primary/80 px-2 py-0.5 rounded backdrop-blur-sm border border-primary/50">HQ - ישראל</span>
+</div>
+</div>
+<!-- Attack Hotspots (Visual CSS Only) -->
+<!-- Iran Region -->
+<div class="absolute top-[42%] right-[35%] z-10 group cursor-pointer">
+<div class="w-3 h-3 bg-red-500 rounded-full hotspot-pulse shadow-[0_0_20px_rgba(239,68,68,0.8)]"></div>
+<div class="absolute top-4 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+<div class="glass-panel px-3 py-1 rounded text-xs text-red-200 border-red-500/30 whitespace-nowrap">
+                            טהראן: עומס תעבורה חריג
+                        </div>
+</div>
+</div>
+<!-- Eastern Europe -->
+<div class="absolute top-[30%] right-[45%] z-10">
+<div class="w-2 h-2 bg-red-500 rounded-full hotspot-pulse shadow-[0_0_15px_rgba(239,68,68,0.6)] animation-delay-2000"></div>
+</div>
+<!-- Connection Arcs (SVG Overlay) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none z-0" style="opacity: 0.6;">
+<defs>
+<lineargradient id="grad1" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#1152d4;stop-opacity:0"></stop>
+<stop offset="50%" style="stop-color:#1152d4;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#1152d4;stop-opacity:0"></stop>
+</lineargradient>
+<lineargradient id="gradRed" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#ef4444;stop-opacity:0"></stop>
+<stop offset="50%" style="stop-color:#ef4444;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#ef4444;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<!-- Simulated Arcs toward Israel (Approx coordinates) -->
+<path class="animate-[dash_20s_linear_infinite]" d="M 650 350 Q 800 200 950 450" fill="transparent" stroke="url(#gradRed)" stroke-dasharray="10,10" stroke-width="2"></path>
+<path d="M 1200 300 Q 1000 250 950 450" fill="transparent" stroke="url(#grad1)" stroke-opacity="0.6" stroke-width="1.5"></path>
+<path d="M 400 500 Q 700 600 950 450" fill="transparent" stroke="url(#grad1)" stroke-opacity="0.4" stroke-width="1"></path>
+</svg>
+</div>
+<!-- Floating Widgets Container -->
+<div class="relative z-20 w-full h-full p-6 flex flex-col justify-between pointer-events-none">
+<!-- Top Row Widgets -->
+<div class="flex items-start justify-between gap-6 pointer-events-auto">
+<!-- Threat Level Widget -->
+<div class="glass-panel w-72 rounded-2xl p-5 flex flex-col items-center relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-full h-1 bg-gradient-to-l from-red-500 via-orange-500 to-green-500"></div>
+<h3 class="text-slate-400 text-sm font-medium mb-4 w-full text-right flex items-center justify-between">
+                            רמת איום גלובלית
+                            <span class="material-icons text-red-500 text-sm">warning</span>
+</h3>
+<!-- Gauge Visual -->
+<div class="relative w-40 h-20 overflow-hidden mb-2">
+<div class="absolute bottom-0 w-40 h-40 rounded-full border-[12px] border-slate-700 border-t-transparent border-l-transparent transform rotate-[45deg]"></div>
+<div class="absolute bottom-0 w-40 h-40 rounded-full border-[12px] border-red-500 border-t-transparent border-l-transparent transform rotate-[45deg] opacity-60 blur-sm"></div>
+<!-- Needle -->
+<div class="absolute bottom-0 left-1/2 w-1 h-20 bg-slate-500 origin-bottom transform rotate-[-20deg] transition-transform duration-1000"></div>
+</div>
+<div class="text-center mt-2">
+<h2 class="text-3xl font-bold text-red-500 neon-text-red">קריטי</h2>
+<p class="text-xs text-slate-400 mt-1">DEFCON 2 • רמת כוננות גבוהה</p>
+</div>
+<div class="mt-4 w-full flex justify-between text-[10px] text-slate-500 font-mono">
+<span>רגיל</span>
+<span>גבוה</span>
+<span class="text-red-400">קיצוני</span>
+</div>
+</div>
+<!-- Top Attacker Geo-Locations -->
+<div class="glass-panel w-96 rounded-2xl p-5 flex flex-col pointer-events-auto">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-slate-300 font-medium text-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                                מוקדי תקיפה מובילים
+                            </h3>
+<button class="text-xs text-primary hover:text-white transition-colors">הכל</button>
+</div>
+<div class="overflow-hidden">
+<table class="w-full text-right">
+<thead class="text-xs text-slate-500 border-b border-slate-700/50">
+<tr>
+<th class="pb-2 font-normal">מקור</th>
+<th class="pb-2 font-normal">ווקטור</th>
+<th class="pb-2 font-normal">נפח</th>
+<th class="pb-2 font-normal">מגמה</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-slate-700/30 hover:bg-white/5 transition-colors">
+<td class="py-3 flex items-center gap-2">
+<span class="text-lg">🇨🇳</span>
+<span class="text-slate-300">סין</span>
+</td>
+<td class="py-3 text-slate-400 text-xs">APT-41</td>
+<td class="py-3 text-red-400 font-mono">89 TB</td>
+<td class="py-3"><span class="material-icons text-red-500 text-xs">north_east</span></td>
+</tr>
+<tr class="border-b border-slate-700/30 hover:bg-white/5 transition-colors">
+<td class="py-3 flex items-center gap-2">
+<span class="text-lg">🇷🇺</span>
+<span class="text-slate-300">רוסיה</span>
+</td>
+<td class="py-3 text-slate-400 text-xs">Fancy Bear</td>
+<td class="py-3 text-orange-400 font-mono">42 TB</td>
+<td class="py-3"><span class="material-icons text-orange-500 text-xs">north_east</span></td>
+</tr>
+<tr class="hover:bg-white/5 transition-colors">
+<td class="py-3 flex items-center gap-2">
+<span class="text-lg">🇮🇷</span>
+<span class="text-slate-300">איראן</span>
+</td>
+<td class="py-3 text-slate-400 text-xs">MuddyWater</td>
+<td class="py-3 text-primary font-mono">15 TB</td>
+<td class="py-3"><span class="material-icons text-green-500 text-xs">south_east</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Middle/Side Content -->
+<div class="absolute top-24 left-6 pointer-events-auto">
+<!-- Active Hunt Sessions -->
+<div class="glass-panel w-80 rounded-2xl p-5 flex flex-col h-[400px]">
+<div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-700/50">
+<h3 class="text-slate-200 font-semibold text-sm">סשנים פעילים</h3>
+<span class="bg-primary/20 text-primary text-[10px] px-2 py-0.5 rounded-full border border-primary/30">4 פעילים</span>
+</div>
+<div class="flex-1 overflow-y-auto pr-1 space-y-3">
+<!-- Session Item -->
+<div class="p-3 rounded-lg bg-background-dark/40 border border-slate-700/50 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-mono text-slate-400">ID-8821</span>
+<span class="text-[10px] bg-yellow-500/20 text-yellow-500 px-1.5 rounded">בבדיקה</span>
+</div>
+<h4 class="text-sm font-medium text-slate-200 mb-1 group-hover:text-primary transition-colors">חשד לזליגת נתונים SQL</h4>
+<div class="flex items-center gap-2 text-[10px] text-slate-500">
+<span class="material-icons text-[10px]">schedule</span> 14 דק'
+                                    <span class="w-1 h-1 bg-slate-600 rounded-full"></span>
+<span>צוות Alpha</span>
+</div>
+</div>
+<!-- Session Item -->
+<div class="p-3 rounded-lg bg-background-dark/40 border border-slate-700/50 hover:border-primary/50 transition-colors group cursor-pointer">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-mono text-slate-400">ID-8819</span>
+<span class="text-[10px] bg-red-500/20 text-red-500 px-1.5 rounded animate-pulse">קריטי</span>
+</div>
+<h4 class="text-sm font-medium text-slate-200 mb-1 group-hover:text-primary transition-colors">ניסיון Brute Force - RDP</h4>
+<div class="flex items-center gap-2 text-[10px] text-slate-500">
+<span class="material-icons text-[10px]">schedule</span> 42 דק'
+                                    <span class="w-1 h-1 bg-slate-600 rounded-full"></span>
+<span>אוטומטי</span>
+</div>
+</div>
+<!-- Session Item -->
+<div class="p-3 rounded-lg bg-background-dark/40 border border-slate-700/50 hover:border-primary/50 transition-colors group cursor-pointer opacity-70">
+<div class="flex justify-between items-start mb-2">
+<span class="text-xs font-mono text-slate-400">ID-8804</span>
+<span class="text-[10px] bg-green-500/20 text-green-500 px-1.5 rounded">טופל</span>
+</div>
+<h4 class="text-sm font-medium text-slate-200 mb-1 group-hover:text-primary transition-colors">פישינג ממוקד הנהלה</h4>
+<div class="flex items-center gap-2 text-[10px] text-slate-500">
+<span class="material-icons text-[10px]">schedule</span> 2 שעות
+                                    <span class="w-1 h-1 bg-slate-600 rounded-full"></span>
+<span>צוות Beta</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Panel: Hypothesis Generation -->
+<div class="pointer-events-auto">
+<div class="glass-panel rounded-t-2xl p-1 border-b-0">
+<div class="flex items-center gap-2 px-4 py-2 border-b border-white/5">
+<span class="material-icons text-primary text-sm">psychology</span>
+<h3 class="text-sm font-medium text-slate-200">מחולל השערות ציד</h3>
+</div>
+<div class="grid grid-cols-4 gap-4 p-4">
+<!-- Toolcard 1 -->
+<button class="bg-surface-dark/60 hover:bg-primary/20 border border-slate-700 hover:border-primary transition-all p-4 rounded-xl text-right group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1 h-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded bg-blue-500/20 flex items-center justify-center text-blue-400 group-hover:text-white group-hover:bg-blue-500 transition-colors">
+<span class="material-icons text-lg">dns</span>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">T1071</span>
+</div>
+<h4 class="text-sm font-bold text-slate-200 group-hover:text-primary transition-colors">DNS Tunneling</h4>
+<p class="text-[11px] text-slate-400 mt-1 leading-snug">זיהוי תעבורה מוצפנת בתוך פרוטוקול DNS סטנדרטי.</p>
+</button>
+<!-- Toolcard 2 -->
+<button class="bg-surface-dark/60 hover:bg-primary/20 border border-slate-700 hover:border-primary transition-all p-4 rounded-xl text-right group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1 h-full bg-purple-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:text-white group-hover:bg-purple-500 transition-colors">
+<span class="material-icons text-lg">wifi_tethering</span>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">T1020</span>
+</div>
+<h4 class="text-sm font-bold text-slate-200 group-hover:text-primary transition-colors">Beaconing Detection</h4>
+<p class="text-[11px] text-slate-400 mt-1 leading-snug">איתור דפוסי תקשורת מחזוריים מול שרתי C2.</p>
+</button>
+<!-- Toolcard 3 -->
+<button class="bg-surface-dark/60 hover:bg-primary/20 border border-slate-700 hover:border-primary transition-all p-4 rounded-xl text-right group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1 h-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between mb-2">
+<div class="w-8 h-8 rounded bg-orange-500/20 flex items-center justify-center text-orange-400 group-hover:text-white group-hover:bg-orange-500 transition-colors">
+<span class="material-icons text-lg">share</span>
+</div>
+<span class="text-[10px] text-slate-500 font-mono">T1021</span>
+</div>
+<h4 class="text-sm font-bold text-slate-200 group-hover:text-primary transition-colors">Lateral Movement</h4>
+<p class="text-[11px] text-slate-400 mt-1 leading-snug">זיהוי תנועה רוחבית חריגה באמצעות SMB/RDP.</p>
+</button>
+<!-- Toolcard 4 (Create New) -->
+<button class="bg-surface-dark/30 hover:bg-surface-dark border border-dashed border-slate-600 hover:border-slate-400 transition-all p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-slate-400 hover:text-white h-full">
+<span class="material-icons">add_circle_outline</span>
+<span class="text-xs font-medium">יצירת השערה חדשה</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

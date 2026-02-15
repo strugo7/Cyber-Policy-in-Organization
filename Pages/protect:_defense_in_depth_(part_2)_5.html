@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Simulation: Ransomware Crisis (Part 4)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script type='text/javascript' nonce='7RmY5tyJ75R0+Y0oI7hYxg==' src='https://contribution.usercontent.google.com/QxvY-ohIA-C4R2YGw_PoY2ESVN_HMcYYrSVDzy6b3B2NVgaflkHUsepDj82UjAY7l7BBTef6W9-xbScCtQ4U58IQUaSeKygQJdObg7f-vAjvc_EYxMmeaWI3d8BuxmWcdgdPN474cLG5q-WY1jPLKsMnO1a-ewZKjSvTEWkdDPLRsPe9lnpH-ih2pSM9JTxekrjCK12EInWW_uH9Zdt-OZQ2EyY9JvjlrD60zNOL53YICJNFYqJ2xFBWTdpOsH-2Lz_oUSI1MxpwY17lLqzkSse4_cYrlqvQnJq-o9ao1oX0T_XPf0V1SWdTBtfblXk7gcMuiQgsOIj-TlnXD88cUOY3xV6LEAGQV5bH2M7bJk9ABFe-vqyEdxdU-a4uR8QYNQOoUDwAWa5xgo03Le6JqQFSFJi-bv79A_Yx0u3Cp85aMZulcLahr9xkwgCb6Ga3fpihPwUgmzXIAZo2Ed2rTiU3fORRC6v_JpwtgYMCrAhQ8lEdFnP6ixBNhd6WaKBnFmtuF_ZXxxfGODs-yAvEPT-EIxgDe8yE3Lt9mqsv_9ZM4HVquGNMXFiwgeXgprYBDbt8jIXnvhw0_oqVvRyIkbe9APX-Hh7NrcZ_AUt_GJHdMf-VSTEFVGOKRsxV_alxs9bNfv_UhFNhyOQxnUOJJ7CXQ2OH_y-LHAb3phu6VOddnZ7EViZga16rB9n02WIoSrHbNa-AmVND_cZjL97ViwdWRgn7o5RshYxWOjbcX59paJil8Qm5TsxB-mO7Rf1U-LM5vSYNVp1hQnKgafMSGnrInnevSIqO85MQsg'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "hacker-red": "#ff003c",
+                        "hacker-dark": "#0a0a0a",
+                        "hacker-black": "#050002",
+                        "hacker-gray": "#1a1a1a",
+                        "safe-green": "#00ff9d",
+                        "safe-dark": "#003320",
+                    },
+                    fontFamily: {
+                        "display": ["Share Tech Mono", "Heebo", "monospace"],
+                        "body": ["Heebo", "Public Sans", "sans-serif"],
+                        "mono": ["Share Tech Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'glitch-pattern': "repeating-linear-gradient(0deg, transparent, transparent 2px, #ff003c10 2px, #ff003c10 4px)",
+                        'scanline': "linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2))",
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glitch': 'glitch 1s linear infinite',
+                    },
+                    keyframes: {
+                        glitch: {
+                            '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+                            '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+                            '62%': { transform: 'translate(0,0) skew(5deg)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', 'Public Sans', sans-serif;
+        }
+        .font-mono-tech {
+            font-family: 'Share Tech Mono', monospace;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #330505; 
+            border-radius: 0px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff003c; 
+        }
+        .crt-overlay {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+        .glitch-text {
+            position: relative;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #00ff9d;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 #ff003c;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% { clip: rect(11px, 9999px, 89px, 0); }
+            20% { clip: rect(96px, 9999px, 19px, 0); }
+            40% { clip: rect(50px, 9999px, 2px, 0); }
+            60% { clip: rect(10px, 9999px, 78px, 0); }
+            80% { clip: rect(75px, 9999px, 33px, 0); }
+            100% { clip: rect(38px, 9999px, 62px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(22px, 9999px, 3px, 0); }
+            40% { clip: rect(88px, 9999px, 56px, 0); }
+            60% { clip: rect(5px, 9999px, 20px, 0); }
+            80% { clip: rect(44px, 9999px, 91px, 0); }
+            100% { clip: rect(12px, 9999px, 76px, 0); }
+        }
+    </style>
+</head>
+<body class="bg-hacker-black text-slate-100 min-h-screen flex flex-col overflow-hidden relative">
+<div class="fixed inset-0 z-50 pointer-events-none crt-overlay opacity-40"></div>
+<div class="fixed inset-0 z-40 pointer-events-none bg-glitch-pattern opacity-10"></div>
+<header class="w-full h-20 border-b border-hacker-red/30 bg-hacker-dark/90 backdrop-blur-md flex items-center justify-between px-8 z-30 relative shadow-[0_0_15px_rgba(255,0,60,0.2)]">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-hacker-red flex items-center justify-center shadow-[0_0_10px_#ff003c] animate-pulse-fast">
+<span class="material-icons-round text-black text-2xl font-bold">warning</span>
+</div>
+<span class="text-xl font-bold tracking-wide text-hacker-red font-mono-tech uppercase">System Hacked</span>
+</div>
+<div class="h-6 w-px bg-hacker-red/30"></div>
+<nav class="flex items-center text-sm font-medium text-slate-500 gap-2 font-mono">
+<span>מודול 5</span>
+<span class="material-icons-round text-base rotate-180 text-hacker-red">chevron_right</span>
+<span class="text-hacker-red font-bold animate-pulse">חלק ד': סימולטור כופרה</span>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-hacker-red/10 border border-hacker-red animate-pulse">
+<div class="w-2 h-2 rounded-full bg-hacker-red animate-ping"></div>
+<span class="text-xs font-bold text-hacker-red tracking-wider">CRITICAL ALERT</span>
+</div>
+<div class="flex items-center gap-3 pl-2 border-l border-hacker-red/30">
+<div class="text-left hidden md:block">
+<p class="text-sm font-medium text-white">דניאל כהן</p>
+<p class="text-xs text-hacker-red">חיבור לא מאובטח</p>
+</div>
+<div class="relative">
+<img alt="User Avatar" class="w-10 h-10 rounded border-2 border-hacker-red grayscale contrast-150" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmfppwINWBfa3hY53eYWWzJWgI3i0Vv1I8UxX5Y2q0_BU90uCnj_4hkSaUVeonrAC7GyH6o_DZvBQL4ht1KIPvLGiqmQ97YbJ3qb25GfFF6qWOoNQ_CLE7URg1WgVCjIFAfh4VmuXtFB64idnMT39Sv1nZ7asfMDpYOkeu8Q0a1LawdYTtLo8y_T5Q02IRVjAqZCToBbqCgSuIrzCXNcmDkZL2zR8vIgB2nQAl8vgp_otKC1mMf4KImWXskushyZ0fjxW0EepeFDg"/>
+<div class="absolute inset-0 bg-hacker-red/20 animate-pulse"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 grid grid-cols-12 gap-8 p-8 relative overflow-hidden z-20">
+<div class="col-span-12 md:col-start-3 md:col-span-8 lg:col-start-4 lg:col-span-6 flex flex-col justify-center items-center relative z-10">
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-hacker-red/5 blur-[100px] rounded-full animate-pulse-fast"></div>
+<div class="w-full bg-black border-2 border-hacker-red shadow-[0_0_50px_rgba(255,0,60,0.3)] relative overflow-hidden">
+<div class="bg-hacker-red px-4 py-2 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-icons-round text-black animate-spin">settings</span>
+<span class="font-mono-tech font-bold text-black uppercase tracking-widest">RANSOMWARE.EXE</span>
+</div>
+<div class="flex gap-1">
+<div class="w-3 h-3 bg-black/50"></div>
+<div class="w-3 h-3 bg-black/50"></div>
+<div class="w-3 h-3 bg-black hover:bg-white cursor-pointer transition-colors"></div>
+</div>
+</div>
+<div class="p-8 md:p-12 text-center relative">
+<div class="mb-6 relative inline-block">
+<span class="material-icons-round text-8xl text-hacker-red animate-[pulse_0.2s_ease-in-out_infinite]">skull</span>
+<span class="material-icons-round text-8xl text-white absolute top-0 left-0 opacity-30 animate-[ping_1s_cubic-bezier(0,0,0.2,1)_infinite]">skull</span>
+</div>
+<h1 class="text-5xl md:text-6xl font-black text-white mb-2 tracking-tighter uppercase glitch-text" data-text="הקבצים שלך הוצפנו!">
+                        הקבצים שלך הוצפנו!
+                    </h1>
+<p class="text-hacker-red font-mono-tech text-lg mb-8 uppercase tracking-widest animate-pulse">
+                        YOUR FILES ARE ENCRYPTED
+                    </p>
+<p class="text-slate-300 text-lg mb-8 max-w-lg mx-auto leading-relaxed border-r-2 border-hacker-red pr-4">
+                        כל המסמכים, התמונות, בסיסי הנתונים וקבצים אחרים חשובים הוצפנו עם מפתח ייחודי שנוצר עבור המחשב הזה.
+                        <br/><span class="text-hacker-red font-bold">המפתח הפרטי לפענוח מאוחסן בשרתים שלנו.</span>
+</p>
+<div class="bg-hacker-gray border border-hacker-red/30 p-6 mb-10 inline-block w-full max-w-md relative group">
+<div class="absolute -top-3 right-4 bg-black px-2 text-hacker-red text-xs font-mono font-bold uppercase tracking-widest border border-hacker-red">זמן נותר לתשלום</div>
+<div class="flex justify-center items-end gap-2 font-mono-tech text-hacker-red text-5xl md:text-6xl font-bold tracking-widest" dir="ltr">
+<span class="bg-black px-2 py-1 border border-hacker-red/20 shadow-[0_0_10px_rgba(255,0,60,0.2)]">23</span>
+<span class="animate-pulse">:</span>
+<span class="bg-black px-2 py-1 border border-hacker-red/20 shadow-[0_0_10px_rgba(255,0,60,0.2)]">59</span>
+<span class="animate-pulse">:</span>
+<span class="bg-black px-2 py-1 border border-hacker-red/20 shadow-[0_0_10px_rgba(255,0,60,0.2)]">42</span>
+</div>
+<div class="flex justify-center gap-8 mt-2 text-xs text-slate-500 font-mono uppercase w-full">
+<span class="w-16">שעות</span>
+<span class="w-4"></span>
+<span class="w-16">דקות</span>
+<span class="w-4"></span>
+<span class="w-16">שניות</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl mx-auto">
+<button class="relative group overflow-hidden bg-black border-2 border-hacker-red p-4 hover:bg-hacker-red/10 transition-all duration-200">
+<div class="absolute top-0 right-0 bg-hacker-red text-black text-[10px] font-bold px-2 py-0.5 uppercase">סיכון גבוה</div>
+<div class="flex flex-col items-center gap-2">
+<span class="material-icons-round text-3xl text-hacker-red group-hover:scale-110 transition-transform">paid</span>
+<span class="text-xl font-bold text-white uppercase font-display">שלם כופר</span>
+<span class="text-xs text-hacker-red font-mono">שליחת ביטקוין לתוקף</span>
+</div>
+</button>
+<button class="relative group overflow-hidden bg-safe-dark/20 border-2 border-safe-green p-4 hover:bg-safe-dark/40 transition-all duration-200 shadow-[0_0_15px_rgba(0,255,157,0.1)] hover:shadow-[0_0_25px_rgba(0,255,157,0.2)]">
+<div class="absolute top-0 right-0 bg-safe-green text-black text-[10px] font-bold px-2 py-0.5 uppercase">בטוח ומומלץ</div>
+<div class="flex flex-col items-center gap-2">
+<span class="material-icons-round text-3xl text-safe-green group-hover:scale-110 transition-transform">settings_backup_restore</span>
+<span class="text-xl font-bold text-white uppercase font-display">שחזר מגיבוי</span>
+<span class="text-xs text-safe-green font-mono">אובדן מידע מזערי (שעתיים)</span>
+</div>
+</button>
+</div>
+<div class="mt-8 text-xs text-slate-600 font-mono">
+                        System ID: <span class="text-slate-400">8492-AC21-9922</span> | IP: <span class="text-slate-400">192.168.1.45</span>
+</div>
+</div>
+<div class="bg-hacker-gray border-t border-hacker-red/30 p-2 flex justify-between items-center text-[10px] text-slate-500 font-mono">
+<span>ENCRYPTION_LEVEL: MILITARY_GRADE_AES_256</span>
+<span class="animate-pulse text-hacker-red">CONNECTION_ACTIVE</span>
+</div>
+</div>
+</div>
+</main>
+<div class="absolute top-32 left-10 text-hacker-red/20 font-mono text-xs hidden lg:block select-none pointer-events-none">
+        01001000 01100101 01101100 01110000<br/>
+        00100000 01101101 01100101 00100001<br/>
+        Encrypting drive C:/... Done<br/>
+        Encrypting drive D:/... Done<br/>
+        Network shares... Locked<br/>
+        Backup servers... Unreachable
+    </div>
+<div class="absolute bottom-20 right-10 text-hacker-red/20 font-mono text-xs hidden lg:block select-none pointer-events-none text-left" dir="ltr">
+        &gt; SYSTEM_FAILURE<br/>
+        &gt; KERNEL_PANIC<br/>
+        &gt; INITIATING_LOCKDOWN<br/>
+        &gt; USER_PRIVILEGES: REVOKED<br/>
+        &gt; ADMIN_ACCESS: DENIED
+    </div>
+
+</body></html>

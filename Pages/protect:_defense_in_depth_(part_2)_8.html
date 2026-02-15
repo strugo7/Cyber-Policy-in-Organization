@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Deepfake Lab: Detection (Part 3)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script type='text/javascript' nonce='Ri3eIdTuAvvsasziMFL0iA==' src='https://contribution.usercontent.google.com/Woe7NG0wvsSQHGtzHq3bfnaiC_URH2_u_O6Hz_lqbYn8BIxYipXoPZkzZ6ymFqQYIGqsUxJDwIxvNRHzIfjRVlwz89FBiPNwN322bUA5mSsuZaNfU5214QyzYl4DIPdWeRLx6M_G74RnB1PMc_n55Xb6GtuyGSbZ9ik4AzTWkIYGDTPvJ7KW_2plIEbv4u3LYLMXSxGS3olSHTu5yifgEIy8Tr9YCCiRavK4QHAzbCw5ia1BUsfSoKR4U-gtDJ5xNZYjRUq9ixgMJpZmgFYgohHBnhg0dmghfTyh9RFflIagz8zP-HD9fH4Bu4GWOiewwcKttHKX9kyvTjDml8igAdSK7ylesz7OgGI9yRMZpf3MQ88kS7-h4oe24RYm-6FrmtXpcHfzLOf6XkaP7wIjfy0lM80sEW5beu6tLJgrcH4XiFngkfod4e95iJKL5YUyVlToCZByo1K6C-yR4COE0r5lj-dUOTxxftQfORudhzXAmb3904s5muutBGlCu0XGQhtxS28BvVP30Xfqv9gMI--TZY7ar4PN0oSNAbXCY1KvdOLGXMHB_LNLcTjLG7zaN_9G-tzW42rNdmsnb6QU9hmMhpIpCc_f4QPLKHsYSVtKewtKYjHAFuQ0VlaeaWYipuXqEIeTsiW27GqXEZS9L6QzHHDtLy1lOdwFnvAzOFd65Jotw5k_Wy32HPqi613YeWSRJ3a4LbPIRt0R5khvd5yDD8AsbzVjrE0QI4KHUJ_WIUfyS8E9Q7PLeQqYVSwIsQWvJbU0Qn0RZb5HLXxJV8bFarQidThZS8nqpA'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "lab-purple": "#8b5cf6",
+                        "lab-cyan": "#06b6d4",
+                        "lab-dark": "#0f172a",
+                        "lab-black": "#020617",
+                        "lab-panel": "#1e293b",
+                        "lab-accent": "#f43f5e",
+                        "lab-success": "#10b981",
+                    },
+                    fontFamily: {
+                        "display": ["Share Tech Mono", "Heebo", "monospace"],
+                        "body": ["Heebo", "Public Sans", "sans-serif"],
+                        "mono": ["Share Tech Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(rgba(139, 92, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.1) 1px, transparent 1px)",
+                    },
+                    animation: {
+                        'scan': 'scan 4s linear infinite',
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100%)' }
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', 'Public Sans', sans-serif;
+        }
+        .font-mono-tech {
+            font-family: 'Share Tech Mono', monospace;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6; 
+        }
+        .video-overlay {
+            background: linear-gradient(to bottom, transparent 50%, rgba(6, 182, 212, 0.1) 50%);
+            background-size: 100% 4px;
+        }
+        .neon-box {
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.3), inset 0 0 5px rgba(139, 92, 246, 0.1);
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            margin-top: -10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #475569;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-lab-black text-slate-100 min-h-screen flex flex-col overflow-x-hidden relative">
+<div class="fixed inset-0 z-0 bg-grid-pattern bg-[length:40px_40px] opacity-20 pointer-events-none"></div>
+<header class="w-full h-16 border-b border-lab-purple/30 bg-lab-dark/90 backdrop-blur-md flex items-center justify-between px-6 z-30 sticky top-0 shadow-lg">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-lab-purple flex items-center justify-center shadow-[0_0_10px_#8b5cf6]">
+<span class="material-icons-round text-white text-xl">face_retouching_off</span>
+</div>
+<span class="text-lg font-bold tracking-wide text-white font-mono-tech uppercase">DEEPFAKE LAB</span>
+</div>
+<div class="h-5 w-px bg-lab-purple/30 mx-2"></div>
+<nav class="flex items-center text-sm font-medium text-slate-400 gap-2 font-mono hidden sm:flex">
+<span>מודול 3</span>
+<span class="material-icons-round text-sm rotate-180 text-lab-cyan">chevron_right</span>
+<span class="text-lab-cyan">זיהוי וחקירה</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="px-3 py-1 rounded-full bg-lab-cyan/10 border border-lab-cyan/30 text-lab-cyan text-xs font-mono flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-lab-cyan animate-pulse"></span>
+                מצב חוקר פעיל
+            </div>
+<div class="relative">
+<img alt="User Avatar" class="w-8 h-8 rounded border border-lab-purple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmfppwINWBfa3hY53eYWWzJWgI3i0Vv1I8UxX5Y2q0_BU90uCnj_4hkSaUVeonrAC7GyH6o_DZvBQL4ht1KIPvLGiqmQ97YbJ3qb25GfFF6qWOoNQ_CLE7URg1WgVCjIFAfh4VmuXtFB64idnMT39Sv1nZ7asfMDpYOkeu8Q0a1LawdYTtLo8y_T5Q02IRVjAqZCToBbqCgSuIrzCXNcmDkZL2zR8vIgB2nQAl8vgp_otKC1mMf4KImWXskushyZ0fjxW0EepeFDg"/>
+</div>
+</div>
+</header>
+<main class="flex-1 container mx-auto p-4 md:p-8 z-10 relative">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+<div>
+<h1 class="text-3xl font-bold text-white mb-2 flex items-center gap-3">
+<span class="material-symbols-outlined text-lab-accent text-4xl">compare</span>
+                    תרגול: אמת או Deepfake?
+                </h1>
+<p class="text-slate-400 max-w-2xl">
+                    לפניך שני סרטוני וידאו. אחד מהם הוא הקלטה מקורית, והשני הוא Deepfake שנוצר על ידי בינה מלאכותית. השתמש בסליידר כדי לקבוע מי מהם מזויף.
+                </p>
+</div>
+<div class="bg-lab-panel border border-lab-purple/30 rounded px-4 py-2 text-right">
+<div class="text-xs text-slate-500 font-mono uppercase">רמת קושי</div>
+<div class="flex gap-1 mt-1">
+<div class="w-8 h-1 bg-lab-accent"></div>
+<div class="w-8 h-1 bg-lab-accent"></div>
+<div class="w-8 h-1 bg-lab-accent/30"></div>
+</div>
+<div class="text-lab-accent text-sm font-bold mt-1">מתקדם</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 relative">
+<div class="relative group">
+<div class="absolute -top-3 right-4 z-20 bg-lab-dark px-3 py-1 border border-slate-700 rounded text-xs font-bold font-mono text-slate-300">VIDEO A</div>
+<div class="bg-lab-black rounded-lg border-2 border-slate-700 overflow-hidden relative aspect-video shadow-lg group-hover:border-lab-cyan transition-colors duration-300">
+<div class="absolute inset-0 flex items-center justify-center bg-slate-900">
+<span class="material-icons-round text-6xl text-slate-700">person</span>
+</div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-center text-xs text-slate-500 font-mono">
+<span>REC [00:12:45]</span>
+<span>1080p / 30fps</span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/40 cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-white/20 backdrop-blur flex items-center justify-center border border-white/50">
+<span class="material-icons-round text-white">play_arrow</span>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-lab-purple items-center justify-center border-4 border-lab-black shadow-xl">
+<span class="font-black text-white italic text-sm">VS</span>
+</div>
+<div class="relative group">
+<div class="absolute -top-3 right-4 z-20 bg-lab-dark px-3 py-1 border border-slate-700 rounded text-xs font-bold font-mono text-slate-300">VIDEO B</div>
+<div class="bg-lab-black rounded-lg border-2 border-lab-accent/50 overflow-hidden relative aspect-video shadow-[0_0_20px_rgba(244,63,94,0.15)]">
+<div class="absolute inset-0 flex items-center justify-center bg-slate-900 relative overflow-hidden">
+<span class="material-icons-round text-6xl text-slate-700">person_off</span>
+<div class="absolute inset-0 video-overlay opacity-30 pointer-events-none"></div>
+<div class="absolute top-[30%] left-[45%] border border-lab-accent/80 w-16 h-10 rounded bg-lab-accent/10 flex items-start justify-center animate-pulse">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-lab-accent text-white text-[10px] px-2 py-0.5 whitespace-nowrap rounded font-bold">Unnatural Blinking</div>
+<div class="w-full h-px bg-lab-accent/50 absolute top-1/2"></div>
+<div class="h-full w-px bg-lab-accent/50 absolute left-1/2"></div>
+</div>
+<div class="absolute bottom-[20%] right-[30%] border border-lab-accent/80 w-12 h-12 rounded-full bg-lab-accent/10 flex items-center justify-center">
+<div class="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-lab-accent text-white text-[10px] px-2 py-0.5 whitespace-nowrap rounded font-bold">Lip Sync Error</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-3xl mx-auto bg-lab-panel rounded-xl p-6 border border-lab-purple/20 shadow-lg mb-12">
+<h3 class="text-center text-lg font-bold text-white mb-6">מי מהסרטונים הוא הזיוף?</h3>
+<div class="relative px-4 pb-2">
+<div class="flex justify-between text-xs font-bold text-slate-400 mb-2 uppercase tracking-wider">
+<span>Video A is Fake</span>
+<span>Video B is Fake</span>
+</div>
+<input class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-lab-purple hover:accent-lab-cyan transition-all" max="100" min="0" type="range" value="50"/>
+<div class="flex justify-between mt-2">
+<div class="w-px h-2 bg-slate-600"></div>
+<div class="w-px h-2 bg-slate-600"></div>
+<div class="w-px h-2 bg-slate-600"></div>
+</div>
+</div>
+<div class="flex justify-center mt-6">
+<button class="bg-lab-purple hover:bg-lab-purple/90 text-white px-8 py-2 rounded font-bold shadow-[0_0_15px_rgba(139,92,246,0.4)] transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2">
+<span class="material-icons-round">check_circle</span>
+                    בדוק תשובה
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<div class="md:col-span-12">
+<div class="flex items-center gap-2 mb-4 border-b border-slate-700 pb-2">
+<span class="material-icons-round text-lab-cyan">quiz</span>
+<h2 class="text-xl font-bold text-white">התאם את המושג להגדרה</h2>
+</div>
+</div>
+<div class="md:col-span-12 bg-lab-panel/50 border border-slate-700 rounded-lg p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-3">
+<div class="text-sm font-bold text-slate-400 mb-2">מושגים</div>
+<div class="bg-lab-dark border border-lab-purple/50 p-3 rounded cursor-move hover:bg-lab-purple/10 transition-colors flex justify-between items-center group">
+<span class="text-white font-medium">Prompt Injection</span>
+<span class="material-icons-round text-slate-600 group-hover:text-lab-purple">drag_indicator</span>
+</div>
+<div class="bg-lab-dark border border-slate-700 p-3 rounded cursor-move hover:bg-slate-800 transition-colors flex justify-between items-center group">
+<span class="text-white font-medium">GAN (Generative Adversarial Network)</span>
+<span class="material-icons-round text-slate-600 group-hover:text-white">drag_indicator</span>
+</div>
+<div class="bg-lab-dark border border-slate-700 p-3 rounded cursor-move hover:bg-slate-800 transition-colors flex justify-between items-center group">
+<span class="text-white font-medium">Face Swapping</span>
+<span class="material-icons-round text-slate-600 group-hover:text-white">drag_indicator</span>
+</div>
+</div>
+<div class="space-y-3">
+<div class="text-sm font-bold text-slate-400 mb-2">הגדרות</div>
+<div class="bg-lab-black/50 border-2 border-dashed border-slate-700 p-3 rounded flex items-center min-h-[50px] transition-colors hover:border-slate-500">
+<span class="text-slate-400 text-sm">החלפת פנים של אדם אחד באחר בוידאו או תמונה.</span>
+</div>
+<div class="bg-lab-black/50 border-2 border-dashed border-lab-purple/50 bg-lab-purple/5 p-3 rounded flex items-center min-h-[50px]">
+<span class="text-slate-300 text-sm">מניפולציה על קלט למודל AI כדי לעקוף מגבלות אבטחה.</span>
+<span class="mr-auto material-icons-round text-lab-success text-sm">check_circle</span>
+</div>
+<div class="bg-lab-black/50 border-2 border-dashed border-slate-700 p-3 rounded flex items-center min-h-[50px] transition-colors hover:border-slate-500">
+<span class="text-slate-400 text-sm">ארכיטקטורת למידת מכונה שבה שתי רשתות מתחרות זו בזו ליצירת דאטה חדש.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-8 border-t border-slate-800 bg-lab-black py-4 px-8 text-xs font-mono text-slate-500 flex justify-between items-center">
+<div class="flex gap-4">
+<span>DETECTION_MODULE_V3.1</span>
+<span class="text-lab-success">SYSTEM_ONLINE</span>
+</div>
+<div>
+            ID: <span class="text-slate-400">USR-8821-XP</span>
+</div>
+</footer>
+
+</body></html>

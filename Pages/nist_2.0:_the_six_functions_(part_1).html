@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NIST 2.0: The Six Functions (Part 1)</title>
+<script type='text/javascript' nonce='zKProUFrMyZ4DbShgIMa+A==' src='https://contribution.usercontent.google.com/bcqvnC9AbivdX1ItqEquBCIMzzDblZkTOb6K3t8lrin-SLKmghDrLwip4ojwf3uXkiKEtivYNuLitSje-1lDOCtt_Xj0QDEWnM_rG7rS7MIQd410pdfpBsyMzGcjsL1s39amrrWAs_epMqER13N_72d_ugnNI8vDTMQp0bxntgXMqRejhH9b2J4owXQ-kTftxFL7BbhNv7aWfN256ItD_o1e58HU7yszer_2gZM1tzciWDAagc2MTnirbMpg6n8UfLrXXOZ3h3VXVCxB0FAweg6R9B7CBL2vPmCzr3addbvAxOfa2C_ZWkXPjlg9PIIy3MwcJ9bkqIuoybXwpnXRG_wZTpy07XArJKNjNE3c68I8fQQ6PpiczRZ68KkF1Xc9hj1IGT7kzy1T-sYXLUAJod3cADaiYWsOHLpSpSbP2skiFwscFNPqmojPfu2Ir-k4DSA1EUI_nKU1tk5VnCkyZoffuxV6GQNhGINJXgf9A3zKO2d7zxukxNuOkovO4FIoPb9wuG5aDdsfUxP7bmVPSDBJaVjk3pg6Vkkg5eNiOVzhOWHZO3aPMuiLOosUrWLno-JkpuE7DsSzXWccZ6q-UvVbT-Jf3DopTTwCZU6yK3vyCwWXunwdIh88v4OYMoYBxdC70PMGez1lrro1QZzA2PxTJdftXBay_0nOhiv9CVvWXjoPVVy016bR5YU5bGOXRbUaEB_wdPHlcRsPir3nS0TRsQd7-aDnWcrxfqeLpyCTBBf4d0z-h0eEnuhy99BtCeDYkFvib8goWu4rDlXJ1grCLRbZkQOGQgwqfA'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7f13ec",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                        "nist-blue": "#2074d5",
+                        "nist-purple": "#7f13ec", 
+                        "nist-yellow": "#f5d34b",
+                        "nist-red": "#e63f3f",
+                        "nist-green": "#2ea64e",
+                        "nist-grey": "#64748b",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "sans-serif"],
+                        "hebrew": ["Heebo", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', sans-serif;
+        }
+        .nist-wheel-segment {
+            transition: all 0.3s ease;
+        }
+        .nist-wheel-segment:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        /* Custom shape utilities for the segments */
+        .clip-sector {
+            clip-path: polygon(50% 50%, 100% 0, 100% 100%);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white min-h-screen flex flex-col font-hebrew">
+<!-- Navigation Breadcrumbs -->
+<nav class="w-full px-6 py-4 bg-white dark:bg-[#1f162b] border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="max-w-7xl mx-auto flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">בית</a>
+<span class="material-icons text-xs">chevron_left</span>
+<a class="hover:text-primary transition-colors" href="#">תקנים ורגולציה</a>
+<span class="material-icons text-xs">chevron_left</span>
+<span class="font-medium text-slate-800 dark:text-slate-200">NIST CSF 2.0</span>
+</div>
+</nav>
+<!-- Main Hero Section -->
+<main class="flex-grow flex items-center justify-center p-6 lg:p-12">
+<div class="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Sidebar Content (Right Side in RTL) -->
+<div class="lg:col-span-4 space-y-8 order-2 lg:order-1">
+<div class="space-y-4">
+<div class="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-bold border border-primary/20">
+<span class="material-icons text-base ml-2">school</span>
+                        מודול לימוד
+                    </div>
+<h1 class="text-4xl lg:text-5xl font-black text-slate-900 dark:text-white leading-tight">
+                        חלק א': הליבה -<br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-l from-primary to-purple-600">ששת הפונקציות</span>
+</h1>
+<p class="text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+                        גרסה 2.0 של ה-NIST CSF מציגה שינוי משמעותי במבנה הליבה. הפונקציה החדשה "GOVERN" ממוקמת במרכז, ומדגישה את חשיבות המשילות באסטרטגיית הגנת הסייבר הארגונית.
+                    </p>
+</div>
+<!-- Legend List -->
+<div class="bg-white dark:bg-[#251a30] rounded-xl shadow-lg border border-slate-100 dark:border-slate-700 overflow-hidden">
+<div class="p-4 bg-slate-50 dark:bg-[#2d203b] border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+<h3 class="font-bold text-slate-800 dark:text-white">מקרא פונקציות</h3>
+<span class="text-xs font-mono text-slate-400">CSF v2.0</span>
+</div>
+<div class="divide-y divide-slate-100 dark:divide-slate-700/50">
+<!-- GOVERN -->
+<div class="p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer flex items-start gap-4 border-r-4 border-nist-grey">
+<div class="mt-1 bg-nist-grey text-white p-1.5 rounded-lg shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-icons text-sm">account_balance</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">משילות (GOVERN)</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">קביעת מדיניות ואסטרטגיה לניהול סיכונים.</p>
+</div>
+</div>
+<!-- IDENTIFY -->
+<div class="p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer flex items-start gap-4 border-r-4 border-nist-blue">
+<div class="mt-1 bg-nist-blue text-white p-1.5 rounded-lg shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-icons text-sm">search</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">זיהוי (IDENTIFY)</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">הבנת ההקשר העסקי וניהול הנכסים.</p>
+</div>
+</div>
+<!-- PROTECT -->
+<div class="p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer flex items-start gap-4 border-r-4 border-nist-purple bg-primary/5">
+<div class="mt-1 bg-nist-purple text-white p-1.5 rounded-lg shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-icons text-sm">shield</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">הגנה (PROTECT)</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">יישום בקרות להגנה על מערכות ונתונים.</p>
+</div>
+</div>
+<!-- DETECT -->
+<div class="p-4 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors group cursor-pointer flex items-start gap-4 border-r-4 border-nist-yellow">
+<div class="mt-1 bg-nist-yellow text-slate-900 p-1.5 rounded-lg shadow-sm group-hover:scale-110 transition-transform">
+<span class="material-icons text-sm">radar</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">גילוי (DETECT)</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">זיהוי אירועי סייבר המתרחשים בזמן אמת.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Diagram Area (Left Side in RTL) -->
+<div class="lg:col-span-8 flex flex-col items-center justify-center relative min-h-[600px] order-1 lg:order-2">
+<!-- Floating Tooltip Card -->
+<div class="absolute z-20 top-10 left-4 md:left-20 max-w-xs animate-bounce" style="animation-duration: 3s;">
+<div class="bg-white dark:bg-[#251a30] p-4 rounded-xl shadow-xl border border-primary/20 relative">
+<div class="flex items-start gap-3">
+<span class="bg-primary/10 text-primary p-2 rounded-lg material-icons">new_releases</span>
+<div>
+<p class="text-xs font-bold text-primary uppercase tracking-wider mb-1">עדכון משמעותי</p>
+<p class="text-sm font-medium text-slate-800 dark:text-white">החדש בגרסה 2.0: קביעת אסטרטגיה ומדיניות כבסיס לכלל המסגרת</p>
+</div>
+</div>
+<!-- Arrow pointing to center -->
+<div class="absolute -bottom-2 right-8 w-4 h-4 bg-white dark:bg-[#251a30] border-b border-r border-primary/20 transform rotate-45"></div>
+</div>
+<!-- Connection Line SVG -->
+<svg class="absolute top-full right-10 w-24 h-32 pointer-events-none text-primary/30" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 100 100">
+<path d="M0,0 Q20,50 80,80" stroke-dasharray="4 4"></path>
+<circle cx="80" cy="80" fill="currentColor" r="3"></circle>
+</svg>
+</div>
+<!-- The NIST Wheel Container -->
+<div class="relative w-[500px] h-[500px] flex items-center justify-center scale-75 md:scale-100 lg:scale-110">
+<!-- Center: GOVERN -->
+<div class="absolute z-10 w-40 h-40 bg-nist-grey rounded-full shadow-2xl flex flex-col items-center justify-center text-white border-4 border-white dark:border-background-dark transform transition hover:scale-110 cursor-pointer">
+<span class="material-icons text-5xl mb-1">account_balance</span>
+<span class="font-bold text-lg font-display tracking-wide">GOVERN</span>
+<span class="text-xs opacity-90 font-hebrew">משילות</span>
+</div>
+<!-- Outer Segments Container -->
+<!-- We use CSS transforms to position wedges around the circle. 
+                         Since creating perfect wedges with pure HTML/CSS divs is complex, 
+                         we will simulate the look using a circular layout with absolute positioning 
+                         and conic gradients or rotated divs for a cleaner code structure suitable for this prompt.
+                         
+                         Alternative: Using SVG for precision. Let's use SVG for the best "Standardization Body" clean look.
+                    -->
+<svg class="w-full h-full drop-shadow-2xl" viewbox="0 0 400 400">
+<!-- Definitions for gradients/filters -->
+<defs>
+<filter height="140%" id="glow" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="blur" stddeviation="3"></fegaussianblur>
+<fecomposite in="SourceGraphic" in2="blur" operator="over"></fecomposite>
+</filter>
+</defs>
+<!-- Segment 1: IDENTIFY (Blue) - Top Right roughly -->
+<!-- 5 Segments surrounding center. 360 / 5 = 72 degrees each. -->
+<!-- Start at -90 deg (top). 
+                             1: -54 to 18 (Identify)
+                             2: 18 to 90 (Protect)
+                             3: 90 to 162 (Detect)
+                             4: 162 to 234 (Respond)
+                             5: 234 to 306 (Recover)
+                             Wait, Recover wraps around. 
+                             
+                             Let's arrange them visually balanced around the GOVERN center.
+                        -->
+<!-- Ring Background -->
+<circle class="stroke-slate-100 dark:stroke-slate-800" cx="200" cy="200" fill="transparent" r="190" stroke-width="80"></circle>
+<!-- IDENTIFY (Blue) -->
+<path class="transition-all duration-300 hover:opacity-90 cursor-pointer origin-center hover:scale-[1.02]" d="M200,200 L200,10 A190,190 0 0,1 380.7,141.3 Z" data-name="identify" fill="#2074d5" stroke="white" stroke-width="4"></path>
+<text fill="white" font-family="Public Sans" font-size="14" font-weight="bold" text-anchor="middle" x="260" y="100">IDENTIFY</text>
+<text fill="white" font-family="Heebo" font-size="12" text-anchor="middle" x="260" y="120">זיהוי</text>
+<!-- Icon -->
+<foreignobject height="30" width="30" x="245" y="60">
+<span class="material-icons text-white text-2xl">search</span>
+</foreignobject>
+<!-- PROTECT (Purple) -->
+<path class="transition-all duration-300 hover:opacity-90 cursor-pointer origin-center hover:scale-[1.02]" d="M200,200 L380.7,141.3 A190,190 0 0,1 258.7,380.7 Z" data-name="protect" fill="#7f13ec" stroke="white" stroke-width="4"></path>
+<text fill="white" font-family="Public Sans" font-size="14" font-weight="bold" text-anchor="middle" x="310" y="270">PROTECT</text>
+<text fill="white" font-family="Heebo" font-size="12" text-anchor="middle" x="310" y="290">הגנה</text>
+<foreignobject height="30" width="30" x="295" y="230">
+<span class="material-icons text-white text-2xl">shield</span>
+</foreignobject>
+<!-- DETECT (Yellow) -->
+<path class="transition-all duration-300 hover:opacity-90 cursor-pointer origin-center hover:scale-[1.02]" d="M200,200 L258.7,380.7 A190,190 0 0,1 64.6,346.8 Z" data-name="detect" fill="#f5d34b" stroke="white" stroke-width="4"></path>
+<text fill="#333" font-family="Public Sans" font-size="14" font-weight="bold" text-anchor="middle" x="170" y="340">DETECT</text>
+<text fill="#333" font-family="Heebo" font-size="12" text-anchor="middle" x="170" y="360">גילוי</text>
+<foreignobject height="30" width="30" x="155" y="300">
+<span class="material-icons text-slate-800 text-2xl">radar</span>
+</foreignobject>
+<!-- RESPOND (Red) -->
+<path class="transition-all duration-300 hover:opacity-90 cursor-pointer origin-center hover:scale-[1.02]" d="M200,200 L64.6,346.8 A190,190 0 0,1 19.3,141.3 Z" data-name="respond" fill="#e63f3f" stroke="white" stroke-width="4"></path>
+<text fill="white" font-family="Public Sans" font-size="14" font-weight="bold" text-anchor="middle" x="80" y="250">RESPOND</text>
+<text fill="white" font-family="Heebo" font-size="12" text-anchor="middle" x="80" y="270">תגובה</text>
+<foreignobject height="30" width="30" x="65" y="210">
+<span class="material-icons text-white text-2xl">gavel</span>
+</foreignobject>
+<!-- RECOVER (Green) -->
+<path class="transition-all duration-300 hover:opacity-90 cursor-pointer origin-center hover:scale-[1.02]" d="M200,200 L19.3,141.3 A190,190 0 0,1 200,10 Z" data-name="recover" fill="#2ea64e" stroke="white" stroke-width="4"></path>
+<text fill="white" font-family="Public Sans" font-size="14" font-weight="bold" text-anchor="middle" x="100" y="100">RECOVER</text>
+<text fill="white" font-family="Heebo" font-size="12" text-anchor="middle" x="100" y="120">התאוששות</text>
+<foreignobject height="30" width="30" x="85" y="60">
+<span class="material-icons text-white text-2xl">restore</span>
+</foreignobject>
+</svg>
+</div>
+<!-- Helper text below diagram -->
+<div class="mt-8 text-center max-w-md">
+<p class="text-sm text-slate-400 italic">
+                        העבר את העכבר על חלקי התרשים למידע נוסף
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Abstract Background Elements -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none -z-10 overflow-hidden">
+<div class="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px]"></div>
+<div class="absolute top-[40%] -left-[10%] w-[40%] h-[40%] bg-blue-500/5 rounded-full blur-[100px]"></div>
+</div>
+</body></html>

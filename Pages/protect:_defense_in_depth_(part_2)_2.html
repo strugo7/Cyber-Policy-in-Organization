@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Detect: SOC Watchtower (Part 1)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;family=Heebo:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script type='text/javascript' nonce='CSULGTTi5v7/OEE4QHLpGg==' src='https://contribution.usercontent.google.com/V7TybfMr_F7cbiP7xfSyMXTkLWupU147bDP-ziid-8zdufCisQrEM9foMGn9cU3o_fwoZuVdl3cj7kdw76l8YB03WPCWwYqMjVgw8KDKtQWV-6WclClpd9hGHuptrG6s23BNo7mKwpuq94j9l9qgNyCwBnZC58YuzvULQ2tsdc54gGRvxm7bn-lveOuTsb4FEVIORvasyDSg9PSjeF8-rInwHerGlCbu-5kK32G8h2UqFRUxrrtl7DAe-yiX4eTWIeTQb6s8V1husBo-5M04jATCud3j2C7v4NijYPSLlMnxfq1YJz-EjVywoZ7YdP00Hnaeu5VtrLKb6A9aD7F3CiEXs4rhDOSF5b167Q4s4MUgiMVtn8KdSX7LKTHluRYKLhxtlwldJ1UNe2q_qnxGsZjJxpt6Wnwv_KvkHk15OvPzmQLPw3KfR9XnZVadFhZ94kPE5_wk14FLxb9S10JnmkdrvDMV480cEmQx2z0gvL903BNszoNc9dcJWoBxZdPVIxUjDcFX1OPZUvb75fQBw_ReMwSpEieJkCU5RWHFvZHG-oKaBN1_yWR38RPGTWow1h6fScabzSpvLf_FFWejLZt88NzLZVxSWeo2sNwWYxZfAgZtPVH5ZNH3iy7LdGsl6V3iLT7nIs3RSIMdtj0FBhnYIQRUH2FBd7PfTXs9XZiSkrosFfzWrMOtfDrfXx1nUHgLPRRIjkrXc_3xLSkRUr_lZNt6Yer1aQNfwwvjR6lPhSXQB--fQq8CtYthzAL4Xb_-r6l429jvlAtLoHnwNhj7Z1ilcQkNaTfdqQ'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "matrix-black": "#0d0d0d",
+                        "matrix-green": "#00ff41",
+                        "matrix-dark-green": "#003b00",
+                        "matrix-dim": "#008f11",
+                        "amber-alert": "#ffb000",
+                        "red-alert": "#ff0000",
+                        "terminal-bg": "#0a0a0a",
+                        "surface-dark": "#121212",
+                    },
+                    fontFamily: {
+                        "mono": ["Share Tech Mono", "monospace"],
+                        "body": ["Heebo", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'matrix-rain': "linear-gradient(180deg, rgba(0, 255, 65, 0.03) 0%, rgba(0, 0, 0, 0) 100%)",
+                        'grid-pattern': "linear-gradient(to right, #003b00 1px, transparent 1px), linear-gradient(to bottom, #003b00 1px, transparent 1px)",
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3)',
+                        'neon-amber': '0 0 10px rgba(255, 176, 0, 0.5)',
+                        'neon-red': '0 0 15px rgba(255, 0, 0, 0.6)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #0d0d0d;
+        }
+        .font-mono {
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .matrix-grid {
+            background-size: 40px 40px;
+        }
+        .scan-line {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.2));
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 5;
+        }::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #003b00; 
+            border: 1px solid #00ff41;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #008f11; 
+        }
+        .glitch-text {
+            position: relative;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d0d0d;
+        }
+        .blinking-cursor::after {
+            content: '_';
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .funnel-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 3s linear infinite;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-matrix-black text-matrix-green min-h-screen flex flex-col overflow-hidden relative">
+<div class="absolute inset-0 bg-grid-pattern matrix-grid opacity-20 pointer-events-none"></div>
+<div class="scan-line opacity-10 pointer-events-none"></div>
+<header class="w-full h-16 border-b border-matrix-dim/30 bg-black/80 backdrop-blur-sm flex items-center justify-between px-6 z-20">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-matrix-green">
+<span class="material-icons-round text-3xl animate-pulse">radar</span>
+<span class="text-xl font-mono tracking-widest uppercase font-bold glitch-text" data-text="CYBER_WATCH">CYBER_WATCH</span>
+</div>
+<div class="h-8 w-px bg-matrix-dim/30 mx-2"></div>
+<nav class="flex items-center text-sm font-mono text-matrix-dim gap-2">
+<span>MODULE_05</span>
+<span class="material-icons-round text-base rotate-180">chevron_right</span>
+<span class="text-matrix-green font-bold">חלק א': גילוי וניטור (Detect)</span>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 px-4 py-1 border border-matrix-dim/30 bg-matrix-dark-green/20 rounded-sm">
+<span class="w-2 h-2 bg-red-alert rounded-full animate-pulse shadow-neon-red"></span>
+<span class="font-mono text-sm tracking-wide text-red-alert">LIVE_THREATS: 3</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="text-left hidden md:block font-mono text-xs">
+<p class="text-matrix-green">OPERATOR: D. COHEN</p>
+<p class="text-matrix-dim">LEVEL 3 ACCESS</p>
+</div>
+<div class="w-8 h-8 rounded border border-matrix-green p-0.5">
+<img alt="User Avatar" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmfppwINWBfa3hY53eYWWzJWgI3i0Vv1I8UxX5Y2q0_BU90uCnj_4hkSaUVeonrAC7GyH6o_DZvBQL4ht1KIPvLGiqmQ97YbJ3qb25GfFF6qWOoNQ_CLE7URg1WgVCjIFAfh4VmuXtFB64idnMT39Sv1nZ7asfMDpYOkeu8Q0a1LawdYTtLo8y_T5Q02IRVjAqZCToBbqCgSuIrzCXNcmDkZL2zR8vIgB2nQAl8vgp_otKC1mMf4KImWXskushyZ0fjxW0EepeFDg"/>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 grid grid-cols-12 gap-6 p-6 relative overflow-hidden z-10">
+<aside class="col-span-12 lg:col-span-3 flex flex-col gap-6 order-2 lg:order-1">
+<div class="bg-terminal-bg border border-matrix-green/30 shadow-neon p-6 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-50">
+<span class="material-icons-round text-matrix-green text-4xl">schedule</span>
+</div>
+<h3 class="text-matrix-dim font-mono text-xs mb-1 uppercase tracking-widest">System Time</h3>
+<div class="font-mono text-4xl text-matrix-green font-bold mb-2 tracking-widest">
+                    14:32:05<span class="text-xl text-matrix-dim">.842</span>
+</div>
+<div class="flex items-center gap-2 mt-4 border-t border-matrix-dim/20 pt-3">
+<div class="w-2 h-2 bg-matrix-green rounded-full shadow-neon"></div>
+<span class="text-xs font-mono text-matrix-green/80">סנכרון זמנים (NTP): פעיל</span>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-matrix-green/0 via-matrix-green/50 to-matrix-green/0 animate-pulse"></div>
+</div>
+<div class="bg-terminal-bg border border-matrix-dim/30 p-4 flex-1 flex flex-col gap-4">
+<h3 class="text-matrix-green font-bold border-b border-matrix-dim/30 pb-2 flex items-center justify-between">
+<span>SIEM METRICS</span>
+<span class="material-icons-round text-sm">bar_chart</span>
+</h3>
+<div class="space-y-4 font-mono text-sm">
+<div>
+<div class="flex justify-between mb-1 text-xs text-matrix-dim">
+<span>EPS (Events Per Second)</span>
+<span>2,450</span>
+</div>
+<div class="w-full bg-matrix-dark-green h-2 rounded-sm overflow-hidden">
+<div class="bg-matrix-green h-full w-[75%] shadow-neon"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1 text-xs text-matrix-dim">
+<span>Storage Usage</span>
+<span>84%</span>
+</div>
+<div class="w-full bg-matrix-dark-green h-2 rounded-sm overflow-hidden">
+<div class="bg-amber-alert h-full w-[84%] shadow-neon-amber"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between mb-1 text-xs text-matrix-dim">
+<span>Correlation Rules</span>
+<span>ACTIVE</span>
+</div>
+<div class="grid grid-cols-5 gap-1 mt-1">
+<div class="h-1 bg-matrix-green shadow-neon"></div>
+<div class="h-1 bg-matrix-green shadow-neon"></div>
+<div class="h-1 bg-matrix-green shadow-neon"></div>
+<div class="h-1 bg-matrix-green shadow-neon"></div>
+<div class="h-1 bg-matrix-dim"></div>
+</div>
+</div>
+</div>
+<div class="mt-auto border border-amber-alert/30 bg-amber-alert/5 p-3 rounded-sm">
+<div class="flex items-start gap-2">
+<span class="material-icons-round text-amber-alert text-sm mt-1">warning</span>
+<div>
+<p class="text-amber-alert font-bold text-xs uppercase mb-1">Threshold Warning</p>
+<p class="text-amber-alert/80 text-[10px] leading-tight">Log ingestion latency detected on Collector_04. Delay &gt; 500ms.</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<section class="col-span-12 lg:col-span-6 flex flex-col gap-4 order-1 lg:order-2 h-full">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-white flex items-center gap-2">
+<span class="material-icons-round text-matrix-green">terminal</span>
+                    Event Stream
+                </h2>
+<div class="flex gap-2">
+<span class="px-2 py-0.5 text-[10px] font-mono border border-matrix-green text-matrix-green bg-matrix-green/10">TAILING</span>
+<span class="px-2 py-0.5 text-[10px] font-mono border border-matrix-dim text-matrix-dim">PAUSED</span>
+</div>
+</div>
+<div class="flex-1 bg-black border border-matrix-green/40 shadow-[0_0_30px_rgba(0,255,65,0.1)] rounded-sm overflow-hidden flex flex-col font-mono text-sm relative">
+<div class="bg-matrix-dark-green/50 border-b border-matrix-green/20 px-4 py-1 flex items-center justify-between text-xs text-matrix-green/70">
+<span>root@soc-watchtower:~# tail -f /var/log/siem/alerts.log</span>
+<div class="flex gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+</div>
+</div>
+<div class="p-4 overflow-y-auto flex-1 space-y-1 scrollbar-thin scrollbar-thumb-matrix-green scrollbar-track-transparent opacity-90">
+<div class="text-matrix-dim">[14:31:55] INFO: Connection established from 192.168.1.105 via SSH</div>
+<div class="text-matrix-dim">[14:31:56] DEBUG: Heartbeat received from Agent_Win_SRV02</div>
+<div class="text-matrix-dim">[14:31:58] INFO: User 'admin' logged out successfully</div>
+<div class="text-matrix-green">[14:32:01] SUCCESS: Backup job completed. Size: 45GB</div>
+<div class="text-amber-alert">[14:32:02] WARN: Multiple failed login attempts (3) from 10.0.0.55</div>
+<div class="text-matrix-dim">[14:32:03] INFO: Firewall rule #405 applied. Action: ALLOW</div>
+<div class="my-2 p-2 border-l-2 border-red-alert bg-red-alert/10 text-red-alert animate-pulse">
+<div class="font-bold flex items-center gap-2">
+<span class="material-icons-round text-sm">error</span>
+                            [14:32:04] CRITICAL ALERT: Event 1102
+                        </div>
+<div class="pl-6 text-xs opacity-90 mt-1">
+                            &gt;&gt; SOURCE: DC_01.corp.local<br/>
+                            &gt;&gt; ACTION: Audit Log Cleared<br/>
+                            &gt;&gt; USER: SYSTEM\Administrator (Potentially Compromised)<br/>
+                            &gt;&gt; MSG: The security audit log was cleared.
+                        </div>
+</div>
+<div class="text-matrix-dim">[14:32:04] INFO: SIEM Correlation Rule triggered: "Security Log Wipe"</div>
+<div class="text-matrix-dim">[14:32:05] INFO: Automated Ticket #9942 Created in SOAR</div>
+<div class="text-matrix-green">[14:32:05] INFO: Snapshot of DC_01 memory initiated...</div>
+<div class="text-matrix-dim opacity-50 blinking-cursor">[14:32:06] _</div>
+</div>
+</div>
+</section>
+<aside class="col-span-12 lg:col-span-3 flex flex-col gap-4 order-3 h-full">
+<div class="bg-terminal-bg border border-matrix-dim/30 p-4 h-full relative overflow-hidden flex flex-col">
+<h3 class="text-center text-matrix-green font-bold mb-6 font-mono border-b border-matrix-dim/30 pb-2">DATA AGGREGATION</h3>
+<div class="flex-1 relative flex flex-col items-center justify-between py-4">
+<div class="w-full flex justify-between px-2 mb-4 relative z-10">
+<div class="flex flex-col items-center gap-1">
+<span class="material-icons-round text-matrix-dim text-2xl">router</span>
+<span class="text-[10px] text-matrix-dim/70">FW</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-icons-round text-matrix-dim text-2xl">dns</span>
+<span class="text-[10px] text-matrix-dim/70">SRV</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-icons-round text-matrix-dim text-2xl">laptop_mac</span>
+<span class="text-[10px] text-matrix-dim/70">PC</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-icons-round text-matrix-dim text-2xl">cloud</span>
+<span class="text-[10px] text-matrix-dim/70">Cloud</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-icons-round text-matrix-dim text-2xl">smartphone</span>
+<span class="text-[10px] text-matrix-dim/70">Mobile</span>
+</div>
+</div>
+<div class="absolute inset-0 top-16 bottom-16 w-full z-0 opacity-50">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 200 300">
+<path d="M10,0 L80,250 L120,250 L190,0" fill="url(#funnelGradient)" stroke="none"></path>
+<line class="funnel-path" stroke="#00ff41" stroke-width="1" x1="20" x2="100" y1="0" y2="280">
+<animate attributename="stroke-opacity" dur="1s" repeatcount="indefinite" values="0.1; 1; 0.1"></animate>
+</line>
+<line class="funnel-path" stroke="#00ff41" stroke-width="1" x1="60" x2="100" y1="0" y2="280">
+<animate attributename="stroke-opacity" begin="0.2s" dur="1.2s" repeatcount="indefinite" values="0.1; 1; 0.1"></animate>
+</line>
+<line class="funnel-path" stroke="#00ff41" stroke-width="1" x1="140" x2="100" y1="0" y2="280">
+<animate attributename="stroke-opacity" begin="0.5s" dur="0.8s" repeatcount="indefinite" values="0.1; 1; 0.1"></animate>
+</line>
+<line class="funnel-path" stroke="#00ff41" stroke-width="1" x1="180" x2="100" y1="0" y2="280">
+<animate attributename="stroke-opacity" begin="0.1s" dur="1.5s" repeatcount="indefinite" values="0.1; 1; 0.1"></animate>
+</line>
+<defs>
+<lineargradient id="funnelGradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#003b00;stop-opacity:0.3"></stop>
+<stop offset="100%" style="stop-color:#00ff41;stop-opacity:0.1"></stop>
+</linearGradient>
+</defs>
+</svg>
+</div>
+<div class="z-10 bg-black/80 px-3 py-1 border border-matrix-dim/50 rounded-full text-xs text-matrix-green font-mono">
+                        Normalization &amp; Parsing
+                    </div>
+<div class="z-10 mt-8 bg-black/80 px-3 py-1 border border-matrix-dim/50 rounded-full text-xs text-matrix-green font-mono">
+                        Correlation Engine
+                    </div>
+<div class="mt-auto relative z-10 flex flex-col items-center animate-bounce pt-8">
+<div class="w-16 h-16 rounded-full bg-red-alert/10 border-2 border-red-alert flex items-center justify-center shadow-neon-red relative">
+<span class="material-icons-round text-red-alert text-3xl">notification_important</span>
+<span class="absolute top-0 right-0 w-3 h-3 bg-red-alert rounded-full animate-ping"></span>
+</div>
+<span class="text-red-alert font-bold mt-2 font-mono">ACTIONABLE ALERT</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<footer class="h-10 border-t border-matrix-dim/30 bg-black flex items-center justify-between px-6 text-[10px] font-mono text-matrix-dim z-20">
+<div class="flex gap-4">
+<span>SOC_WATCHTOWER_V4.1</span>
+<span class="text-matrix-green">SYSTEM STATUS: OPTIMAL</span>
+</div>
+<div class="flex gap-4">
+<span class="animate-pulse">ENCRYPTED CONNECTION [TLS 1.3]</span>
+<span>IP: 10.24.8.199</span>
+</div>
+</footer>
+<img class="hidden" data-alt="Abstract map representing global cyber threat data" data-location="Global Cyber Map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNVOdqgY4x9sJWHHGlfFUNdMEjoxP5rXqo0jxx_9E0549qhzbjnQYq487g8I6k3Jz7lHMQQLU8NO1eWscPEX7kIxfV5af4m6xCljZH7fTOhd43vHZwCYdOyfltNkwgvOIn1uvJ9eX2btERG6qRjVlsiJ5vWbmo4-H5tSQvyKJqk1hOvevuOsEnHYi4e0StscVdPtNtZcN0t1n2rx4GrQu50AVdhq8ZOCXOReC4bCxzRPSUaIGmjKEMgegDwS9sVjsi-PpADdKWBRY"/>
+
+</body></html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 1: Threat Landscape (Part 2)</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script type='text/javascript' nonce='d3PVwWyeSlZ8OMqFDFZh3Q==' src='https://contribution.usercontent.google.com/G5clvGj-_nvD0a7HUxLyxYG0wS0_gOihAFs9Fx6rPlMh2Ql0LGCuguZgam1CHQAupx5iSkOBtSMAPOt8FUK7vrDzEnlpiYoHl2kUzfQeQqdfQsq8ql6cP5N3uMjJt-EgGrw34TiAmu0OdtQG94erAd5MkXubPds0NG3zNEGL98_E1p9VxxBfeBihPuykDpxebDAyO_pd9mB5XFcHMFf066Ctw3H0StiSua-z4G0kGf-orooLo1EsPnNkY75K6AIcecCFOQ0uVz9rDoDxkh61kFbJi7l5ZMifztqM3c9d2_q3co22rtIyNX-t2uLR7-MvI6_O8wSbYmk_zEw1M1RtoV5KkNcaqxCozBB9cQ_AXecmLWKlhbgbEKt0koj47YBwlY18ZLSUnO2Cbe6EHFastE6V2sTDx2Sj2W9UZw2O5yuvjrxjQRrThMbHVpYFNyziNP_8s8QQ71_tJfVmkmNQAv5BGtt6d8iqRK9GJpvERwKTRjJmiVpkcKEZr8OkJeroYcz4hT3nUwySijLuG6NaGEYcZzklqmDygC9SNwedr0XjM_Q4U8uyRkqdUVTBc7Kj9b7NWSOjPAwsIQtfHvTK_zOnBhzwNxXg9ROshODGw6yTT8ycpjIFF_ptuo7Ob68CnuQxbLkvbTtkf-vFtprdSNN6ETYIQAwEhHKEqIzw5u27XKy9MG4kpFsz1fWRNuikTV30gAR9TNfAJ5SokXABr1mM45M-515cYIZNgP4PFBcTaysLlALakNOk8bmMC2xxN9OyuzwCNPRW28myPStKDFGfd1OFyUWRwDJmIg'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec3713",
+                        "primary-dark": "#b0260b",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221310", // Dark reddish-brown base
+                        "background-darker": "#110907", // Deep blackish-red
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'neon': '0 0 5px theme("colors.primary"), 0 0 20px theme("colors.primary")',
+                        'neon-sm': '0 0 2px theme("colors.primary"), 0 0 10px theme("colors.primary")',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        /* Glitch Effect CSS */
+        .glitch {
+            position: relative;
+            color: #ec3713;
+            mix-blend-mode: lighten;
+        }
+        
+        .glitch:before,
+        .glitch:after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: #221310;
+            clip: rect(0, 0, 0, 0);
+        }
+        
+        .glitch:before {
+            left: -2px;
+            text-shadow: 1px 0 #fff;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        
+        .glitch:after {
+            left: 2px;
+            text-shadow: -1px 0 #ff00c1;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(30px, 9999px, 10px, 0); }
+            5% { clip: rect(70px, 9999px, 90px, 0); }
+            10% { clip: rect(20px, 9999px, 60px, 0); }
+            15% { clip: rect(80px, 9999px, 50px, 0); }
+            20% { clip: rect(10px, 9999px, 40px, 0); }
+            25% { clip: rect(60px, 9999px, 30px, 0); }
+            30% { clip: rect(90px, 9999px, 20px, 0); }
+            35% { clip: rect(50px, 9999px, 80px, 0); }
+            40% { clip: rect(40px, 9999px, 10px, 0); }
+            45% { clip: rect(70px, 9999px, 100px, 0); }
+            50% { clip: rect(20px, 9999px, 50px, 0); }
+            55% { clip: rect(90px, 9999px, 70px, 0); }
+            60% { clip: rect(10px, 9999px, 60px, 0); }
+            65% { clip: rect(50px, 9999px, 90px, 0); }
+            70% { clip: rect(30px, 9999px, 20px, 0); }
+            75% { clip: rect(80px, 9999px, 40px, 0); }
+            80% { clip: rect(60px, 9999px, 10px, 0); }
+            85% { clip: rect(40px, 9999px, 30px, 0); }
+            90% { clip: rect(100px, 9999px, 50px, 0); }
+            95% { clip: rect(30px, 9999px, 80px, 0); }
+            100% { clip: rect(50px, 9999px, 90px, 0); }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(10px, 9999px, 50px, 0); }
+            5% { clip: rect(90px, 9999px, 20px, 0); }
+            10% { clip: rect(30px, 9999px, 80px, 0); }
+            15% { clip: rect(60px, 9999px, 10px, 0); }
+            20% { clip: rect(40px, 9999px, 70px, 0); }
+            25% { clip: rect(80px, 9999px, 30px, 0); }
+            30% { clip: rect(20px, 9999px, 90px, 0); }
+            35% { clip: rect(70px, 9999px, 40px, 0); }
+            40% { clip: rect(50px, 9999px, 60px, 0); }
+            45% { clip: rect(10px, 9999px, 100px, 0); }
+            50% { clip: rect(90px, 9999px, 50px, 0); }
+            55% { clip: rect(30px, 9999px, 20px, 0); }
+            60% { clip: rect(80px, 9999px, 90px, 0); }
+            65% { clip: rect(40px, 9999px, 10px, 0); }
+            70% { clip: rect(60px, 9999px, 80px, 0); }
+            75% { clip: rect(20px, 9999px, 30px, 0); }
+            80% { clip: rect(100px, 9999px, 70px, 0); }
+            85% { clip: rect(50px, 9999px, 20px, 0); }
+            90% { clip: rect(70px, 9999px, 40px, 0); }
+            95% { clip: rect(10px, 9999px, 60px, 0); }
+            100% { clip: rect(30px, 9999px, 50px, 0); }
+        }
+
+        /* CRT Scanline Effect */
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.1) 50%,
+                rgba(0,0,0,0.1)
+            );
+            background-size: 100% 4px;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #110907;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ec3713;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b0260b;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-gray-200 min-h-screen flex flex-col font-display overflow-x-hidden">
+<!-- Scanline Overlay -->
+<div class="scanlines"></div>
+<!-- Navigation Bar -->
+<nav class="sticky top-0 z-40 w-full border-b border-primary/20 bg-background-dark/95 backdrop-blur">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center">
+<div class="flex-shrink-0">
+<span class="text-primary font-bold text-2xl tracking-tighter">CYBER<span class="text-white">IL</span></span>
+</div>
+<div class="hidden md:block mr-10">
+<div class="flex items-baseline space-x-4 space-x-reverse">
+<a class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium" href="#">ראשי</a>
+<a aria-current="page" class="text-primary px-3 py-2 rounded-md text-sm font-medium" href="#">מודול 1: נוף האיומים</a>
+<a class="text-gray-300 hover:text-primary px-3 py-2 rounded-md text-sm font-medium" href="#">תרגול</a>
+</div>
+</div>
+</div>
+<div class="flex items-center">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/30">
+                        חלק 2 מתוך 3
+                    </span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow container mx-auto px-4 py-8 max-w-7xl relative z-10">
+<!-- Header Section with Glitch -->
+<div class="text-center mb-16 relative">
+<div class="absolute inset-0 flex items-center justify-center opacity-10 pointer-events-none">
+<span class="text-[12rem] font-bold text-primary select-none blur-sm">THREAT</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-bold mb-4 glitch relative inline-block tracking-tight" data-text="הנוף האיומי: מי תוקף ואיך?">
+                הנוף האיומי: מי תוקף ואיך?
+            </h1>
+<p class="text-xl text-gray-400 mt-4 max-w-2xl mx-auto border-r-4 border-primary pr-4">
+                ברוכים הבאים לאזור הסכנה. כאן ננתח את הפרופילים של התוקפים ונבין את שרשרת ההרג הקיברנטית.
+            </p>
+</div>
+<!-- Section 1: Attacker Profiles -->
+<section class="mb-20">
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-2xl font-bold text-white flex items-center">
+<span class="material-icons-round ml-2 text-primary">groups</span>
+                    פרופיל התוקף
+                </h2>
+<div class="h-px bg-gradient-to-l from-primary/50 to-transparent flex-grow mr-4"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1: Cybercrime -->
+<div class="group relative bg-background-darker border border-primary/30 rounded-xl overflow-hidden hover:border-primary transition-all duration-300 hover:shadow-neon hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="h-40 overflow-hidden relative">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 grayscale group-hover:grayscale-0" data-alt="Dark silhouette of a hacker in a hoodie with matrix code background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiVuinzpGaNBO8bjB-pEIjYy2KzkdU9MI1jGLvqpY7WTk4qmyClT8hbpIYuhamG2LvS81YpcmWkd9WVwbaoZewDqp0px21qnVQoYp0ZnqsEX_qStkaU5UKoQnwIEIjyEas29O4P5PxYow7Vmu1D8Q-utcy_JqSrNbsCq3bq1lL_SJ2ZDirSMmCGdtvcgyJ6G6MfTjmKPtPufaLLERh7X7rxWc6_gL1x4wze8iCP-XnWqNA3EQjt9dTWXEIDj7CJcn5k24HIgAbYCo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-darker to-transparent"></div>
+</div>
+<div class="p-6 relative">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round text-2xl">attach_money</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">פשיעת סייבר</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            מוטיבציה פיננסית. גניבת נתונים, כופר, הונאות אשראי. התוקפים הנפוצים ביותר.
+                        </p>
+</div>
+</div>
+<!-- Card 2: Cyber Warfare -->
+<div class="group relative bg-background-darker border border-primary/30 rounded-xl overflow-hidden hover:border-primary transition-all duration-300 hover:shadow-neon hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="h-40 overflow-hidden relative">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 grayscale group-hover:grayscale-0" data-alt="Digital map of the world with red connection lines representing cyber attacks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEY4eOw769Nai8JraOPrysw-cy5eT04BFwocuK4__vC4gigBhmn_pJsVXJTRRpo0nkCTNTSlafD3WEvJNXNeX021Vs1NTlY_fz6qyqhoZHnQWS--sW6Jvz8Y08LlypDrKMherKct0jPYg1-qOg-z222FPwW3IVNd-znZTBXjp7ypHwBXC4XNAwyKSyU9vu2S4yrRDU4guC6tUUTGYjVkVJEAvI1Yf88wt-8zQ2KvXwOJCYvQytjXyCEslRL_gVxBCmJNxplUFC0tI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-darker to-transparent"></div>
+</div>
+<div class="p-6 relative">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round text-2xl">public</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">לוחמת סייבר</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            מדינות וארגוני ביון. ריגול, חבלה בתשתיות קריטיות (כמו Stuxnet), ושיבוש פוליטי.
+                        </p>
+</div>
+</div>
+<!-- Card 3: Hacktivism -->
+<div class="group relative bg-background-darker border border-primary/30 rounded-xl overflow-hidden hover:border-primary transition-all duration-300 hover:shadow-neon hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="h-40 overflow-hidden relative">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 grayscale group-hover:grayscale-0" data-alt="Anonymous mask on a dark background with computer code overlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Qdb_0j4KWXyNt7mi53s967n_F3TJ63bJB7gUwiw-keG0bU_2zoBlaM_R7dlEiNYYgFzTcPvE8IUjENdHyrfu7-y3a5ydJkVsmTFjfQ5niGzj6rRXUlQ_lPkA3YeN_g27uSZztwsk6BD-k5MUD5taLNcDy3ZfVlvLkigZCVU50OMzT30dt5qMj9_1oEtw5_gHV4mw-l_q1xmab4C2y5pg57VfJabrtCtUrmYMmsT23yRfR193RxRNzyCP1kXmMGrew2GKJ1rU5mA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-darker to-transparent"></div>
+</div>
+<div class="p-6 relative">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round text-2xl">campaign</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">האקטיביזם</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            אידיאולוגיה ופוליטיקה. השחתת אתרים, הדלפת מידע מביך, ומחאות דיגיטליות.
+                        </p>
+</div>
+</div>
+<!-- Card 4: Insider Threat -->
+<div class="group relative bg-background-darker border border-primary/30 rounded-xl overflow-hidden hover:border-primary transition-all duration-300 hover:shadow-neon hover:-translate-y-1">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="h-40 overflow-hidden relative">
+<img class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500 grayscale group-hover:grayscale-0" data-alt="Silhouette of a person working late at night in a dark office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAt00SSgJRtcqk8GvoFR_CfzpVHTifQdrzr2dEDhhimpMyLDLhdZaTa_GzT-geeqTIP1Xl3EmIGzMfPIikXGTn22xu-sw7MzJxK2z8OAa3sxoO2KxZ8lV4qW4nC2rTY46IJW1nhq_CJuHf8kuuhblJlKui6p0DdsPaImq11zpG2wiBB3DdqeuBABYrCQRJqAuIppHhZxaCkk7E2-FiZQ31uEJTrcgsA0rjsRylS-KWW88uu1G_XiIuMANXhxCd5SIEXiaUL_ft7nwE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-darker to-transparent"></div>
+</div>
+<div class="p-6 relative">
+<div class="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-icons-round text-2xl">badge</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">איום מבפנים</h3>
+<p class="text-gray-400 text-sm leading-relaxed">
+                            עובדים מרוצים או רשלנים. גישה לגיטימית שמנוצלת לרעה או טעויות אנוש קריטיות.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Cyber Kill Chain -->
+<section class="mb-12">
+<div class="flex items-center justify-between mb-12">
+<h2 class="text-2xl font-bold text-white flex items-center">
+<span class="material-icons-round ml-2 text-primary">link</span>
+                    Cyber Kill Chain: שרשרת ההרג
+                </h2>
+<div class="h-px bg-gradient-to-l from-primary/50 to-transparent flex-grow mr-4"></div>
+</div>
+<div class="relative py-8">
+<!-- Connecting Line Container -->
+<div class="absolute top-1/2 left-0 right-0 h-1 bg-gray-800 -translate-y-1/2 hidden lg:block rounded-full">
+<div class="h-full bg-gradient-to-l from-primary via-primary/50 to-transparent w-full animate-pulse"></div>
+</div>
+<!-- Steps Container -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4 lg:gap-2 relative">
+<!-- Step 1 -->
+<div class="relative group z-10">
+<div class="bg-background-darker border-2 border-primary shadow-neon rounded-lg p-4 h-full flex flex-col items-center text-center transform transition hover:scale-105 duration-300">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold mb-3 shadow-neon-sm">1</div>
+<h4 class="text-white font-bold mb-1">סיור</h4>
+<span class="text-xs text-primary/80 uppercase font-mono">Reconnaissance</span>
+<div class="mt-2 text-xs text-gray-400">איסוף מודיעין על היעד</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative group z-10">
+<!-- Arrow for Mobile -->
+<div class="lg:hidden absolute left-1/2 -top-4 -translate-x-1/2 text-primary">
+<span class="material-icons-round">arrow_downward</span>
+</div>
+<div class="bg-background-darker border border-primary/50 hover:border-primary hover:shadow-neon rounded-lg p-4 h-full flex flex-col items-center text-center transform transition hover:scale-105 duration-300">
+<div class="w-10 h-10 rounded-full bg-primary/20 text-primary border border-primary flex items-center justify-center font-bold mb-3">2</div>
+<h4 class="text-white font-bold mb-1">חימוש</h4>
+<span class="text-xs text-primary/80 uppercase font-mono">Weaponization</span>
+<div class="mt-2 text-xs text-gray-400">יצירת הנוזקה או כלי התקיפה</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative group z-10">
+<div class="lg:hidden absolute left-1/2 -top-4 -translate-x-1/2 text-primary">
+<span class="material-icons-round">arrow_downward</span>
+</div>
+<div class="bg-background-darker border border-primary/50 hover:border-primary hover:shadow-neon rounded-lg p-4 h-full flex flex-col items-center text-center transform transition hover:scale-105 duration-300">
+<div class="w-10 h-10 rounded-full bg-primary/20 text-primary border border-primary flex items-center justify-center font-bold mb-3">3</div>
+<h4 class="text-white font-bold mb-1">שינוע</h4>
+<span class="text-xs text-primary/80 uppercase font-mono">Delivery</span>
+<div class="mt-2 text-xs text-gray-400">שליחת הנוזקה ליעד (למשל, פישינג)</div>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="relative group z-10">
+<div class="lg:hidden absolute left-1/2 -top-4 -translate-x-1/2 text-primary">
+<span class="material-icons-round">arrow_downward</span>
+</div>
+<div class="bg-background-darker border border-primary/50 hover:border-primary hover:shadow-neon rounded-lg p-4 h-full flex flex-col items-center text-center transform transition hover:scale-105 duration-300">
+<div class="w-10 h-10 rounded-full bg-primary/20 text-primary border border-primary flex items-center justify-center font-bold mb-3">4</div>
+<h4 class="text-white font-bold mb-1">ניצול</h4>
+<span class="text-xs text-primary/80 uppercase font-mono">Exploitation</span>
+<div class="mt-2 text-xs text-gray-400">הפעלת קוד זדוני לניצול חולשה</div>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="relative group z-10">
+<div class="lg:hidden absolute left-1/2 -top-4 -translate-x-1/2 text-primary">
+<span class="material-icons-round">arrow_downward</span>
+</div>
+<div class="bg-background-darker border border-primary/50 hover:border-primary hover:shadow-neon rounded-lg p-4 h-full flex flex-col items-center text-center transform transition hover:scale-105 duration-300">
+<div class="w-10 h-10 rounded-full bg-primary/20 text-primary border border-primary flex items-center justify-center font-bold mb-3">5</div>
+<h4 class="text-white font-bold mb-1">התקנה</h4>
+<span class="text-xs text-primary/80 uppercase font-mono">Installation</span>
+<div class="mt-2 text-xs text-gray-400">ביסוס אחיזה במערכת הקורבן</div>
+</div>
+</div>
+<!-- Step 6 -->
+<div class="relative group z-10">
+<div class="lg:hidden absolute left-1/2 -top-4 -translate-x-1/2 text-primary">
+<span class="material-icons-round">arrow_downward</span>
+</div>
+<div class="bg-background-darker border border-primary/50 hover:border-primary hover:shadow-neon rounded-lg p-4 h-full flex flex-col items-center text-center transform transition hover:scale-105 duration-300">
+<div class="w-10 h-10 rounded-full bg-primary/20 text-primary border border-primary flex items-center justify-center font-bold mb-3">6</div>
+<h4 class="text-white font-bold mb-1">שליטה</h4>
+<span class="text-xs text-primary/80 uppercase font-mono">C2</span>
+<div class="mt-2 text-xs text-gray-400">תקשורת מרחוק עם השרת התוקף</div>
+</div>
+</div>
+<!-- Step 7 -->
+<div class="relative group z-10">
+<div class="lg:hidden absolute left-1/2 -top-4 -translate-x-1/2 text-primary">
+<span class="material-icons-round">arrow_downward</span>
+</div>
+<div class="bg-background-darker border-2 border-primary shadow-neon rounded-lg p-4 h-full flex flex-col items-center text-center transform transition hover:scale-105 duration-300">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold mb-3 shadow-neon-sm">7</div>
+<h4 class="text-white font-bold mb-1">פעולה</h4>
+<span class="text-xs text-primary/80 uppercase font-mono">Actions</span>
+<div class="mt-2 text-xs text-gray-400">השגת מטרת התקיפה בפועל</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Navigation Footer -->
+<div class="flex justify-between items-center mt-16 pt-8 border-t border-primary/20">
+<button class="flex items-center text-gray-400 hover:text-white transition-colors group">
+<span class="material-icons-round ml-2 group-hover:-translate-x-1 transition-transform">arrow_forward</span>
+<span class="text-lg">חזרה: מושגי יסוד</span>
+</button>
+<button class="flex items-center bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg shadow-neon-sm hover:shadow-neon transition-all duration-300 font-bold group">
+<span class="text-lg">המשך לתרגול</span>
+<span class="material-icons-round mr-2 group-hover:-translate-x-1 transition-transform">arrow_back</span>
+</button>
+</div>
+</main>
+<!-- Background Pattern -->
+<div class="fixed inset-0 pointer-events-none z-0 opacity-10" style="background-image: radial-gradient(#ec3713 1px, transparent 1px); background-size: 30px 30px;"></div>
+</body></html>

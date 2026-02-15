@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RBAC Lab: Access Simulation</title>
+<!-- Tailwind CSS -->
+<script type='text/javascript' nonce='YX7ruzQsF/FNy7SwVjptEQ==' src='https://contribution.usercontent.google.com/3-KhpegFvxTVg8yXxXAOmOuG-1TUdY79WpENGUcZW8J7_LxnlsmNoyDJmrZNhhC524nz5I-NjekTCyWuPm6wFNBPT7dQoaBXrXq7v09Q16Dmjsv1BBGzfwYlvjb-STPH8qt3J-Z2NtwVjsZ8vB0gP8fx-tFYXp9mUv3BkYPJVwv6_7S58Dbk_1wapZq-fGso6JBmxy89_7AIG6c645ZKW2rEcL9hZsLncsIr2tMvwZi3CoIBrH1h_FFnbhw89fnPjG3OVrIpST2E5v2_XpktkW6qmkwRjhnrcSRiFPCO7_sLKeSs46rMToB0Omy9dYuhBw5duJFDDOL5fWazVE5RehDgQFkzdOq1DCWJvgO6nZMvlzFtOcxpf_j9zW8WTLqucf3tXSHWOpxs3e43CpibzwUrvPLHUahoFjqa286NNLvVmr600nj_9vBBmPNb8uUOWo3UQSPm6e5rx9Yf4CPCkUPFpPIbEFj27Q1SmOznlmLv0RGYvsF-XKn8nXThkloxbh6M1D1BmOqxPWWgEj1KF8F80edEmsX2VJYJkJVd4XUbMSyxl_xMgRNDhg-lipKSY1Se8hQ0xPvHjZS3KuGsjyhAOhMe4QyCSeJvx7gLexntNWoKktu6LcdqYfdgoSUlcTQiRoOaS9GeXtROtDV0qBeYhYUbdhwVOfh89miHSBgntEZJjl6-ILQsjjZZsoWXZFP7_-CKrbugZjhpPJver-XD7-cMDo4eb13HFNEssy4C7FcKO9cnYO-tiQ0g-2FuquAJiYot8J0KGPnGsi7rfd_Rww3bXsUTctp5GQ'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-dark": "#1a2234",
+                        "success": "#10b981",
+                        "danger": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Heebo", "sans-serif"],
+                        "body": ["Heebo", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', sans-serif;
+        }
+        .font-manrope {
+            font-family: 'Manrope', sans-serif;
+        }
+        
+        /* Custom Dotted Line for Connections */
+        .connection-line {
+            position: absolute;
+            height: 2px;
+            background-image: linear-gradient(to left, #334155 50%, rgba(255,255,255,0) 0%);
+            background-position: bottom;
+            background-size: 10px 1px;
+            background-repeat: repeat-x;
+            z-index: 0;
+        }
+        
+        .connection-line-success {
+            background-image: none;
+            background-color: #10b981;
+            height: 3px;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+        
+        .connection-line-danger {
+            background-image: none;
+            background-color: #ef4444;
+            height: 3px;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 min-h-screen flex flex-col overflow-x-hidden">
+<!-- Navigation / Top Bar -->
+<nav class="border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded-lg">
+<span class="material-icons-round text-primary text-xl">security</span>
+</div>
+<span class="font-bold text-lg tracking-wide dark:text-white">CyberShield <span class="text-primary font-manrope">IL</span></span>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">דשבורד</a>
+<a class="text-primary dark:text-primary font-bold" href="#">מעבדה</a>
+<a class="hover:text-primary transition-colors" href="#">הגדרות</a>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-xs text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">גרסה 3.0</span>
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-blue-400 overflow-hidden border-2 border-white dark:border-slate-700 shadow-sm">
+<img alt="Admin Avatar" class="w-full h-full object-cover" data-alt="Admin user avatar thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmEWZvZOu2BB-WW0a7XQJGNMK--A7zBHuX5-r43vWC7_ulg3UsuyB-jawULETE-E3H3yrPHDcQ-qg9MzKVsN83Hvi2aFICHrkZBxWo0Oa0U2-So7rFGQnAOORVoul0uEP0QIo4ZjSEirPrZS02upmF5B4t6gOpavpzSzw8iUl89WIz8PgUysbQlG_RsfAJYVM78CTIVnEfekpGWEYXy3yzg16PrvSdnrbiSN39GZfovro_OKZEcK3NM05Q8aoBLle9nv-bhyXlT98"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow p-4 md:p-8 max-w-7xl mx-auto w-full relative">
+<!-- Header Section -->
+<header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-2 text-primary font-medium text-sm">
+<span class="material-icons-round text-base">science</span>
+<span>שלב 3 מתוך 3</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-2 leading-tight">
+                    מעבדת הרשאות: מנע גישה מיותרת
+                </h1>
+<p class="text-slate-500 dark:text-slate-400 max-w-2xl">
+                    גרור את המשתמשים למשאבים המתאימים כדי לבדוק את מדיניות האבטחה (RBAC). וודא שרק מורשים מקבלים גישה למידע רגיש.
+                </p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition font-medium text-sm">
+<span class="material-icons-round text-lg">restart_alt</span>
+                    אפס סימולציה
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white hover:bg-blue-700 transition shadow-lg shadow-primary/25 font-medium text-sm">
+<span class="material-icons-round text-lg">play_arrow</span>
+                    הרץ בדיקה
+                </button>
+</div>
+</header>
+<!-- Simulation Workspace -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative min-h-[500px]">
+<!-- LEFT COLUMN (User Cards) -->
+<div class="lg:col-span-4 flex flex-col gap-6 z-10">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-lg font-bold dark:text-white flex items-center gap-2">
+<span class="w-2 h-6 bg-primary rounded-full"></span>
+                        משתמשים (Users)
+                    </h3>
+<span class="text-xs font-manrope text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-full">Bank</span>
+</div>
+<!-- User Card: Ron (Developer) - Neutral State -->
+<div class="group relative p-4 rounded-xl bg-white dark:bg-card-dark border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md hover:border-primary/50 transition-all cursor-grab active:cursor-grabbing">
+<div class="absolute -left-1 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-icons-round text-slate-400">drag_indicator</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Ron Developer" class="w-12 h-12 rounded-full object-cover border-2 border-slate-100 dark:border-slate-600" data-alt="Portrait of a young man with glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlJ1346f5x2_IKrv7cN7D_kRV1pPvYtYOiGfpmQ1Rz91d-ILvnpRd9ySRYzqe--MgsUmNST6m2ZphdvfFPpibh3S6Tu0KB3813qEwD0h995ClEudQFVkxYr9L7kcqelijTw3iALUvZ5k2_kOQYQniOJEnvPjmzZFTNECMNHtsOhKLsvnkgxojsRk4iC_V7tNQWg9MJaS7Pwmvsud3AHi6dNBNF1Vg9aA9AfoEU5ZAMRxOyhaKylR2YjbUfByS-FS0z0NSsC7gVi4s"/>
+<div class="absolute -bottom-1 -right-1 bg-blue-500 text-white p-0.5 rounded-full border-2 border-white dark:border-card-dark">
+<span class="material-icons-round text-[10px] block">code</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">רון (Ron)</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">מפתח (Developer)</p>
+<div class="flex gap-1 mt-1.5">
+<span class="text-[10px] bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 px-1.5 py-0.5 rounded">Dev Team</span>
+</div>
+</div>
+</div>
+</div>
+<!-- User Card: Dana (Secretary) - FAILED State -->
+<div class="relative p-4 rounded-xl bg-white dark:bg-card-dark border-2 border-danger/30 shadow-lg shadow-danger/5 transition-all z-20">
+<!-- Connector line to blocked resource (Visual only for desktop) -->
+<div class="hidden lg:block absolute top-1/2 left-0 w-8 h-0.5 bg-danger -translate-x-full z-0"></div>
+<div class="flex items-center gap-4 opacity-50"> <!-- Dimmed because "busy" being denied -->
+<div class="relative">
+<img alt="Dana Secretary" class="w-12 h-12 rounded-full object-cover border-2 border-danger grayscale" data-alt="Portrait of a woman smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc6mpIAI-pJgnm1krTcQ4AePZMB4mNop8id3aulxLebQ4jzD1DFUj7nSH07fl8zko-NzpZU8Vx34bUElBFGsyFRyVJH3a1OQMpgvI3SNuGqJFKOGcW4hhe9RODvfLpLd8iXfijGXU7RZBpYmLkwjoihXUgPvpA56QgIm-J41pCyvX0-xFECkQ9DD7JmoU4HcX9GQDfUlBGdiBDIywCWaMeFLHcbHm6PgHFhN49OoZr1aH7YctKCg0Hxsotfg74-fRs6zMVKRHQPBc"/>
+<div class="absolute -bottom-1 -right-1 bg-slate-500 text-white p-0.5 rounded-full border-2 border-white dark:border-card-dark">
+<span class="material-icons-round text-[10px] block">support_agent</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">דנה (Dana)</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">מזכירה (Secretary)</p>
+<div class="flex gap-1 mt-1.5">
+<span class="text-[10px] bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 px-1.5 py-0.5 rounded">Admin Staff</span>
+</div>
+</div>
+</div>
+<!-- Denied Badge Overlay -->
+<div class="absolute -top-3 -right-3 bg-danger text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1 animate-bounce">
+<span class="material-icons-round text-sm">block</span>
+                        גישה נדחתה
+                    </div>
+</div>
+<!-- User Card: Gal (CFO) - SUCCESS State -->
+<div class="relative p-4 rounded-xl bg-white dark:bg-card-dark border-2 border-success/50 shadow-lg shadow-success/10 transition-all z-20">
+<!-- Connector line to success resource -->
+<div class="hidden lg:block absolute top-1/2 left-0 w-8 h-0.5 bg-success -translate-x-full z-0"></div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Gal CFO" class="w-12 h-12 rounded-full object-cover border-2 border-success" data-alt="Portrait of a senior man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYI_H4c6E_wrW1rXHyq4c8RtZY1pJnSY_UKe6obLAFUpdhaUDkVgWOhl3Sx6MlW6d0RoyRyqOpZ6Z6vL1UUZPkDyzoMBNqiL1qyaZGAl2mqGNtwqRLmsnJlwhDS9tZD-YBohZBDGcuqHvorfKi8FDM2z5U5WbO-6vKYnvmQhxkrPC1VEyXtSexKUuk_y42VR605v7-9Jvpsp_lrcbxNdE4yzcxQ_a_RPsATRoLYrGk1SonM77FqGmZzEcXy_2N8gvCvrWt4TYbK9M"/>
+<div class="absolute -bottom-1 -right-1 bg-purple-500 text-white p-0.5 rounded-full border-2 border-white dark:border-card-dark">
+<span class="material-icons-round text-[10px] block">attach_money</span>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">גל (Gal)</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">סמנכ"ל כספים (CFO)</p>
+<div class="flex gap-1 mt-1.5">
+<span class="text-[10px] bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-300 px-1.5 py-0.5 rounded">Executive</span>
+</div>
+</div>
+</div>
+<!-- Success Badge Overlay -->
+<div class="absolute -top-3 -right-3 bg-success text-white text-xs font-bold px-3 py-1 rounded-full shadow-md flex items-center gap-1">
+<span class="material-icons-round text-sm">check_circle</span>
+                        גישה אושרה
+                    </div>
+</div>
+</div>
+<!-- CENTER AREA (Connections Visualizer - Desktop Only) -->
+<div class="hidden lg:block lg:col-span-4 relative">
+<!-- Visual Connection Lines will be drawn here -->
+<!-- Line for Dana (Denied) -->
+<div class="absolute top-[35%] right-0 w-full h-[120px] pointer-events-none">
+<svg class="w-full h-full overflow-visible">
+<!-- Path from User (Right) to Resource (Left) -->
+<path class="opacity-60" d="M 400,20 C 200,20 200,100 0,100" fill="none" stroke="#ef4444" stroke-dasharray="5,5" stroke-width="2"></path>
+<circle class="opacity-20 animate-pulse" cx="200" cy="60" fill="#ef4444" r="12"></circle>
+<text fill="#ef4444" font-size="12" font-weight="bold" x="195" y="65">X</text>
+</svg>
+</div>
+<!-- Line for Gal (Allowed) -->
+<div class="absolute top-[65%] right-0 w-full h-[100px] pointer-events-none">
+<svg class="w-full h-full overflow-visible">
+<!-- Path from User (Right) to Resource (Left) -->
+<!-- Since RTL, Right is User, Left is Resource. Coordinates need flipping mentally if not using RTL attributes on SVG, but SVG coords are LTR based. -->
+<!-- Assuming container width approx 300px. Start at Right (300+), End at Left (0). -->
+<path d="M 400,20 C 200,20 200,100 0,100" fill="none" stroke="#10b981" stroke-width="3"></path>
+<circle cx="200" cy="60" fill="#10b981" r="4">
+<animate attributename="cx" dur="2s" from="400" repeatcount="indefinite" to="0"></animate>
+<animate attributename="cy" dur="2s" keytimes="0; 0.5; 1" repeatcount="indefinite" values="20; 60; 100"></animate>
+</circle>
+</svg>
+</div>
+<!-- Central Status Monitor -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-900/90 backdrop-blur border border-slate-700 rounded-xl p-4 w-48 text-center shadow-2xl z-0">
+<h5 class="text-xs text-slate-400 uppercase tracking-wider mb-2">לוג פעילות</h5>
+<div class="flex flex-col gap-2 text-[10px] text-left" dir="ltr">
+<div class="flex items-center gap-1 text-red-400">
+<span class="material-icons-round text-[10px]">error</span>
+<span>Dana -&gt; Source: 403</span>
+</div>
+<div class="flex items-center gap-1 text-emerald-400">
+<span class="material-icons-round text-[10px]">check</span>
+<span>Gal -&gt; Finance: 200</span>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (Resource Folders) -->
+<div class="lg:col-span-4 flex flex-col gap-6 z-10">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-lg font-bold dark:text-white flex items-center gap-2">
+<span class="w-2 h-6 bg-purple-500 rounded-full"></span>
+                        משאבים (Resources)
+                    </h3>
+<span class="text-xs font-manrope text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-full">Filesystem</span>
+</div>
+<!-- Folder: Public Docs -->
+<div class="p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 border-dashed hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
+<span class="material-icons-round text-2xl">folder_open</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">מסמכים ציבוריים</h4>
+<p class="text-xs text-slate-500">גישה: כולם (Public)</p>
+</div>
+</div>
+<span class="material-icons-round text-slate-300 dark:text-slate-600">public</span>
+</div>
+</div>
+<!-- Folder: Source Code (Target for Dana) -->
+<div class="relative p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border-2 border-danger/20 hover:bg-red-50/5 dark:hover:bg-red-900/10 transition-colors">
+<!-- Indicator for line connection -->
+<div class="hidden lg:block absolute top-1/2 right-0 w-2 h-2 bg-danger rounded-full translate-x-1/2"></div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-lg">
+<span class="material-icons-round text-2xl">folder_zip</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">קוד מקור</h4>
+<p class="text-xs text-slate-500">גישה: מפתחים בלבד</p>
+</div>
+</div>
+<span class="material-icons-round text-slate-400 dark:text-slate-500">lock</span>
+</div>
+<!-- Alert message below folder -->
+<div class="mt-3 bg-danger/10 text-danger border border-danger/20 rounded px-2 py-1 text-xs flex items-center gap-2">
+<span class="material-icons-round text-sm">warning</span>
+                        ניסיון גישה לא מורשה זוהה
+                    </div>
+</div>
+<!-- Folder: Financial Reports (Target for Gal) -->
+<div class="relative p-5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border-2 border-success/30 bg-emerald-50/10 dark:bg-emerald-900/10 transition-colors">
+<!-- Indicator for line connection -->
+<div class="hidden lg:block absolute top-1/2 right-0 w-2 h-2 bg-success rounded-full translate-x-1/2"></div>
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-lg">
+<span class="material-icons-round text-2xl">folder_special</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-800 dark:text-white">דוחות כספיים</h4>
+<p class="text-xs text-slate-500">גישה: הנהלה בלבד</p>
+</div>
+</div>
+<span class="material-icons-round text-emerald-500">lock_open</span>
+</div>
+<!-- Success message below folder -->
+<div class="mt-3 flex -space-x-2 space-x-reverse overflow-hidden py-1">
+<img alt="Gal CFO Small" class="inline-block h-6 w-6 rounded-full ring-2 ring-background-light dark:ring-background-dark" data-alt="Miniature avatar of user Gal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9cvLzZ8CCiphgP6nfjzdgu4ktZdt5p4W4Cq_I_Cfo_OV6IExmjQ-vntuFKnnR1ONjmceju6_Xr3Q9suX0txfpurACO_if1OmYbRaFIK0dQIk5ihIfuIEb2a0w0ZtyyygZdOmF1rPMU_OPyZrLtmHSgxcQwELsqQf-64L6KAjPl-6d-dS857d1gnH-dYG8qA2dMMsNQKGHeJ7NUPWHpud-sJvSbjQd-3kQVdkrcPjx6dDi3LPyN66lR_Etm2V8rRGZTTb9KNP28qY"/>
+<span class="text-xs text-slate-500 mr-2 self-center">צופה כעת בקבצים...</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Feedback Panel / Console Footer -->
+<div class="mt-8 bg-black dark:bg-[#0c0f16] rounded-xl border border-slate-800 overflow-hidden">
+<div class="bg-slate-900 px-4 py-2 border-b border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-red-500"></span>
+<span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+<span class="w-3 h-3 rounded-full bg-green-500"></span>
+<span class="text-xs text-slate-400 font-mono mr-2">System Terminal</span>
+</div>
+<button class="text-slate-500 hover:text-white">
+<span class="material-icons-round text-sm">close</span>
+</button>
+</div>
+<div class="p-4 font-mono text-xs md:text-sm h-32 overflow-y-auto text-slate-300 space-y-2">
+<div class="opacity-50">
+<span class="text-blue-400">10:42:01</span> [INFO] RBAC Module initialized.
+                </div>
+<div class="opacity-75">
+<span class="text-blue-400">10:42:05</span> [INFO] User "Ron" authenticated as role: DEVELOPER.
+                </div>
+<div>
+<span class="text-blue-400">10:42:15</span> [AUDIT] <span class="text-red-400">DENIED:</span> User "Dana" (Role: Secretary) attempted to access resource "Source Code". Permission "read:source" missing.
+                </div>
+<div>
+<span class="text-blue-400">10:42:18</span> [AUDIT] <span class="text-green-400">GRANTED:</span> User "Gal" (Role: CFO) accessed resource "Financial Reports". Role matches policy "finance_admin".
+                </div>
+<div class="animate-pulse">
+<span class="text-blue-400">10:42:20</span> &gt; _
+                </div>
+</div>
+</div>
+</main>
+</body></html>

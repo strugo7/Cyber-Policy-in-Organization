@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NIST AI Risk Management (Part 2)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script type='text/javascript' nonce='PODVGTPhRwPTAu1k9QISKg==' src='https://contribution.usercontent.google.com/OoC_2iKAxcqpdYY1F2WYzJAj9PmYd-sle4Ici6w_CRrNrdKjyElKL5wQj8at5J7K5hvhSRc5EgMioITIrvWM0fpOZhkm34UX0Oj96tqZj6tQm5vfLMiefxKXe6j2m6a-xppIylNiCj-19ENFKPB-qz2PPCft4yhbJOr_1g6wwm-ibQiOkMT9dDS9e6vSfXr1dH4MKkG2Wig0MPUlWANckvLmg5-g_y-lcjF6LsNkbCIt4ol6lpfo5vw0WQPhO43-COZZeuuioYlHr_D4BzQj70eKUDUHbRGE9IlRiFNBHzZGxMSwwpCmgch6uDZMXNJZ7_9pVzlQPKOlUQYkQDmsEgnUNomgbnUhHCvJELWvMUoqPOgwq4e8wavanbnTANl6Ty71s2_m4vLfBNnhaDP4ySIMBvJK5kmAlQxSWcZs6u1UWlM65p03spiV_IE4QuM3aunbsk_O_0avIEKd9OL1K1J-tAJ8psNtJ4oZmvIEz5xpihH2cL3rv9H3Ce9mcWpecITst5ElyUwZqofkvNkKAa0Xn86NV9P_FveL1RAAv5d1BMFLt5SpsY9BR9y13DktoTXOn9o8gb1Kv1ibtEtIBjnNi_pFvdF-O5ffhwkUC30sBFpJIMyQODYjbaWM5_e-_k6OgAv_559AYlbnZm7kArjTwy0kmvVmxpzM9dt1BC7UC15hTT4xVrGwsvvN71YbrTZ8b_ORTIo8EeyJ6QOfF5JiI6s0gfk9ihZCoimXLrAHccBbK8B-G-eFvPtOOXwrIYtbEIkVxsIJFC1ZYaW6aNWYK23HUq-F88_5JQ'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "lab-bg": "#ffffff",
+                        "lab-navy": "#0f172a",
+                        "lab-cyan": "#06b6d4",
+                        "lab-orange": "#f97316",
+                        "lab-gray": "#f1f5f9",
+                        "lab-border": "#e2e8f0",
+                        "lab-text": "#334155",
+                        "lab-primary": "#0891b2",
+                    },
+                    fontFamily: {
+                        "display": ["Heebo", "sans-serif"],
+                        "body": ["Public Sans", "Heebo", "sans-serif"],
+                        "mono": ["Share Tech Mono", "monospace"],
+                    },
+                    boxShadow: {
+                        'clean': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05)',
+                        'floating': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Public Sans', 'Heebo', sans-serif;
+            background-image: 
+                linear-gradient(#e2e8f0 1px, transparent 1px),
+                linear-gradient(90deg, #e2e8f0 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-color: #ffffff;
+        }
+        .step-connector::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -50%; 
+            width: 100%; 
+            height: 2px;
+            background-color: #cbd5e1;
+            z-index: -1;
+        }
+        .step-active .step-connector::after {
+            background-color: #06b6d4;
+        }
+        .paper-shadow {
+            box-shadow: 2px 2px 0px rgba(15, 23, 42, 0.05), 4px 4px 10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-lab-bg text-lab-text min-h-screen flex flex-col overflow-x-hidden">
+<header class="w-full h-16 bg-white border-b border-lab-border flex items-center justify-between px-8 sticky top-0 z-50 shadow-sm">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-lab-navy flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-lg">shield_lock</span>
+</div>
+<span class="text-lg font-bold tracking-tight text-lab-navy font-display">NIST AI RMF 1.0</span>
+</div>
+<div class="h-6 w-px bg-lab-border"></div>
+<nav class="flex items-center text-sm font-medium text-slate-500 gap-2 font-body">
+<span>מודול ניהול</span>
+<span class="material-symbols-outlined text-base rotate-180 text-lab-cyan">chevron_right</span>
+<span class="text-lab-primary font-bold">חלק ב': ניהול סיכונים</span>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded bg-lab-cyan/5 border border-lab-cyan/20">
+<div class="w-2 h-2 rounded-full bg-lab-cyan animate-pulse"></div>
+<span class="text-xs font-semibold text-lab-cyan tracking-wide font-mono">FRAMEWORK_ACTIVE</span>
+</div>
+<div class="flex items-center gap-3 pl-2 border-l border-lab-border">
+<div class="text-left hidden md:block">
+<p class="text-sm font-semibold text-lab-navy">דניאל כהן</p>
+<p class="text-xs text-slate-400">מהנדס אבטחת מידע</p>
+</div>
+<img alt="User Avatar" class="w-9 h-9 rounded-full border border-lab-border bg-slate-100 p-0.5 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmfppwINWBfa3hY53eYWWzJWgI3i0Vv1I8UxX5Y2q0_BU90uCnj_4hkSaUVeonrAC7GyH6o_DZvBQL4ht1KIPvLGiqmQ97YbJ3qb25GfFF6qWOoNQ_CLE7URg1WgVCjIFAfh4VmuXtFB64idnMT39Sv1nZ7asfMDpYOkeu8Q0a1LawdYTtLo8y_T5Q02IRVjAqZCToBbqCgSuIrzCXNcmDkZL2zR8vIgB2nQAl8vgp_otKC1mMf4KImWXskushyZ0fjxW0EepeFDg"/>
+</div>
+</div>
+</header>
+<main class="flex-1 p-8 md:p-12 max-w-7xl mx-auto w-full relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-lab-cyan/5 to-transparent rounded-full blur-3xl -z-10 pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-lab-orange/5 to-transparent rounded-full blur-3xl -z-10 pointer-events-none"></div>
+<div class="mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-lab-border pb-6">
+<div>
+<h1 class="text-3xl md:text-4xl font-bold text-lab-navy mb-2 font-display">ניהול סיכונים (NIST AI RMF)</h1>
+<p class="text-slate-500 max-w-2xl text-lg">
+                    תהליך איטרטיבי לזיהוי, מדידה וניהול סיכונים במערכות בינה מלאכותית לפי תקני NIST.
+                </p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 bg-white border border-lab-border text-slate-600 rounded hover:bg-slate-50 text-sm font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">download</span>
+                    ייצוא דוח
+                </button>
+<button class="px-4 py-2 bg-lab-navy text-white rounded hover:bg-slate-800 text-sm font-medium transition-colors flex items-center gap-2 shadow-lg shadow-lab-navy/20">
+<span class="material-symbols-outlined text-lg">play_arrow</span>
+                    התחל תהליך
+                </button>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8 relative">
+<div class="col-span-12 lg:col-span-3 order-2 lg:order-1 relative">
+<div class="sticky top-24 transform rotate-1 hover:rotate-0 transition-transform duration-300">
+<div class="bg-[#fffbeb] border-t-8 border-[#fcd34d] p-6 shadow-floating paper-shadow relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-16 h-16 bg-[#fcd34d] transform rotate-45 opacity-20"></div>
+<div class="flex justify-between items-start mb-4">
+<h3 class="text-xl font-bold text-slate-800 font-display">GOVERN</h3>
+<span class="material-symbols-outlined text-amber-500">gavel</span>
+</div>
+<div class="space-y-4">
+<p class="text-sm text-slate-700 leading-relaxed font-medium">
+                                פונקציית הליבה: ממשל תאגידי
+                            </p>
+<div class="w-full h-px bg-amber-200/50"></div>
+<p class="text-xs text-slate-600 leading-relaxed">
+                                תרבות של בטיחות ואחריות היא הבסיס לכל שלב בניהול הסיכונים. עקרון זה חל על כל מחזור החיים ומנחה את המדיניות והתהליכים.
+                            </p>
+<div class="mt-4 bg-white/50 p-3 rounded border border-amber-200/50">
+<ul class="text-xs text-slate-600 space-y-2">
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
+                                        מדיניות ונהלים
+                                    </li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
+                                        אחריותיות
+                                    </li>
+<li class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-amber-400 rounded-full"></span>
+                                        גיוון והכלה
+                                    </li>
+</ul>
+</div>
+</div>
+<div class="absolute bottom-2 left-3 opacity-10">
+<span class="material-symbols-outlined text-6xl">account_balance</span>
+</div>
+</div>
+<div class="mt-6 flex gap-2 justify-center opacity-60">
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+</div>
+</div>
+</div>
+<div class="col-span-12 lg:col-span-9 order-1 lg:order-2">
+<div class="bg-white border border-lab-border rounded-xl p-8 shadow-clean relative z-10">
+<div class="absolute top-0 right-0 p-4">
+<span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Interactive Workflow</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-stretch gap-4 relative mt-6">
+<div class="hidden md:block absolute top-1/2 right-16 left-16 h-0.5 bg-slate-100 -translate-y-1/2 z-0"></div>
+<div class="hidden md:block absolute top-1/2 right-16 w-1/3 h-0.5 bg-gradient-to-l from-transparent to-lab-cyan/30 -translate-y-1/2 z-0"></div>
+<div class="relative z-10 flex-1 group cursor-pointer">
+<div class="bg-white border-2 border-lab-cyan rounded-lg p-6 hover:shadow-lg transition-all duration-300 h-full flex flex-col items-center text-center relative overflow-hidden group-hover:-translate-y-1">
+<div class="absolute top-0 right-0 w-16 h-16 bg-lab-cyan/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150"></div>
+<div class="w-14 h-14 rounded-full bg-lab-cyan/10 text-lab-cyan flex items-center justify-center mb-4 ring-4 ring-white shadow-sm group-hover:bg-lab-cyan group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl">explore</span>
+</div>
+<h3 class="text-lg font-bold text-lab-navy mb-2">MAP (מיפוי)</h3>
+<p class="text-sm text-slate-500 mb-4 leading-snug">
+                                    הקשר ויעוד המערכת. זיהוי סיכונים ובעלי עניין רלוונטיים.
+                                </p>
+<div class="mt-auto w-full pt-4 border-t border-slate-100">
+<div class="flex justify-between text-xs font-mono text-slate-400">
+<span>STATUS: ACTIVE</span>
+<span class="text-lab-cyan font-bold">35%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-lab-cyan h-full w-[35%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="absolute top-1/2 -left-3 hidden md:block w-6 h-6 bg-white border border-slate-200 rounded-full z-20 flex items-center justify-center text-slate-300">
+<span class="material-symbols-outlined text-[10px]">arrow_back</span>
+</div>
+</div>
+<div class="relative z-10 flex-1 group cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+<div class="bg-white border border-slate-200 hover:border-lab-orange rounded-lg p-6 hover:shadow-lg transition-all duration-300 h-full flex flex-col items-center text-center relative overflow-hidden group-hover:-translate-y-1">
+<div class="absolute top-0 right-0 w-16 h-16 bg-lab-orange/5 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-150"></div>
+<div class="w-14 h-14 rounded-full bg-slate-50 text-slate-400 flex items-center justify-center mb-4 ring-4 ring-white shadow-sm group-hover:bg-lab-orange group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl">straighten</span>
+</div>
+<h3 class="text-lg font-bold text-lab-navy mb-2">MEASURE (מדידה)</h3>
+<p class="text-sm text-slate-500 mb-4 leading-snug">
+                                    ניתוח כמותי ואיכותני של הסיכונים. הערכת השפעה וסבירות.
+                                </p>
+<div class="mt-auto w-full pt-4 border-t border-slate-100">
+<div class="flex justify-between text-xs font-mono text-slate-400">
+<span>STATUS: PENDING</span>
+<span>0%</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full mt-2"></div>
+</div>
+</div>
+<div class="absolute top-1/2 -left-3 hidden md:block w-6 h-6 bg-white border border-slate-200 rounded-full z-20 flex items-center justify-center text-slate-300">
+<span class="material-symbols-outlined text-[10px]">arrow_back</span>
+</div>
+</div>
+<div class="relative z-10 flex-1 group cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+<div class="bg-white border border-slate-200 hover:border-lab-navy rounded-lg p-6 hover:shadow-lg transition-all duration-300 h-full flex flex-col items-center text-center relative overflow-hidden group-hover:-translate-y-1">
+<div class="w-14 h-14 rounded-full bg-slate-50 text-slate-400 flex items-center justify-center mb-4 ring-4 ring-white shadow-sm group-hover:bg-lab-navy group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined text-3xl">tune</span>
+</div>
+<h3 class="text-lg font-bold text-lab-navy mb-2">MANAGE (ניהול)</h3>
+<p class="text-sm text-slate-500 mb-4 leading-snug">
+                                    הקצאת משאבים וטיפול בסיכונים לפי סדרי עדיפויות. הקטנת סיכון.
+                                </p>
+<div class="mt-auto w-full pt-4 border-t border-slate-100">
+<div class="flex justify-between text-xs font-mono text-slate-400">
+<span>STATUS: LOCKED</span>
+<span class="material-symbols-outlined text-xs">lock</span>
+</div>
+<div class="w-full bg-slate-100 h-1.5 rounded-full mt-2"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-white border border-lab-border p-6 rounded-lg shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<h4 class="font-bold text-lab-navy flex items-center gap-2">
+<span class="w-1 h-4 bg-lab-cyan rounded-full"></span>
+                                מדדי ביצוע מרכזיים
+                            </h4>
+<span class="text-xs font-mono text-slate-400">LIVE DATA</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-sm text-slate-600">דיוק מודל (Accuracy)</span>
+<span class="text-sm font-bold text-lab-navy font-mono">94.2%</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-lab-cyan h-full w-[94.2%]"></div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-sm text-slate-600">הטייה מגדרית (Bias)</span>
+<span class="text-sm font-bold text-lab-orange font-mono">2.1%</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-lab-orange h-full w-[2.1%]"></div>
+</div>
+<div class="flex items-center justify-between pt-2">
+<span class="text-sm text-slate-600">עמידות (Robustness)</span>
+<span class="text-sm font-bold text-lab-navy font-mono">88.5%</span>
+</div>
+<div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+<div class="bg-lab-navy h-full w-[88.5%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-lab-gray/50 border border-lab-border p-6 rounded-lg shadow-inner">
+<h4 class="font-bold text-lab-navy mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">history</span>
+                            יומן פעילות אחרון
+                        </h4>
+<ul class="space-y-3">
+<li class="flex gap-3 items-start">
+<div class="mt-1 w-2 h-2 rounded-full bg-lab-cyan"></div>
+<div>
+<p class="text-sm font-medium text-slate-700">הושלם מיפוי גורמי סיכון חיצוניים</p>
+<p class="text-xs text-slate-400 font-mono">10:42 AM - משתמש: Admin</p>
+</div>
+</li>
+<li class="flex gap-3 items-start">
+<div class="mt-1 w-2 h-2 rounded-full bg-slate-300"></div>
+<div>
+<p class="text-sm font-medium text-slate-600">עודכן מסמך מדיניות פרטיות</p>
+<p class="text-xs text-slate-400 font-mono">Yesterday - מערכת</p>
+</div>
+</li>
+<li class="flex gap-3 items-start">
+<div class="mt-1 w-2 h-2 rounded-full bg-lab-orange"></div>
+<div>
+<p class="text-sm font-medium text-slate-700">זוהתה חריגה במדדי הוגנות</p>
+<p class="text-xs text-slate-400 font-mono">Yesterday - אוטומטי</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-lab-border mt-auto bg-white py-6">
+<div class="max-w-7xl mx-auto px-8 flex justify-between items-center text-xs text-slate-400">
+<div class="flex gap-4">
+<span>גרסה 2.4.1</span>
+<span>|</span>
+<span>NIST AI RMF Compliance</span>
+</div>
+<div class="font-mono">SECURE_CONNECTION: TLS 1.3</div>
+</div>
+</footer>
+
+</body></html>
