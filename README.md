@@ -1,4 +1,5 @@
 # CyberScape Academy
+> Last deployed: Feb 16, 2026
 
 ## Project Overview
 CyberScape Academy is an interactive, gamified learning platform for organizational cyber policy. It covers NIST CSF 2.0, Israeli Defense Doctrine, and global cyber regulations.
