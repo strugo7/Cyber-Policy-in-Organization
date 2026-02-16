@@ -643,542 +643,544 @@ export const modules: Module[] = [
           ],
         },
       },
+    ],
+  },
 
-      // ═══════════════════════════════════════════════════════════
-      // Module 5: פונקציות NIST CSF בעומק (Lectures 7+, 8, 9)
-      // ═══════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════
+  // Module 5: פונקציות NIST CSF בעומק (Lectures 7+, 8, 9)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 'nist-functions',
+    title: 'פונקציות NIST CSF בעומק',
+    description: 'צלילה עמוקה לפונקציות Identify, Protect ו-Detect: ניהול נכסים, בקרות הגנה וגילוי איומים.',
+    icon: '🔒',
+    order: 5,
+    xpReward: 75,
+    lessons: [
       {
-        id: 'nist-functions',
-        title: 'פונקציות NIST CSF בעומק',
-        description: 'צלילה עמוקה לפונקציות Identify, Protect ו-Detect: ניהול נכסים, בקרות הגנה וגילוי איומים.',
-        icon: '🔒',
-        order: 5,
-        xpReward: 75,
-        lessons: [
-          {
-            id: 'identify-function',
-            moduleId: 'nist-functions',
-            title: 'פונקציית Identify - זיהוי',
-            order: 1,
-            estimatedTime: 6,
-            content: {
-              sections: [
-                {
-                  heading: 'חשיבות ה-Identify',
-                  paragraphs: [
-                    'פונקציית Identify (זיהוי) היא הבסיס לכל ניהול הסיכונים. היא מספקת הבנה של הנכסים, המערכות והסיכונים בארגון.',
-                    'מרכיבים מרכזיים: ניהול נכסים (Asset Management), הבנת הסביבה העסקית (Business Environment), ממשל (Governance), הערכת סיכונים (Risk Assessment), וניהול סיכוני שרשרת אספקה (Supply Chain Risk Management).',
-                  ],
-                },
-                {
-                  heading: 'יישום מעשי: כלים ושיטות',
-                  paragraphs: [
-                    'ניהול נכסים: שימוש בתוכנות גילוי אוטומטי ובסיס נתונים לניהול תצורה (CMDB). מטרת העל היא "לדעת מה יש בבית" כדי להגן עליו.',
-                    'הערכת סיכונים: שימוש במתודולוגיות כמו FAIR או OCTAVE לכימות סיכונים (Probability & Impact).',
-                    'צוות זיהוי: הקמת צוות ייעודי הכולל נציגי IT, אבטחה והנהלה.',
-                  ],
-                },
-                {
-                  heading: 'חיבור לפונקציות אחרות',
-                  paragraphs: [
-                    'Identify -> Protect: המיפוי מכתיב היכן להשקיע בבקרות הגנה.',
-                    'Identify -> Detect: הבנת הנכסים הקריטיים קובעת את חוקי הניטור.',
-                    'Identify -> Respond/Recover: רשימת הנכסים והבעלים שלהם קריטית לתגובה מהירה ושחזור יעיל.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'Identify = הבנה של ההקשר הארגוני והנכסים',
-                'SCRM = ניהול סיכוני שרשרת אספקה (קריטי)',
-                'כלים: CMDB, סורקי פגיעויות, כלי מיפוי',
-                'לא ניתן להגן על מה שלא מכירים',
+        id: 'identify-function',
+        moduleId: 'nist-functions',
+        title: 'פונקציית Identify - זיהוי',
+        order: 1,
+        estimatedTime: 6,
+        content: {
+          sections: [
+            {
+              heading: 'חשיבות ה-Identify',
+              paragraphs: [
+                'פונקציית Identify (זיהוי) היא הבסיס לכל ניהול הסיכונים. היא מספקת הבנה של הנכסים, המערכות והסיכונים בארגון.',
+                'מרכיבים מרכזיים: ניהול נכסים (Asset Management), הבנת הסביבה העסקית (Business Environment), ממשל (Governance), הערכת סיכונים (Risk Assessment), וניהול סיכוני שרשרת אספקה (Supply Chain Risk Management).',
               ],
             },
-          },
-          {
-            id: 'protect-function',
-            moduleId: 'nist-functions',
-            title: 'פונקציית Protect - הגנה',
-            order: 2,
-            estimatedTime: 7,
-            content: {
-              sections: [
-                {
-                  heading: 'מטרות Protect',
-                  paragraphs: [
-                    'פונקציית Protect שואפת לצמצם או למנוע את ההשפעה של אירוע סייבר. היא כוללת בקרות טכניות וארגוניות המיושמות על בסיס תוצאות הערכת הסיכונים.',
-                    'קטגוריות מפתח: בקרת גישה וזהויות (Identity & Access Control), מודעות והדרכה (Awareness & Training), אבטחת מידע (Data Security), תהליכי הגנה (Info Protection Processes), תחזוקה (Maintenance), וטכנולוגיה מגנה (Protective Tech).',
-                  ],
-                },
-                {
-                  heading: 'בקרות מתקדמות',
-                  paragraphs: [
-                    'Identity Management: אימות רב-שלבי (MFA), ניהול הרשאות (RBAC), הפרדת תפקידים.',
-                    'Data Security: הצפנה (במנוחה ובתעבורה), מניעת דליפת מידע (DLP), גיבויים מאובטחים.',
-                    'Protective Technology: שימוש ב-Firewalls, IDS/IPS, EPP/EDR, WAF, CASB, NAC להגנה אקטיבית.',
-                  ],
-                },
-                {
-                  heading: 'יישום ותחזוקה',
-                  paragraphs: [
-                    'תחזוקה שוטפת (Maintenance): ניהול תיקונים (Patching) למערכות הפעלה ותוכנות.',
-                    'מדידה: מדדי KPI כגון אחוז כיסוי Patching, תוצאות מבחני פישינג, וכמות מכונות לא מוגנות.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'Protect = מניעה וצמצום נזק פוטנציאלי',
-                'MFA ו-Patching הם בקרות הכרחיות',
-                'הגנה לעומק (Defense in Depth) משלבת אדם, תהליך וטכנולוגיה',
-                'תחזוקה שוטפת קריטית לאבטחה אפקטיבית',
+            {
+              heading: 'יישום מעשי: כלים ושיטות',
+              paragraphs: [
+                'ניהול נכסים: שימוש בתוכנות גילוי אוטומטי ובסיס נתונים לניהול תצורה (CMDB). מטרת העל היא "לדעת מה יש בבית" כדי להגן עליו.',
+                'הערכת סיכונים: שימוש במתודולוגיות כמו FAIR או OCTAVE לכימות סיכונים (Probability & Impact).',
+                'צוות זיהוי: הקמת צוות ייעודי הכולל נציגי IT, אבטחה והנהלה.',
               ],
             },
-          },
-          {
-            id: 'detect-function',
-            moduleId: 'nist-functions',
-            title: 'פונקציית Detect - גילוי',
-            order: 3,
-            estimatedTime: 6,
-            content: {
-              sections: [
-                {
-                  heading: 'חשיבות הגילוי המהיר',
-                  paragraphs: [
-                    'פונקציית Detect (גילוי) מאפשרת זיהוי בזמן אמת של אירועי סייבר. ככל שהגילוי מהיר יותר, הנזק קטן יותר.',
-                    'כוללת: זיהוי אנומליות ואירועים (Anomalies & Events), ניטור רציף (Security Continuous Monitoring), ותהליכי גילוי (Detection Processes).',
-                  ],
-                },
-                {
-                  heading: 'ניטור ומרכז SOC',
-                  paragraphs: [
-                    'ה-SOC (Security Operations Center) הוא המוח של פונקציית הגילוי. הוא אוסף לוגים ממערכות שונות באמצעות SIEM (Splunk, QRadar וכו\'), מנתח אותם, ומפיץ התראות.',
-                    'כלי ניטור: EDR לתחנות קצה, UEBA לניתוח התנהגות משתמשים, ו-Network Segmentation לזיהוי מעבר בין רשתות.',
-                  ],
-                },
-                {
-                  heading: 'תהליכי גילוי',
-                  paragraphs: [
-                    'חשוב לאזן בין רגישות יתר (False Positives - התראות שווא) לחוסר רגישות (False Negatives - פספוס אירוע).',
-                    'נדרש עדכון שוטף של חוקי הגילוי בהתאם למודיעין איומים (Threat Intelligence) ותרחישי תקיפה חדשים.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'Detect = זיהוי אנומליות ואירועים בזמן אמת',
-                'SOC ו-SIEM הם הלב של הגילוי',
-                'False Positive vs False Negative - האיזון הקריטי',
-                'EDR ו-UEBA משלימים את הניטור',
+            {
+              heading: 'חיבור לפונקציות אחרות',
+              paragraphs: [
+                'Identify -> Protect: המיפוי מכתיב היכן להשקיע בבקרות הגנה.',
+                'Identify -> Detect: הבנת הנכסים הקריטיים קובעת את חוקי הניטור.',
+                'Identify -> Respond/Recover: רשימת הנכסים והבעלים שלהם קריטית לתגובה מהירה ושחזור יעיל.',
               ],
             },
-          },
-          {
-            id: 'protect-implementation',
-            moduleId: 'nist-functions',
-            title: 'יישום בקרות הגנה',
-            order: 4,
-            estimatedTime: 5,
-            content: {
-              sections: [
-                {
-                  heading: 'שלבי יישום Protect',
-                  paragraphs: [
-                    '1) סקירת תוצאות Identify. 2) מיפוי סיכונים לבקרות הגנה. 3) יישום אמצעים טכניים ולא-טכניים. 4) ניתוח עלות-תועלת. 5) הגדרת מדדי ביצוע (KPIs). 6) ניטור שוטף של אפקטיביות.',
-                  ],
-                },
-                {
-                  heading: 'קשרי Protect עם שאר הפונקציות',
-                  paragraphs: [
-                    'Govern ↔ Protect: יישור אסטרטגי דרך מדיניות. Identify ↔ Protect: ממצאי סיכונים מנחים בחירת בקרות. Protect ↔ Detect: ניטור לאימות אפקטיביות. Protect ↔ Respond/Recover: עמידות וטיפול באירועים.',
-                  ],
-                },
-                {
-                  heading: 'מדדי ביצוע מרכזיים',
-                  paragraphs: [
-                    'Patch Compliance Rate - אחוז מערכות מעודכנות. Phishing Click Rate - אחוז עובדים שנפלו בסימולציית פישינג. MTTR (Mean Time to Remediate) - זמן ממוצע לתיקון פגיעות.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                '6 שלבי יישום: סקירה → מיפוי → יישום → ניתוח → KPIs → ניטור',
-                'כל פונקציה תלויה בפונקציות האחרות',
-                'KPIs: Patch Compliance, Phishing Click Rate, MTTR',
-                'ניטור שוטף חיוני לבדיקת אפקטיביות',
-              ],
-            },
-          },
-        ],
+          ],
+          keyTakeaways: [
+            'Identify = הבנה של ההקשר הארגוני והנכסים',
+            'SCRM = ניהול סיכוני שרשרת אספקה (קריטי)',
+            'כלים: CMDB, סורקי פגיעויות, כלי מיפוי',
+            'לא ניתן להגן על מה שלא מכירים',
+          ],
+        },
       },
+      {
+        id: 'protect-function',
+        moduleId: 'nist-functions',
+        title: 'פונקציית Protect - הגנה',
+        order: 2,
+        estimatedTime: 7,
+        content: {
+          sections: [
+            {
+              heading: 'מטרות Protect',
+              paragraphs: [
+                'פונקציית Protect שואפת לצמצם או למנוע את ההשפעה של אירוע סייבר. היא כוללת בקרות טכניות וארגוניות המיושמות על בסיס תוצאות הערכת הסיכונים.',
+                'קטגוריות מפתח: בקרת גישה וזהויות (Identity & Access Control), מודעות והדרכה (Awareness & Training), אבטחת מידע (Data Security), תהליכי הגנה (Info Protection Processes), תחזוקה (Maintenance), וטכנולוגיה מגנה (Protective Tech).',
+              ],
+            },
+            {
+              heading: 'בקרות מתקדמות',
+              paragraphs: [
+                'Identity Management: אימות רב-שלבי (MFA), ניהול הרשאות (RBAC), הפרדת תפקידים.',
+                'Data Security: הצפנה (במנוחה ובתעבורה), מניעת דליפת מידע (DLP), גיבויים מאובטחים.',
+                'Protective Technology: שימוש ב-Firewalls, IDS/IPS, EPP/EDR, WAF, CASB, NAC להגנה אקטיבית.',
+              ],
+            },
+            {
+              heading: 'יישום ותחזוקה',
+              paragraphs: [
+                'תחזוקה שוטפת (Maintenance): ניהול תיקונים (Patching) למערכות הפעלה ותוכנות.',
+                'מדידה: מדדי KPI כגון אחוז כיסוי Patching, תוצאות מבחני פישינג, וכמות מכונות לא מוגנות.',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            'Protect = מניעה וצמצום נזק פוטנציאלי',
+            'MFA ו-Patching הם בקרות הכרחיות',
+            'הגנה לעומק (Defense in Depth) משלבת אדם, תהליך וטכנולוגיה',
+            'תחזוקה שוטפת קריטית לאבטחה אפקטיבית',
+          ],
+        },
+      },
+      {
+        id: 'detect-function',
+        moduleId: 'nist-functions',
+        title: 'פונקציית Detect - גילוי',
+        order: 3,
+        estimatedTime: 6,
+        content: {
+          sections: [
+            {
+              heading: 'חשיבות הגילוי המהיר',
+              paragraphs: [
+                'פונקציית Detect (גילוי) מאפשרת זיהוי בזמן אמת של אירועי סייבר. ככל שהגילוי מהיר יותר, הנזק קטן יותר.',
+                'כוללת: זיהוי אנומליות ואירועים (Anomalies & Events), ניטור רציף (Security Continuous Monitoring), ותהליכי גילוי (Detection Processes).',
+              ],
+            },
+            {
+              heading: 'ניטור ומרכז SOC',
+              paragraphs: [
+                'ה-SOC (Security Operations Center) הוא המוח של פונקציית הגילוי. הוא אוסף לוגים ממערכות שונות באמצעות SIEM (Splunk, QRadar וכו\'), מנתח אותם, ומפיץ התראות.',
+                'כלי ניטור: EDR לתחנות קצה, UEBA לניתוח התנהגות משתמשים, ו-Network Segmentation לזיהוי מעבר בין רשתות.',
+              ],
+            },
+            {
+              heading: 'תהליכי גילוי',
+              paragraphs: [
+                'חשוב לאזן בין רגישות יתר (False Positives - התראות שווא) לחוסר רגישות (False Negatives - פספוס אירוע).',
+                'נדרש עדכון שוטף של חוקי הגילוי בהתאם למודיעין איומים (Threat Intelligence) ותרחישי תקיפה חדשים.',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            'Detect = זיהוי אנומליות ואירועים בזמן אמת',
+            'SOC ו-SIEM הם הלב של הגילוי',
+            'False Positive vs False Negative - האיזון הקריטי',
+            'EDR ו-UEBA משלימים את הניטור',
+          ],
+        },
+      },
+      {
+        id: 'protect-implementation',
+        moduleId: 'nist-functions',
+        title: 'יישום בקרות הגנה',
+        order: 4,
+        estimatedTime: 5,
+        content: {
+          sections: [
+            {
+              heading: 'שלבי יישום Protect',
+              paragraphs: [
+                '1) סקירת תוצאות Identify. 2) מיפוי סיכונים לבקרות הגנה. 3) יישום אמצעים טכניים ולא-טכניים. 4) ניתוח עלות-תועלת. 5) הגדרת מדדי ביצוע (KPIs). 6) ניטור שוטף של אפקטיביות.',
+              ],
+            },
+            {
+              heading: 'קשרי Protect עם שאר הפונקציות',
+              paragraphs: [
+                'Govern ↔ Protect: יישור אסטרטגי דרך מדיניות. Identify ↔ Protect: ממצאי סיכונים מנחים בחירת בקרות. Protect ↔ Detect: ניטור לאימות אפקטיביות. Protect ↔ Respond/Recover: עמידות וטיפול באירועים.',
+              ],
+            },
+            {
+              heading: 'מדדי ביצוע מרכזיים',
+              paragraphs: [
+                'Patch Compliance Rate - אחוז מערכות מעודכנות. Phishing Click Rate - אחוז עובדים שנפלו בסימולציית פישינג. MTTR (Mean Time to Remediate) - זמן ממוצע לתיקון פגיעות.',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            '6 שלבי יישום: סקירה → מיפוי → יישום → ניתוח → KPIs → ניטור',
+            'כל פונקציה תלויה בפונקציות האחרות',
+            'KPIs: Patch Compliance, Phishing Click Rate, MTTR',
+            'ניטור שוטף חיוני לבדיקת אפקטיביות',
+          ],
+        },
+      },
+    ],
+  },
 
-      // ═══════════════════════════════════════════════════════════
-      // Module 6: מדיניות סייבר גלובלית (Lecture 6)
-      // ═══════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════
+  // Module 6: מדיניות סייבר גלובלית (Lecture 6)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 'global-cyber-policy',
+    title: 'מדיניות סייבר גלובלית',
+    description: 'רגולציית סייבר בינלאומית: סין, רוסיה, בריטניה - חוקים, תקנים ואכיפה.',
+    icon: '🌍',
+    order: 6,
+    xpReward: 50,
+    lessons: [
       {
-        id: 'global-cyber-policy',
-        title: 'מדיניות סייבר גלובלית',
-        description: 'רגולציית סייבר בינלאומית: סין, רוסיה, בריטניה - חוקים, תקנים ואכיפה.',
-        icon: '🌍',
-        order: 6,
-        xpReward: 50,
-        lessons: [
-          {
-            id: 'china-cyber',
-            moduleId: 'global-cyber-policy',
-            title: 'רגולציית סייבר בסין',
-            order: 1,
-            estimatedTime: 6,
-            content: {
-              sections: [
-                {
-                  heading: 'מערכת הרגולציה הסינית',
-                  paragraphs: [
-                    'סין פיתחה מערכת רגולציה מקיפה בסייבר. הגוף המנהל: Cyberspace Administration of China (CAC). חוקים מרכזיים: Cybersecurity Law (CSL), Data Security Law (DSL), Personal Information Protection Law (PIPL).',
-                  ],
-                },
-                {
-                  heading: 'Multi-Level Protection Scheme (MLPS 2.0)',
-                  paragraphs: [
-                    'תהליך הסמכה: זיהוי היקף → דירוג ראשוני → סקירת מומחים → אישור רגולטורי → רישום והסמכה. 5 רמות לפי השפעה: Level 1-3 לאזרחים וגופים משפטיים, Level 2-4 לסדר ציבורי, Level 3-5 לביטחון לאומי.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'CAC = הגוף המנהל את הרגולציה הסינית',
-                'CSL + DSL + PIPL = שלושת החוקים המרכזיים',
-                'MLPS 2.0 = 5 רמות הגנה לפי קריטיות',
-                'דרישות לאיתור נתונים חוצי גבולות',
+        id: 'china-cyber',
+        moduleId: 'global-cyber-policy',
+        title: 'רגולציית סייבר בסין',
+        order: 1,
+        estimatedTime: 6,
+        content: {
+          sections: [
+            {
+              heading: 'מערכת הרגולציה הסינית',
+              paragraphs: [
+                'סין פיתחה מערכת רגולציה מקיפה בסייבר. הגוף המנהל: Cyberspace Administration of China (CAC). חוקים מרכזיים: Cybersecurity Law (CSL), Data Security Law (DSL), Personal Information Protection Law (PIPL).',
               ],
             },
-          },
-          {
-            id: 'russia-uk-cyber',
-            moduleId: 'global-cyber-policy',
-            title: 'רגולציית סייבר: רוסיה ובריטניה',
-            order: 2,
-            estimatedTime: 6,
-            content: {
-              sections: [
-                {
-                  heading: 'רוסיה',
-                  paragraphs: [
-                    'רגולטור: Roskomnadzor. חוקים: Federal Law No. 152-FZ (הגנת מידע), חוק ירובייה (Yarovaya Law, 2016), תקני GOST. Sovereign Internet Law (2019) - חוק האינטרנט הריבוני שמאפשר ניתוק רוסיה מהאינטרנט הגלובלי (RuNet).',
-                  ],
-                },
-                {
-                  heading: 'בריטניה',
-                  paragraphs: [
-                    'UK GDPR (2021) + Data Protection Act 2018. Information Commissioner\'s Office (ICO) - הרגולטור. National Cyber Security Centre (NCSC) - המרכז הלאומי לסייבר. Cyber Essentials - תוכנית הסמכה להגנה מפני איומים נפוצים.',
-                    'Online Safety Bill - חקיקה חדשה דרך Ofcom להגנה על משתמשים ברשת.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'רוסיה: Sovereign Internet Law = שליטה ממשלתית באינטרנט',
-                'בריטניה: UK GDPR + Data Protection Act + ICO',
-                'NCSC Cyber Essentials = הסמכה בסיסית לארגונים',
-                'Online Safety Bill = רגולציה חדשה לבטיחות מקוונת',
+            {
+              heading: 'Multi-Level Protection Scheme (MLPS 2.0)',
+              paragraphs: [
+                'תהליך הסמכה: זיהוי היקף → דירוג ראשוני → סקירת מומחים → אישור רגולטורי → רישום והסמכה. 5 רמות לפי השפעה: Level 1-3 לאזרחים וגופים משפטיים, Level 2-4 לסדר ציבורי, Level 3-5 לביטחון לאומי.',
               ],
             },
-          },
-          {
-            id: 'cyber-essentials',
-            moduleId: 'global-cyber-policy',
-            title: 'Cyber Essentials ורגולציה גלובלית',
-            order: 3,
-            estimatedTime: 5,
-            content: {
-              sections: [
-                {
-                  heading: 'Cyber Essentials - בריטניה',
-                  paragraphs: [
-                    'תוכנית Cyber Essentials מגנה מפני: פישינג, תוכנות זדוניות, כופרה, ניחוש סיסמאות, ותקיפות רשת. חמש בקרות טכניות מומלצות. שתי רמות הסמכה: Cyber Essentials (בסיסי) ו-Cyber Essentials Plus (מתקדם). בשיתוף עם IASME Consortium.',
-                  ],
-                },
-                {
-                  heading: 'תמונה גלובלית',
-                  paragraphs: [
-                    'קנסות GDPR יכולים להגיע ל-4% מהמחזור העולמי. דרישות תאימות רב-תחומיות הופכות מורכבות יותר. דרישות איתור נתונים (Data Localization) גוברות. שיתוף פעולה בינלאומי בסייבר הולך ומתפתח.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'Cyber Essentials = 5 בקרות בסיסיות + 2 רמות הסמכה',
-                'רגולציה גלובלית הולכת ומתהדקת',
-                'Data Localization = דרישה לאחסון מידע בתוך המדינה',
-                'ארגונים חייבים לעמוד ברגולציות מרובות בו-זמנית',
-              ],
-            },
-          },
-        ],
+          ],
+          keyTakeaways: [
+            'CAC = הגוף המנהל את הרגולציה הסינית',
+            'CSL + DSL + PIPL = שלושת החוקים המרכזיים',
+            'MLPS 2.0 = 5 רמות הגנה לפי קריטיות',
+            'דרישות לאיתור נתונים חוצי גבולות',
+          ],
+        },
       },
+      {
+        id: 'russia-uk-cyber',
+        moduleId: 'global-cyber-policy',
+        title: 'רגולציית סייבר: רוסיה ובריטניה',
+        order: 2,
+        estimatedTime: 6,
+        content: {
+          sections: [
+            {
+              heading: 'רוסיה',
+              paragraphs: [
+                'רגולטור: Roskomnadzor. חוקים: Federal Law No. 152-FZ (הגנת מידע), חוק ירובייה (Yarovaya Law, 2016), תקני GOST. Sovereign Internet Law (2019) - חוק האינטרנט הריבוני שמאפשר ניתוק רוסיה מהאינטרנט הגלובלי (RuNet).',
+              ],
+            },
+            {
+              heading: 'בריטניה',
+              paragraphs: [
+                'UK GDPR (2021) + Data Protection Act 2018. Information Commissioner\'s Office (ICO) - הרגולטור. National Cyber Security Centre (NCSC) - המרכז הלאומי לסייבר. Cyber Essentials - תוכנית הסמכה להגנה מפני איומים נפוצים.',
+                'Online Safety Bill - חקיקה חדשה דרך Ofcom להגנה על משתמשים ברשת.',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            'רוסיה: Sovereign Internet Law = שליטה ממשלתית באינטרנט',
+            'בריטניה: UK GDPR + Data Protection Act + ICO',
+            'NCSC Cyber Essentials = הסמכה בסיסית לארגונים',
+            'Online Safety Bill = רגולציה חדשה לבטיחות מקוונת',
+          ],
+        },
+      },
+      {
+        id: 'cyber-essentials',
+        moduleId: 'global-cyber-policy',
+        title: 'Cyber Essentials ורגולציה גלובלית',
+        order: 3,
+        estimatedTime: 5,
+        content: {
+          sections: [
+            {
+              heading: 'Cyber Essentials - בריטניה',
+              paragraphs: [
+                'תוכנית Cyber Essentials מגנה מפני: פישינג, תוכנות זדוניות, כופרה, ניחוש סיסמאות, ותקיפות רשת. חמש בקרות טכניות מומלצות. שתי רמות הסמכה: Cyber Essentials (בסיסי) ו-Cyber Essentials Plus (מתקדם). בשיתוף עם IASME Consortium.',
+              ],
+            },
+            {
+              heading: 'תמונה גלובלית',
+              paragraphs: [
+                'קנסות GDPR יכולים להגיע ל-4% מהמחזור העולמי. דרישות תאימות רב-תחומיות הופכות מורכבות יותר. דרישות איתור נתונים (Data Localization) גוברות. שיתוף פעולה בינלאומי בסייבר הולך ומתפתח.',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            'Cyber Essentials = 5 בקרות בסיסיות + 2 רמות הסמכה',
+            'רגולציה גלובלית הולכת ומתהדקת',
+            'Data Localization = דרישה לאחסון מידע בתוך המדינה',
+            'ארגונים חייבים לעמוד ברגולציות מרובות בו-זמנית',
+          ],
+        },
+      },
+    ],
+  },
 
-      // ═══════════════════════════════════════════════════════════
-      // Module 7: תגובה והתאוששות (Lectures 7+, 11)
-      // ═══════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════
+  // Module 7: תגובה והתאוששות (Lectures 7+, 11)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 'respond-recover',
+    title: 'תגובה והתאוששות',
+    description: 'פונקציות Respond ו-Recover: ניהול אירועי סייבר, תוכנית תגובה, שחזור ולקחים.',
+    icon: '🚨',
+    order: 7,
+    xpReward: 50,
+    lessons: [
       {
-        id: 'respond-recover',
-        title: 'תגובה והתאוששות',
-        description: 'פונקציות Respond ו-Recover: ניהול אירועי סייבר, תוכנית תגובה, שחזור ולקחים.',
-        icon: '🚨',
-        order: 7,
-        xpReward: 50,
-        lessons: [
-          {
-            id: 'respond-function',
-            moduleId: 'respond-recover',
-            title: 'פונקציית Respond - תגובה',
-            order: 1,
-            estimatedTime: 6,
-            content: {
-              sections: [
-                {
-                  heading: 'חשיבות התגובה (Respond)',
-                  paragraphs: [
-                    'פונקציית Respond כוללת את כל הפעולות המתבצעות בעת זיהוי אירוע סייבר. המטרה: הקטנת נזקים, בלימה והחזרת שליטה.',
-                    'אלמנטים מרכזיים: ניהול אירועים (Incident Management), ניתוח אירועים (Incident Analysis), ותקשורת (Communications).',
-                  ],
-                },
-                {
-                  heading: 'שלבי תגובה לאירוע',
-                  paragraphs: [
-                    '1. תכנון מוקדם (Planning): יצירת תוכנית תגובה לאירועים (IRP).',
-                    '2. ניתוח וטריאז\' (Analysis & Triage): הבנת היקף הפגיעה.',
-                    '3. הכלה ובלימה (Containment): בידוד המערכות הפגועות למניעת התפשטות.',
-                    '4. סילוק האיום (Eradication): הסרת הנוזקה או סגירת פרצות.',
-                    '5. הפקת לקחים (Lessons Learned): תחקיר לאחר מעשה שיפור העתיד.',
-                  ],
-                },
-                {
-                  heading: 'תרגול וסימולציה',
-                  paragraphs: [
-                    'חשוב לתרגל את תוכנית התגובה באמצעות סימולציות כגון "משחקי מלחמה" (War Games) ותרגילי שולחן (Table Top Exercises). התרגול חושף פערים במוכנות.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'Respond = פעולה מיידית למזעור נזקים',
-                '5 שלבים: תכנון, ניתוח, הכלה, סילוק, לקחים',
-                'IRP = Incident Response Plan (חובה לכל ארגון)',
-                'חשיבות קריטית לתרגול (Simulations)',
+        id: 'respond-function',
+        moduleId: 'respond-recover',
+        title: 'פונקציית Respond - תגובה',
+        order: 1,
+        estimatedTime: 6,
+        content: {
+          sections: [
+            {
+              heading: 'חשיבות התגובה (Respond)',
+              paragraphs: [
+                'פונקציית Respond כוללת את כל הפעולות המתבצעות בעת זיהוי אירוע סייבר. המטרה: הקטנת נזקים, בלימה והחזרת שליטה.',
+                'אלמנטים מרכזיים: ניהול אירועים (Incident Management), ניתוח אירועים (Incident Analysis), ותקשורת (Communications).',
               ],
             },
-          },
-          {
-            id: 'recover-function',
-            moduleId: 'respond-recover',
-            title: 'פונקציית Recover - התאוששות',
-            order: 2,
-            estimatedTime: 5,
-            content: {
-              sections: [
-                {
-                  heading: 'שיקום והמשכיות עסקית',
-                  paragraphs: [
-                    'פונקציית Recover מתמקדת בשחזור מערכות וחזרה לשגרה לאחר אירוע. המטרה העליונה היא המשכיות עסקית (Business Continuity).',
-                    'כוללת תוכנית להתאוששות מאסון (DRP) ותוכנית המשכיות עסקית (BCP).',
-                  ],
-                },
-                {
-                  heading: 'מדדים קריטיים: RTO ו-RPO',
-                  paragraphs: [
-                    'RTO (Recovery Time Objective): הזמן המקסימלי שארגון יכול לסבול השבתה עד לחזרה לפעילות.',
-                    'RPO (Recovery Point Objective): כמות הנתונים המקסימלית שניתן לאבד (נקודת השחזור האחרונה).',
-                  ],
-                },
-                {
-                  heading: 'חקירה פורנזית ושיפור',
-                  paragraphs: [
-                    'לאחר ההתאוששות, נדרשת חקירה פורנזית (Forensics) להבנת שורש הבעיה. הממצאים מוזנים חזרה לפונקציות Protect ו-Detect לשיפור מתמיד.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'RTO = זמן השבתה מקסימלי, RPO = אובדן נתונים מקסימלי',
-                'BCP/DRP = תוכניות ליבה להתאוששות',
-                'התאוששות כוללת גם תקשורת מול בעלי עניין',
-                'חקירה פורנזית מונעת הישנות מקרים',
+            {
+              heading: 'שלבי תגובה לאירוע',
+              paragraphs: [
+                '1. תכנון מוקדם (Planning): יצירת תוכנית תגובה לאירועים (IRP).',
+                '2. ניתוח וטריאז\' (Analysis & Triage): הבנת היקף הפגיעה.',
+                '3. הכלה ובלימה (Containment): בידוד המערכות הפגועות למניעת התפשטות.',
+                '4. סילוק האיום (Eradication): הסרת הנוזקה או סגירת פרצות.',
+                '5. הפקת לקחים (Lessons Learned): תחקיר לאחר מעשה שיפור העתיד.',
               ],
             },
-          },
-          {
-            id: 'lessons-learned',
-            moduleId: 'respond-recover',
-            title: 'לקחים ושיפור מתמיד',
-            order: 3,
-            estimatedTime: 4,
-            content: {
-              sections: [
-                {
-                  heading: 'Post-Incident Review',
-                  paragraphs: [
-                    'לאחר כל אירוע סייבר חובה לבצע תחקיר (After Action Review). המטרה אינה להאשים, אלא ללמוד ולשפר.',
-                    'התהליך כולל: תיעוד מהלך האירוע, זיהוי כשלים בהגנה או בתגובה, ועדכון נהלים ומדיניות בהתאם.',
-                  ],
-                },
-                {
-                  heading: 'שרשרת התקיפה (Kill Chain)',
-                  paragraphs: [
-                    'הבנת שלבי התקיפה (כמו במודל Cyber Kill Chain) עוזרת לזהות היכן ההגנה נכשלה - האם בשלב הסיור (Recon), החימוש (Weaponize), או ההפצה (Deliver).',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'תחקיר אירוע = הזדמנות למידה קריטית',
-                'המטרה: שיפור החוסן הארגוני לאירוע הבא',
-                'הבנת ה-Kill Chain משפרת את ההגנות',
-                'שיפור מתמיד הוא עקרון ליבה ב-NIST',
+            {
+              heading: 'תרגול וסימולציה',
+              paragraphs: [
+                'חשוב לתרגל את תוכנית התגובה באמצעות סימולציות כגון "משחקי מלחמה" (War Games) ותרגילי שולחן (Table Top Exercises). התרגול חושף פערים במוכנות.',
               ],
             },
-          },
-        ],
+          ],
+          keyTakeaways: [
+            'Respond = פעולה מיידית למזעור נזקים',
+            '5 שלבים: תכנון, ניתוח, הכלה, סילוק, לקחים',
+            'IRP = Incident Response Plan (חובה לכל ארגון)',
+            'חשיבות קריטית לתרגול (Simulations)',
+          ],
+        },
       },
+      {
+        id: 'recover-function',
+        moduleId: 'respond-recover',
+        title: 'פונקציית Recover - התאוששות',
+        order: 2,
+        estimatedTime: 5,
+        content: {
+          sections: [
+            {
+              heading: 'שיקום והמשכיות עסקית',
+              paragraphs: [
+                'פונקציית Recover מתמקדת בשחזור מערכות וחזרה לשגרה לאחר אירוע. המטרה העליונה היא המשכיות עסקית (Business Continuity).',
+                'כוללת תוכנית להתאוששות מאסון (DRP) ותוכנית המשכיות עסקית (BCP).',
+              ],
+            },
+            {
+              heading: 'מדדים קריטיים: RTO ו-RPO',
+              paragraphs: [
+                'RTO (Recovery Time Objective): הזמן המקסימלי שארגון יכול לסבול השבתה עד לחזרה לפעילות.',
+                'RPO (Recovery Point Objective): כמות הנתונים המקסימלית שניתן לאבד (נקודת השחזור האחרונה).',
+              ],
+            },
+            {
+              heading: 'חקירה פורנזית ושיפור',
+              paragraphs: [
+                'לאחר ההתאוששות, נדרשת חקירה פורנזית (Forensics) להבנת שורש הבעיה. הממצאים מוזנים חזרה לפונקציות Protect ו-Detect לשיפור מתמיד.',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            'RTO = זמן השבתה מקסימלי, RPO = אובדן נתונים מקסימלי',
+            'BCP/DRP = תוכניות ליבה להתאוששות',
+            'התאוששות כוללת גם תקשורת מול בעלי עניין',
+            'חקירה פורנזית מונעת הישנות מקרים',
+          ],
+        },
+      },
+      {
+        id: 'lessons-learned',
+        moduleId: 'respond-recover',
+        title: 'לקחים ושיפור מתמיד',
+        order: 3,
+        estimatedTime: 4,
+        content: {
+          sections: [
+            {
+              heading: 'Post-Incident Review',
+              paragraphs: [
+                'לאחר כל אירוע סייבר חובה לבצע תחקיר (After Action Review). המטרה אינה להאשים, אלא ללמוד ולשפר.',
+                'התהליך כולל: תיעוד מהלך האירוע, זיהוי כשלים בהגנה או בתגובה, ועדכון נהלים ומדיניות בהתאם.',
+              ],
+            },
+            {
+              heading: 'שרשרת התקיפה (Kill Chain)',
+              paragraphs: [
+                'הבנת שלבי התקיפה (כמו במודל Cyber Kill Chain) עוזרת לזהות היכן ההגנה נכשלה - האם בשלב הסיור (Recon), החימוש (Weaponize), או ההפצה (Deliver).',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            'תחקיר אירוע = הזדמנות למידה קריטית',
+            'המטרה: שיפור החוסן הארגוני לאירוע הבא',
+            'הבנת ה-Kill Chain משפרת את ההגנות',
+            'שיפור מתמיד הוא עקרון ליבה ב-NIST',
+          ],
+        },
+      },
+    ],
+  },
 
-      // ═══════════════════════════════════════════════════════════
-      // Module 8: AI ומדיניות סייבר (Lecture 10)
-      // ═══════════════════════════════════════════════════════════
+  // ═══════════════════════════════════════════════════════════
+  // Module 8: AI ומדיניות סייבר (Lecture 10)
+  // ═══════════════════════════════════════════════════════════
+  {
+    id: 'ai-cyber-policy',
+    title: 'AI ומדיניות סייבר',
+    description: 'בינה מלאכותית בארגונים: סוגי AI, סיכונים, NIST AI RMF 1.0, ורגולציה בינלאומית.',
+    icon: '🤖',
+    order: 8,
+    xpReward: 75,
+    lessons: [
       {
-        id: 'ai-cyber-policy',
-        title: 'AI ומדיניות סייבר',
-        description: 'בינה מלאכותית בארגונים: סוגי AI, סיכונים, NIST AI RMF 1.0, ורגולציה בינלאומית.',
-        icon: '🤖',
-        order: 8,
-        xpReward: 75,
-        lessons: [
-          {
-            id: 'ai-overview',
-            moduleId: 'ai-cyber-policy',
-            title: 'מבוא לבינה מלאכותית',
-            order: 1,
-            estimatedTime: 5,
-            content: {
-              sections: [
-                {
-                  heading: 'מהי בינה מלאכותית?',
-                  paragraphs: [
-                    'בינה מלאכותית (AI) כוללת מספר סוגים: ANI (Artificial Narrow Intelligence) - AI צר, AMI - AI בינוני, ASI (Artificial Super Intelligence) - AI-על. סוגים פונקציונליים: Reactive (תגובתי), Limited Memory (זיכרון מוגבל), Theory of Mind (תיאוריית התודעה), Self-Aware (מודע לעצמו).',
-                  ],
-                },
-                {
-                  heading: 'גישות טכנולוגיות',
-                  paragraphs: [
-                    'Symbolic/Rule-based - מבוסס חוקים. Machine Learning - למידת מכונה. Deep Learning - למידה עמוקה. Generative AI - AI יוצר (כמו ChatGPT). Agentic AI - סוכני AI אוטונומיים.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'ANI = AI צר (מרבית ה-AI כיום), ASI = AI-על (עתידי)',
-                '4 סוגים: Reactive, Limited Memory, Theory of Mind, Self-Aware',
-                'Generative AI = יצירת תוכן חדש (טקסט, תמונות, קוד)',
-                'Agentic AI = סוכנים אוטונומיים שמבצעים פעולות',
+        id: 'ai-overview',
+        moduleId: 'ai-cyber-policy',
+        title: 'מבוא לבינה מלאכותית',
+        order: 1,
+        estimatedTime: 5,
+        content: {
+          sections: [
+            {
+              heading: 'מהי בינה מלאכותית?',
+              paragraphs: [
+                'בינה מלאכותית (AI) כוללת מספר סוגים: ANI (Artificial Narrow Intelligence) - AI צר, AMI - AI בינוני, ASI (Artificial Super Intelligence) - AI-על. סוגים פונקציונליים: Reactive (תגובתי), Limited Memory (זיכרון מוגבל), Theory of Mind (תיאוריית התודעה), Self-Aware (מודע לעצמו).',
               ],
             },
-          },
-          {
-            id: 'ai-risks',
-            moduleId: 'ai-cyber-policy',
-            title: 'סיכוני AI ואתגרים',
-            order: 2,
-            estimatedTime: 6,
-            content: {
-              sections: [
-                {
-                  heading: 'אתגרים ובעיות של AI',
-                  paragraphs: [
-                    'Data Integrity - תוכן סינתטי ו-Deepfakes. Environmental - צריכת אנרגיה גבוהה. Workforce - עקירת מקומות עבודה. Legal - אי-ודאות משפטית. Integration - תאימות עם מערכות קיימות.',
-                    'Autonomy - יעדים לא מוגדרים וכלים לא מורשים. Over-reliance - הסתמכות יתרה על AI. Explainability - חוסר שקיפות. Reliability - תוצאות שגויות בביטחון גבוה. Bias - הטיה ואפליה. Privacy - דליפת מידע.',
-                  ],
-                },
-                {
-                  heading: 'איומי סייבר משולבי AI',
-                  paragraphs: [
-                    'תוקפים משתמשים ב-AI למטרות: ריגול (Espionage), תחבולה (Sabotage / Subversion), מניעת שירות (DoS), מניפולציה של נתונים או תשתיות (Data/Infrastructure Modification), ותעמולה (Propaganda / Disinformation).',
-                  ],
-                },
-                {
-                  heading: 'איומים על מודלי AI (Adversarial AI)',
-                  paragraphs: [
-                    'Prompt Injection - הזרקת הנחיות זדוניות. Data Poisoning - הרעלת נתוני אימון. Model Inversion - חילוץ נתוני אימון רגישים. Model Theft - גניבת המודל עצמו.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'Deepfakes, Bias, Privacy = אתגרי AI מרכזיים',
-                'תוקפים משתמשים ב-AI לריגול, תחבולה, ותעמולה',
-                'Prompt Injection = תקיפה ייחודית נגד GenAI',
-                'Data Poisoning = שיבוש המודל בשלב האימון',
+            {
+              heading: 'גישות טכנולוגיות',
+              paragraphs: [
+                'Symbolic/Rule-based - מבוסס חוקים. Machine Learning - למידת מכונה. Deep Learning - למידה עמוקה. Generative AI - AI יוצר (כמו ChatGPT). Agentic AI - סוכני AI אוטונומיים.',
               ],
             },
-          },
-          {
-            id: 'nist-ai-rmf',
-            moduleId: 'ai-cyber-policy',
-            title: 'NIST AI RMF 1.0',
-            order: 3,
-            estimatedTime: 5,
-            content: {
-              sections: [
-                {
-                  heading: 'מסגרת ניהול סיכוני AI של NIST',
-                  paragraphs: [
-                    'NIST AI Risk Management Framework 1.0 מגדיר קטגוריות נזק: נזק לאנשים (זכויות אזרחיות, בטיחות, הזדמנות כלכלית), נזק לארגון (פעילות עסקית, אבטחה, מוניטין), נזק למערכת אקולוגית (מערכות מקושרות, משאבי טבע).',
-                  ],
-                },
-                {
-                  heading: 'מחזור חיי AI',
-                  paragraphs: [
-                    'Plan & Design → Data & Processing → Model Building → Verify & Validate → Deploy & Use → Operate & Monitor. ממשל וניטור סיכונים חלים לאורך כל המחזור.',
-                  ],
-                },
-                {
-                  heading: 'עקרונות OECD ל-AI',
-                  paragraphs: [
-                    'צמיחה מכלילה (Inclusive Growth), ערכים ממוקדי אדם (Human-centered Values), שקיפות (Transparency), חוסן (Robustness), אחריותיות (Accountability).',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'NIST AI RMF = מסגרת לניהול סיכוני AI',
-                '3 קטגוריות נזק: אנשים, ארגון, אקוסיסטם',
-                'מחזור חיי AI דורש ממשל לאורך כל השלבים',
-                'עקרונות OECD: שקיפות, חוסן, אחריותיות',
-              ],
-            },
-          },
-          {
-            id: 'ai-governance-global',
-            moduleId: 'ai-cyber-policy',
-            title: 'רגולציית AI גלובלית',
-            order: 4,
-            estimatedTime: 5,
-            content: {
-              sections: [
-                {
-                  heading: 'EU AI Act',
-                  paragraphs: [
-                    'חוק ה-AI של האיחוד האירופי מסווג מערכות AI לפי רמות סיכון: Unacceptable Risk (אסור) - ניקוד חברתי, מניפולציה. High Risk (גבוה) - בריאות, משפט, תעסוקה. Limited Risk (מוגבל) - צ\'אטבוטים, Deepfakes. Minimal Risk (מינימלי) - משחקים, פילטרים.',
-                  ],
-                },
-                {
-                  heading: 'מודל הממשל הסיני ל-AI',
-                  paragraphs: [
-                    '"משפך המדיניות" של סין כולל 4 שכבות: 1) שורשים אמיתיים (סביבה מאקרו-כלכלית, פוליטית, חברתית, טכנולוגית), 2) סדרי עדיפויות של שי ג\'ינפינג ואידיאולוגיית CCP, 3) "עולם הרעיונות" (דיונים אקדמיים, לובי עסקי), 4) בירוקרטיה ממשלתית (יישום ורגולציה).',
-                  ],
-                },
-                {
-                  heading: 'ישראל ו-AI',
-                  paragraphs: [
-                    'ישראל פרסמה מסגרת ממשל AI ב-2023. הגישה הישראלית מאמצת עקרונות בינלאומיים תוך התאמה לצרכים מקומיים.',
-                  ],
-                },
-              ],
-              keyTakeaways: [
-                'EU AI Act = 4 רמות סיכון (Unacceptable, High, Limited, Minimal)',
-                'סין = "משפך מדיניות" 4 שכבות',
-                'ישראל = מסגרת ממשל AI (2023)',
-                'רגולציית AI גלובלית עדיין מתגבשת',
-              ],
-            },
-          },
-        ],
+          ],
+          keyTakeaways: [
+            'ANI = AI צר (מרבית ה-AI כיום), ASI = AI-על (עתידי)',
+            '4 סוגים: Reactive, Limited Memory, Theory of Mind, Self-Aware',
+            'Generative AI = יצירת תוכן חדש (טקסט, תמונות, קוד)',
+            'Agentic AI = סוכנים אוטונומיים שמבצעים פעולות',
+          ],
+        },
       },
-    ];
+      {
+        id: 'ai-risks',
+        moduleId: 'ai-cyber-policy',
+        title: 'סיכוני AI ואתגרים',
+        order: 2,
+        estimatedTime: 6,
+        content: {
+          sections: [
+            {
+              heading: 'אתגרים ובעיות של AI',
+              paragraphs: [
+                'Data Integrity - תוכן סינתטי ו-Deepfakes. Environmental - צריכת אנרגיה גבוהה. Workforce - עקירת מקומות עבודה. Legal - אי-ודאות משפטית. Integration - תאימות עם מערכות קיימות.',
+                'Autonomy - יעדים לא מוגדרים וכלים לא מורשים. Over-reliance - הסתמכות יתרה על AI. Explainability - חוסר שקיפות. Reliability - תוצאות שגויות בביטחון גבוה. Bias - הטיה ואפליה. Privacy - דליפת מידע.',
+              ],
+            },
+            {
+              heading: 'איומי סייבר משולבי AI',
+              paragraphs: [
+                'תוקפים משתמשים ב-AI למטרות: ריגול (Espionage), תחבולה (Sabotage / Subversion), מניעת שירות (DoS), מניפולציה של נתונים או תשתיות (Data/Infrastructure Modification), ותעמולה (Propaganda / Disinformation).',
+              ],
+            },
+            {
+              heading: 'איומים על מודלי AI (Adversarial AI)',
+              paragraphs: [
+                'Prompt Injection - הזרקת הנחיות זדוניות. Data Poisoning - הרעלת נתוני אימון. Model Inversion - חילוץ נתוני אימון רגישים. Model Theft - גניבת המודל עצמו.',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            'Deepfakes, Bias, Privacy = אתגרי AI מרכזיים',
+            'תוקפים משתמשים ב-AI לריגול, תחבולה, ותעמולה',
+            'Prompt Injection = תקיפה ייחודית נגד GenAI',
+            'Data Poisoning = שיבוש המודל בשלב האימון',
+          ],
+        },
+      },
+      {
+        id: 'nist-ai-rmf',
+        moduleId: 'ai-cyber-policy',
+        title: 'NIST AI RMF 1.0',
+        order: 3,
+        estimatedTime: 5,
+        content: {
+          sections: [
+            {
+              heading: 'מסגרת ניהול סיכוני AI של NIST',
+              paragraphs: [
+                'NIST AI Risk Management Framework 1.0 מגדיר קטגוריות נזק: נזק לאנשים (זכויות אזרחיות, בטיחות, הזדמנות כלכלית), נזק לארגון (פעילות עסקית, אבטחה, מוניטין), נזק למערכת אקולוגית (מערכות מקושרות, משאבי טבע).',
+              ],
+            },
+            {
+              heading: 'מחזור חיי AI',
+              paragraphs: [
+                'Plan & Design → Data & Processing → Model Building → Verify & Validate → Deploy & Use → Operate & Monitor. ממשל וניטור סיכונים חלים לאורך כל המחזור.',
+              ],
+            },
+            {
+              heading: 'עקרונות OECD ל-AI',
+              paragraphs: [
+                'צמיחה מכלילה (Inclusive Growth), ערכים ממוקדי אדם (Human-centered Values), שקיפות (Transparency), חוסן (Robustness), אחריותיות (Accountability).',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            'NIST AI RMF = מסגרת לניהול סיכוני AI',
+            '3 קטגוריות נזק: אנשים, ארגון, אקוסיסטם',
+            'מחזור חיי AI דורש ממשל לאורך כל השלבים',
+            'עקרונות OECD: שקיפות, חוסן, אחריותיות',
+          ],
+        },
+      },
+      {
+        id: 'ai-governance-global',
+        moduleId: 'ai-cyber-policy',
+        title: 'רגולציית AI גלובלית',
+        order: 4,
+        estimatedTime: 5,
+        content: {
+          sections: [
+            {
+              heading: 'EU AI Act',
+              paragraphs: [
+                'חוק ה-AI של האיחוד האירופי מסווג מערכות AI לפי רמות סיכון: Unacceptable Risk (אסור) - ניקוד חברתי, מניפולציה. High Risk (גבוה) - בריאות, משפט, תעסוקה. Limited Risk (מוגבל) - צ\'אטבוטים, Deepfakes. Minimal Risk (מינימלי) - משחקים, פילטרים.',
+              ],
+            },
+            {
+              heading: 'מודל הממשל הסיני ל-AI',
+              paragraphs: [
+                '"משפך המדיניות" של סין כולל 4 שכבות: 1) שורשים אמיתיים (סביבה מאקרו-כלכלית, פוליטית, חברתית, טכנולוגית), 2) סדרי עדיפויות של שי ג\'ינפינג ואידיאולוגיית CCP, 3) "עולם הרעיונות" (דיונים אקדמיים, לובי עסקי), 4) בירוקרטיה ממשלתית (יישום ורגולציה).',
+              ],
+            },
+            {
+              heading: 'ישראל ו-AI',
+              paragraphs: [
+                'ישראל פרסמה מסגרת ממשל AI ב-2023. הגישה הישראלית מאמצת עקרונות בינלאומיים תוך התאמה לצרכים מקומיים.',
+              ],
+            },
+          ],
+          keyTakeaways: [
+            'EU AI Act = 4 רמות סיכון (Unacceptable, High, Limited, Minimal)',
+            'סין = "משפך מדיניות" 4 שכבות',
+            'ישראל = מסגרת ממשל AI (2023)',
+            'רגולציית AI גלובלית עדיין מתגבשת',
+          ],
+        },
+      },
+    ],
+  },
+];
