@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { modules } from '@/lib/content/modules';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import ModuleLesson from './ModuleLesson';
 
 interface Props {
@@ -11,7 +12,11 @@ interface Props {
 
 export default function ModulePageClient({ moduleId }: Props) {
   const module = modules.find((m) => m.id === moduleId);
-  const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
+  const searchParams = useSearchParams();
+  const startLessonParam = searchParams.get('startLesson');
+  const [currentLessonIndex, setCurrentLessonIndex] = useState(
+    startLessonParam ? parseInt(startLessonParam, 10) : 0
+  );
 
   if (!module) {
     return (
@@ -30,20 +35,41 @@ export default function ModulePageClient({ moduleId }: Props) {
   const isFirst = currentLessonIndex === 0;
   const isLast = currentLessonIndex === module.lessons.length - 1;
 
+  // If the current lesson has an htmlPage, redirect to it
+  if (currentLesson?.htmlPage) {
+    if (typeof window !== 'undefined') {
+      window.location.href = currentLesson.htmlPage;
+    }
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-gray-400 text-lg">טוען עמוד...</div>
+      </div>
+    );
+  }
+
   const handleNext = () => {
     if (isLast) {
-      // TODO: Mark module as complete provided logic
-      window.location.href = '/'; // Temporary redirect back to home
+      window.location.href = '/';
     } else {
-      setCurrentLessonIndex((prev) => prev + 1);
-      window.scrollTo(0, 0);
+      const nextLesson = module.lessons[currentLessonIndex + 1];
+      if (nextLesson?.htmlPage) {
+        window.location.href = nextLesson.htmlPage;
+      } else {
+        setCurrentLessonIndex((prev) => prev + 1);
+        window.scrollTo(0, 0);
+      }
     }
   };
 
   const handlePrev = () => {
     if (!isFirst) {
-      setCurrentLessonIndex((prev) => prev - 1);
-      window.scrollTo(0, 0);
+      const prevLesson = module.lessons[currentLessonIndex - 1];
+      if (prevLesson?.htmlPage) {
+        window.location.href = prevLesson.htmlPage;
+      } else {
+        setCurrentLessonIndex((prev) => prev - 1);
+        window.scrollTo(0, 0);
+      }
     }
   };
 

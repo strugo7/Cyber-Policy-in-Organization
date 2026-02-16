@@ -28,50 +28,36 @@ export default function ModuleLesson({ lesson, onNext, onPrev, isFirst, isLast }
                 </div>
             </div>
 
-            {/* Content: HTML Page (iframe) or Structured Sections */}
-            {lesson.htmlPage ? (
-                <div className="w-full rounded-xl overflow-hidden border border-white/10">
-                    <iframe
-                        src={lesson.htmlPage}
-                        className="w-full border-0"
-                        style={{ minHeight: '80vh' }}
-                        title={lesson.title}
-                    />
-                </div>
-            ) : (
-                <>
-                    {/* Content Sections */}
-                    <div className="space-y-8">
-                        {lesson.content.sections.map((section, idx) => (
-                            <section key={idx} className="glass-card p-6 bg-white/5 border-l-4 border-l-primary/50">
-                                <h3 className="text-xl font-bold text-primary mb-4">{section.heading}</h3>
-                                <div className="space-y-4 text-gray-300 leading-relaxed text-lg">
-                                    {section.paragraphs.map((p, pIdx) => (
-                                        <p key={pIdx}>{p}</p>
-                                    ))}
-                                </div>
-                            </section>
-                        ))}
-                    </div>
-
-                    {/* Key Takeaways */}
-                    {lesson.content.keyTakeaways && (
-                        <div className="bg-primary/10 border border-primary/20 rounded-xl p-6 relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
-                            <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
-                                <span className="text-2xl">💡</span> נקודות מפתח
-                            </h3>
-                            <ul className="space-y-2">
-                                {lesson.content.keyTakeaways.map((point, idx) => (
-                                    <li key={idx} className="flex items-start gap-3 text-gray-200">
-                                        <span className="text-primary mt-1">•</span>
-                                        <span>{point}</span>
-                                    </li>
-                                ))}
-                            </ul>
+            {/* Content Sections */}
+            <div className="space-y-8">
+                {lesson.content.sections.map((section, idx) => (
+                    <section key={idx} className="glass-card p-6 bg-white/5 border-l-4 border-l-primary/50">
+                        <h3 className="text-xl font-bold text-primary mb-4">{section.heading}</h3>
+                        <div className="space-y-4 text-gray-300 leading-relaxed text-lg">
+                            {section.paragraphs.map((p, pIdx) => (
+                                <p key={pIdx}>{p}</p>
+                            ))}
                         </div>
-                    )}
-                </>
+                    </section>
+                ))}
+            </div>
+
+            {/* Key Takeaways */}
+            {lesson.content.keyTakeaways && (
+                <div className="bg-primary/10 border border-primary/20 rounded-xl p-6 relative overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-primary" />
+                    <h3 className="text-lg font-bold text-primary mb-4 flex items-center gap-2">
+                        <span className="text-2xl">💡</span> נקודות מפתח
+                    </h3>
+                    <ul className="space-y-2">
+                        {lesson.content.keyTakeaways.map((point, idx) => (
+                            <li key={idx} className="flex items-start gap-3 text-gray-200">
+                                <span className="text-primary mt-1">•</span>
+                                <span>{point}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             )}
 
             {/* Navigation Footer */}
