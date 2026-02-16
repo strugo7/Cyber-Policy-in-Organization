@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Organization Classification Wizard (Part 3)</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Heebo:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script type='text/javascript' nonce='EeDnq543U3hqIsaseYgb3A==' src='https://contribution.usercontent.google.com/qGaD_UL3b790AFYv_5yUjHXiuvX40acuEY67h5-0yBrXPIJW1YZK8rBwEbIDTSNL7yZwpFYB2tFW47t1huOgyZy1wHLB4izYLp5NlU5Zu4qlQEQwP6iid9PG-gr43i50JZf3D_1KjbO5aeNM7YPDx8SIlOf8Skg9UN1TbylNItfPXBBwj86JQUjIeZQKU4Xleij1f1lhhAQeIdNem33rjaEWhkvUu8kqJM7yEPwZZ6g3QAURKFut_Q9HuWJq3UkxkEyBZFkBuOAUvfe45oy66GV_AF8eASan3Ga9iWJ-k-nb5cQN3BUvEzFcS8QQ5ViueNv8LKkXg0h9xYcCaAL_5QbKc1sj9goMMbVjqGgSVrLLje9-R7NZAiP1RxFJme6b74P6HL3rUkC6Xswjc32iBsCQIw2QBcABshpz5GEN0g3yGRxWfgX2rm2L2VP-vc0QcLdjio0yjE0Mb5VtB9AFHRpV-_liV_2_uH161_wvSeJWVFf3qF8U29azmlZMWX95fv-jQ9MR_nHiml6PqiDqGU1trg67hs1KnWHFRpT-MnkpX_pMUDR3qwxdvXf9FbR9KUh4KE_hylxPF-CWAkW3ty41MftF7S-Lu0r0pnZCpr8wer6up0h5kvTe3vi8Vh6kQasZDlnX07dNdwy-Q0zTgaPjdhHfONHrD0lEmSYf7Ji-BBpuB23H4_5AU-O2ZpfeQcGmqkbrv3kiirwfXgBYGDNUuCGsiyoDmXI1usBjsjvPTIc6o8tyXxTJeugcbhd-MkCckOv_M1TouEK_lYOsC5S1AOy_NkI6Za6gNQ'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Heebo", "Manrope", "sans-serif"], // Prioritize Heebo for Hebrew
+                        "body": ["Heebo", "Manrope", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101622; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display min-h-screen flex flex-col transition-colors duration-300">
+
+<!-- Floating Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(35, 21, 48, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(127, 19, 236, 0.2);">
+<div class="container mx-auto px-4 max-w-7xl flex items-center justify-between py-3">
+<a href="/modules/nist-framework/" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium">
+<span class="material-icons-round text-base">arrow_forward</span>
+חזרה למודול
+</a>
+<div class="text-sm text-gray-400" style="font-family: 'Heebo', sans-serif;">שיעור 4: יישום NIST</div>
+<div class="flex items-center gap-2">
+<a href="/pages/nist-practice-action-matching-part-3.html" class="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+<span class="material-icons-round text-base">arrow_forward</span>
+הקודם
+</a>
+<a href="/pages/israel-cyber-doctrine-dashboard-part-1.html" class="flex items-center gap-1 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow transition-all text-sm">
+הבא
+<span class="material-icons-round text-base">arrow_back</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Navbar / Header Area -->
+<nav class="w-full border-b border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center text-white">
+<span class="material-icons-round text-lg">shield</span>
+</div>
+<span class="font-bold text-lg tracking-tight">CyberGuard IL</span>
+</div>
+<div class="flex items-center gap-4 text-sm">
+<span class="text-slate-500 dark:text-slate-400">אשף הסיווג</span>
+<span class="w-px h-4 bg-slate-300 dark:bg-slate-700"></span>
+<span class="text-primary font-medium">שלב 3 מתוך 5</span>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+<!-- Abstract Background Pattern -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-10 overflow-hidden">
+<div class="absolute top-0 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+<div class="absolute top-0 right-1/4 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+<div class="absolute -bottom-8 left-1/2 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+</div>
+<div class="w-full max-w-3xl z-10 space-y-8">
+<!-- Wizard Progress -->
+<div class="w-full">
+<div class="flex justify-between mb-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+<span>התחלה</span>
+<span>סיום</span>
+</div>
+<div class="h-2 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/5 rounded-full shadow-[0_0_10px_rgba(19,91,236,0.5)]"></div>
+</div>
+</div>
+<!-- Header Text -->
+<div class="text-center space-y-2">
+<h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                    לאיזו קטגוריה הארגון שייך?
+                </h1>
+<p class="text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
+                    אנו צריכים לדעת פרטים נוספים על היקף הפעילות הפיננסית כדי לקבוע את רמת האבטחה הנדרשת.
+                </p>
+</div>
+<!-- Main Question Card -->
+<div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl dark:shadow-2xl border border-slate-100 dark:border-slate-800 p-8 md:p-12 relative group hover:border-primary/30 transition-all duration-300">
+<div class="absolute -top-6 right-1/2 translate-x-1/2 bg-slate-800 dark:bg-slate-800 p-3 rounded-xl border-4 border-white dark:border-background-dark shadow-lg">
+<span class="material-icons-round text-3xl text-primary">account_balance</span>
+</div>
+<div class="mt-4 text-center space-y-8">
+<h2 class="text-2xl md:text-3xl font-bold text-slate-800 dark:text-slate-100">
+                        האם מחזור הארגון עולה על 200 מיליון ש"ח?
+                    </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-lg mx-auto">
+<!-- YES Button -->
+<button class="relative group/btn overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-transparent hover:border-emerald-500/50 hover:bg-emerald-500/10 focus:outline-none focus:ring-4 focus:ring-emerald-500/20 transition-all duration-300 h-32 flex flex-col items-center justify-center gap-3">
+<div class="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-emerald-500/5 group-hover/btn:opacity-100 transition-opacity"></div>
+<div class="h-10 w-10 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center group-hover/btn:scale-110 transition-transform duration-300">
+<span class="material-icons-round text-2xl">check</span>
+</div>
+<span class="text-xl font-bold text-slate-700 dark:text-slate-200 group-hover/btn:text-emerald-600 dark:group-hover/btn:text-emerald-400">כן</span>
+</button>
+<!-- NO Button -->
+<button class="relative group/btn overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-800 border-2 border-transparent hover:border-rose-500/50 hover:bg-rose-500/10 focus:outline-none focus:ring-4 focus:ring-rose-500/20 transition-all duration-300 h-32 flex flex-col items-center justify-center gap-3">
+<div class="absolute inset-0 bg-gradient-to-br from-rose-500/0 to-rose-500/5 group-hover/btn:opacity-100 transition-opacity"></div>
+<div class="h-10 w-10 rounded-full bg-rose-100 dark:bg-rose-900/30 text-rose-600 dark:text-rose-400 flex items-center justify-center group-hover/btn:scale-110 transition-transform duration-300">
+<span class="material-icons-round text-2xl">close</span>
+</div>
+<span class="text-xl font-bold text-slate-700 dark:text-slate-200 group-hover/btn:text-rose-600 dark:group-hover/btn:text-rose-400">לא</span>
+</button>
+</div>
+</div>
+<!-- Footer of card -->
+<div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center text-sm text-slate-400">
+<button class="flex items-center gap-1 hover:text-primary transition-colors">
+<span class="material-icons-round text-base">arrow_forward</span>
+<span>חזור לשלב הקודם</span>
+</button>
+<span class="flex items-center gap-1">
+<span class="material-icons-round text-base">info</span>
+<span>מידע נוסף על חישוב מחזור</span>
+</span>
+</div>
+</div>
+<!-- Faded Dynamic Preview Area -->
+<div class="relative overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-800/50 backdrop-blur-sm p-6 opacity-60 hover:opacity-100 transition-opacity duration-500 group cursor-default">
+<div class="flex items-start gap-4">
+<div class="p-3 bg-slate-200 dark:bg-slate-700 rounded-lg text-slate-400 dark:text-slate-500">
+<span class="material-icons-round text-2xl">analytics</span>
+</div>
+<div class="flex-1 space-y-2">
+<div class="flex items-center justify-between">
+<h3 class="text-base font-semibold text-slate-700 dark:text-slate-300">תצוגה מקדימה של הסיווג</h3>
+<span class="px-2 py-0.5 rounded text-xs bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400">טיוטה</span>
+</div>
+<!-- Placeholder skeleton loader effect to imply dynamic calculation -->
+<div class="space-y-2 animate-pulse">
+<div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-3/4"></div>
+<div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-1/2"></div>
+</div>
+<!-- Content revealed on hover (simulated) -->
+<div class="hidden group-hover:block pt-2 animate-fade-in">
+<p class="text-sm text-slate-600 dark:text-slate-400">
+                                בהתבסס על הנתונים הנוכחיים, הארגון עשוי להשתייך ל<span class="text-primary font-bold">קטגוריה B</span> (רמת סיכון בינונית). בחירה ב"כן" עשויה להעלות את הדרישות ל<span class="text-primary font-bold">קטגוריה A</span>.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Simple footer -->
+<footer class="w-full py-6 text-center text-xs text-slate-400 dark:text-slate-600 border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50">
+<p>© 2023 מערך הסייבר הלאומי. כל הזכויות שמורות.</p>
+</footer>
+<style>
+        /* Custom animation for background blobs */
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+    </style>
+</body></html>

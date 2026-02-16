@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>סיכוני פרטיות במערכות AI - Cyber Security Lesson</title>
+<script type='text/javascript' nonce='I5MslvDyzxINIwgyukQb/Q==' src='https://contribution.usercontent.google.com/Ew7FrFo5CwzDYdqRM6IDubGRWKoZzAfWiWF8__BCoBkRxGI75y5xpOohWoidcdrzBj_ecKnOmhWEFGKGp_HWd_tQhBbGjrORfs-T2yBS4z0d3oPXzktxkQ_IONpPWgIHJNPdK1XENEHsbMsVV42AvXMMhFKBCZpA70_hKse1-Y0AyDYaCbfdmEcBuhwzEa_LP_G8JfED9zCvgZnztZcuDYIKDHv7pOvP3komGkbhQ3QVOG3QZyzvyQLtfkpi6t51NZxsb8yPNIIMUYPMZ8c1lGShGdwfH39v42jWs6HQIxMoN6J1m6iVX12j4-zMfsIoRPUNckMkydzuDckZw1GhjnwFQVSV_znOqBdnKjKnUPJULP87X-UbQLJP_FdlqIk1Hs-hvu0tsPIfWDJ3fwNxWmqN2ONplinQaWifQblyBwpjWbeCOF6C8ohUIxlMYNfFjBcqYlUPi7hu_Rzw7pseEv8g2uqJcsZ3dGZEpY47lO_9xvKRWgaeZof2MeLSqILRoGjsAs7-X9Iz3bxmo6FvMebn49ONVv0IngYcG8BZjs_BjRM9Qjobg35YNVvqOnyK60oKScJSJdAsoHSQhsCo0ey099vSaJDg7gj9sZyjWMcr6BWyGRwskkw0Pwss22ieYTvs3c3qn8Xm2u42gOKr95WCFpbTN7VLPZcOv2a9cErOoh35S69Fg9IuYI3H_uh-Ql0RZrnJK5WntfeCREX8MJpFM0d2R-BevwoGKdV_hOb4HD4_FltMc9ryscgYvLYVgsXVopUEJAjn00RMbHNThsZxeX7ry8Y6Ye6lWA'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Assistant:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#135bec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+              "neon-red": "#ff3131",
+              "cyber-purple": "#8b5cf6",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "Assistant", "sans-serif"],
+              "body": ["Assistant", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Assistant', sans-serif;
+        }
+        .font-display {
+            font-family: 'Space Grotesk', 'Assistant', sans-serif;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-darker {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glitch-effect {
+            text-shadow: 2px 0 #ff3131, -2px 0 #135bec;
+        }
+        .neural-node {
+            box-shadow: 0 0 15px rgba(19, 91, 236, 0.4);
+        }
+        .attack-node {
+            box-shadow: 0 0 15px rgba(255, 49, 49, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen font-body selection:bg-primary/30">
+
+<!-- Floating Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(35, 21, 48, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(127, 19, 236, 0.2);">
+<div class="container mx-auto px-4 max-w-7xl flex items-center justify-between py-3">
+<a href="/modules/ai-cyber-policy/" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium">
+<span class="material-icons-round text-base">arrow_forward</span>
+חזרה למודול
+</a>
+<div class="text-sm text-gray-400" style="font-family: 'Heebo', sans-serif;">שיעור 1: AI וסייבר - סקירה</div>
+<div class="flex items-center gap-2">
+
+<a href="/pages/prompt-injection-simulation.html" class="flex items-center gap-1 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow transition-all text-sm">
+הבא
+<span class="material-icons-round text-base">arrow_back</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Top Navigation / Progress Header -->
+<header class="fixed top-0 w-full z-50 glass-darker border-b border-white/10 h-20 px-6 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="bg-primary/10 p-2 rounded-lg border border-primary/30">
+<span class="material-icons text-primary">security</span>
+</div>
+<h1 class="text-xl font-bold font-display tracking-tight text-white">סיכוני פרטיות במערכות AI</h1>
+</div>
+<div class="flex-1 max-w-xl mx-12">
+<div class="flex items-center justify-between mb-2 px-1">
+<span class="text-xs font-display text-primary uppercase tracking-widest">Progress</span>
+<span class="text-xs font-display text-white">25%</span>
+</div>
+<div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/4 rounded-full shadow-[0_0_10px_#135bec]"></div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="glass p-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-icons text-white">settings</span>
+</button>
+<button class="glass p-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-icons text-white">help_outline</span>
+</button>
+</div>
+</header>
+<main class="pt-28 pb-32 px-8 max-w-[1600px] mx-auto">
+<div class="grid grid-cols-12 gap-8 mb-8">
+<!-- Right Panel: Text Content -->
+<div class="col-span-12 lg:col-span-5 space-y-6">
+<div class="glass p-8 rounded-xl shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-10"></div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-icons text-cyber-purple">psychology</span>
+<h2 class="text-2xl font-bold text-white">מבוא להרעלת נתונים (Data Poisoning)</h2>
+</div>
+<div class="space-y-4 text-slate-300 leading-relaxed text-lg">
+<p>
+                            הרעלת נתונים היא מתקפה המכוונת לשלב האימון של מודל הבינה המלאכותית. התוקף מחדיר דגימות "מורעלות" למסד הנתונים כדי להטות את התנהגות המודל בזמן אמת.
+                        </p>
+<p>
+                            במערכות אבטחת מידע, הדבר עלול לגרום למודל לסווג תוכנה זדונית כבטוחה, או לאפשר גישה לא מורשית על ידי יצירת "דלת אחורית" (Backdoor) בתוך המבנה הנוירוני של הרשת.
+                        </p>
+<div class="mt-8 pt-8 border-t border-white/10">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-icons text-neon-red">privacy_tip</span>
+<h2 class="text-2xl font-bold text-white">דליפת פרטיות (Privacy Leakage)</h2>
+</div>
+<p>
+                                מודלי שפה גדולים (LLMs) נוטים "לשנן" חלקים מנתוני האימון שלהם. תוקף מתוחכם יכול להשתמש בשאילתות ייעודיות כדי לחלץ מידע מזוהה (PII) כמו מספרי תעודת זהות, כתובות דוא"ל או סודות מסחריים שנכללו בטעות במערך האימון.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Left Panel: Interactive 3D Visualization -->
+<div class="col-span-12 lg:col-span-7">
+<div class="glass h-[500px] lg:h-full rounded-xl overflow-hidden relative group">
+<!-- Neural Network Viz Placeholder -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/5 via-background-dark to-background-dark"></div>
+<!-- Simplified Visual Simulation Nodes -->
+<div class="relative w-full h-full flex items-center justify-center p-12">
+<svg class="w-full h-full opacity-60" viewbox="0 0 800 500">
+<!-- Connections -->
+<path d="M100 250 L300 150 M100 250 L300 250 M100 250 L300 350" opacity="0.3" stroke="#135bec" stroke-width="1"></path>
+<path d="M300 150 L500 250 M300 250 L500 250 M300 350 L500 250" opacity="0.3" stroke="#135bec" stroke-width="1"></path>
+<path d="M500 250 L700 250" opacity="0.3" stroke="#135bec" stroke-width="1"></path>
+<!-- Glitch Attack Path -->
+<path class="animate-pulse" d="M50 100 L300 150" stroke="#ff3131" stroke-dasharray="10 5" stroke-width="2"></path>
+<path d="M50 400 L300 350" stroke="#ff3131" stroke-dasharray="10 5" stroke-width="2"></path>
+<!-- Safe Nodes -->
+<circle class="neural-node" cx="100" cy="250" fill="#135bec" r="12"></circle>
+<circle class="neural-node" cx="300" cy="250" fill="#135bec" r="12"></circle>
+<circle class="neural-node" cx="500" cy="250" fill="#135bec" r="12"></circle>
+<circle class="neural-node" cx="700" cy="250" fill="#135bec" r="12"></circle>
+<!-- Targeted/Attacked Nodes -->
+<circle class="attack-node animate-pulse" cx="300" cy="150" fill="#ff3131" r="15"></circle>
+<circle class="attack-node" cx="300" cy="350" fill="#ff3131" r="15"></circle>
+<!-- Glitch Particles -->
+<rect fill="none" height="40" opacity="0.5" stroke="#ff3131" stroke-width="1" transform="rotate(45 300 150)" width="40" x="280" y="130"></rect>
+</svg>
+<!-- HUD Overlays -->
+<div class="absolute top-6 left-6 flex flex-col items-start gap-2">
+<div class="bg-background-dark/80 px-3 py-1 rounded border border-neon-red/50 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-neon-red animate-ping"></span>
+<span class="text-[10px] font-display text-neon-red uppercase">Infiltration Detected</span>
+</div>
+<div class="bg-background-dark/80 px-3 py-1 rounded border border-primary/50 flex items-center gap-2">
+<span class="text-[10px] font-display text-primary uppercase">Neural Integrity: 74%</span>
+</div>
+</div>
+<div class="absolute bottom-6 right-6 text-right">
+<h3 class="text-sm font-bold text-white mb-1">הדמיית התקפת Adversarial</h3>
+<p class="text-xs text-slate-400">הצגת חדירת פקטים זדוניים (אדום) לשכבות הנסתרות</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Concept Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="glass p-6 rounded-xl hover:bg-white/5 transition-all cursor-pointer group border-r-4 border-primary">
+<div class="flex items-center justify-between mb-4">
+<span class="material-icons text-primary text-3xl">cloud_download</span>
+<span class="text-xs font-display text-white/40">01</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">איסוף מידע</h3>
+<p class="text-sm text-slate-400 leading-relaxed">
+                    סקירה של שיטות Scraping המוניות וכיצד מידע ציבורי הופך לנכס אבטחה קריטי.
+                </p>
+<div class="mt-4 flex justify-end">
+<span class="material-icons text-primary opacity-0 group-hover:opacity-100 transition-opacity">arrow_back</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="glass p-6 rounded-xl hover:bg-white/5 transition-all cursor-pointer group border-r-4 border-cyber-purple">
+<div class="flex items-center justify-between mb-4">
+<span class="material-icons text-cyber-purple text-3xl">enhanced_encryption</span>
+<span class="text-xs font-display text-white/40">02</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">אנונימיזציה</h3>
+<p class="text-sm text-slate-400 leading-relaxed">
+                    טכניקות למיסוך זהויות (Differential Privacy) המגנות על משתמשים בתוך מערכי נתונים גדולים.
+                </p>
+<div class="mt-4 flex justify-end">
+<span class="material-icons text-cyber-purple opacity-0 group-hover:opacity-100 transition-opacity">arrow_back</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="glass p-6 rounded-xl hover:bg-white/5 transition-all cursor-pointer group border-r-4 border-neon-red">
+<div class="flex items-center justify-between mb-4">
+<span class="material-icons text-neon-red text-3xl">leak_add</span>
+<span class="text-xs font-display text-white/40">03</span>
+</div>
+<h3 class="text-xl font-bold text-white mb-2">דליפות מידע</h3>
+<p class="text-sm text-slate-400 leading-relaxed">
+                    מקרי בוחן של התקפות Model Inversion ודרכים שבהן מודלים חושפים את "זיכרון" האימון שלהם.
+                </p>
+<div class="mt-4 flex justify-end">
+<span class="material-icons text-neon-red opacity-0 group-hover:opacity-100 transition-opacity">arrow_back</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Controls -->
+<footer class="fixed bottom-0 w-full glass-darker border-t border-white/10 p-6 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+<span class="material-icons">arrow_forward</span>
+<span class="font-bold">הקודם</span>
+</button>
+<div class="h-6 w-[1px] bg-white/10"></div>
+<div class="flex gap-1">
+<div class="w-8 h-1 bg-primary rounded-full"></div>
+<div class="w-8 h-1 bg-white/20 rounded-full"></div>
+<div class="w-8 h-1 bg-white/20 rounded-full"></div>
+<div class="w-8 h-1 bg-white/20 rounded-full"></div>
+</div>
+</div>
+<button class="bg-primary hover:bg-primary/80 text-white px-8 py-3 rounded-lg font-bold flex items-center gap-3 transition-all transform hover:scale-105 shadow-lg shadow-primary/20">
+<span>סיום שיעור</span>
+<span class="material-icons">check_circle</span>
+</button>
+</footer>
+<!-- Visual Accents -->
+<div class="fixed top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/10 blur-[120px] rounded-full -z-20"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-cyber-purple/10 blur-[120px] rounded-full -z-20"></div>
+
+```</body></html>

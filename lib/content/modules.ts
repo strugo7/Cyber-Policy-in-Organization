@@ -98,6 +98,7 @@ export const modules: Module[] = [
         title: 'נוף האיומים',
         order: 3,
         estimatedTime: 6,
+        htmlPage: '/pages/module-1-threat-landscape-part-2.html',
         content: {
           sections: [
             {
@@ -139,6 +140,7 @@ export const modules: Module[] = [
         title: 'תקיפות סייבר היסטוריות',
         order: 4,
         estimatedTime: 5,
+        htmlPage: '/pages/module-1-interactive-cia-game-part-3.html',
         content: {
           sections: [
             {
@@ -189,6 +191,7 @@ export const modules: Module[] = [
         title: 'אסטרטגיית סייבר ארגונית',
         order: 1,
         estimatedTime: 5,
+        htmlPage: '/pages/govern-corporate-strategy-core-part-1.html',
         content: {
           sections: [
             {
@@ -219,6 +222,7 @@ export const modules: Module[] = [
         title: 'מדיניות ונהלים',
         order: 2,
         estimatedTime: 5,
+        htmlPage: '/pages/data-shield-awareness-part-2.html',
         content: {
           sections: [
             {
@@ -247,6 +251,7 @@ export const modules: Module[] = [
         title: 'ניהול נכסים בארגון',
         order: 3,
         estimatedTime: 4,
+        htmlPage: '/pages/risk-assessment-heatmap-part-2.html',
         content: {
           sections: [
             {
@@ -277,6 +282,7 @@ export const modules: Module[] = [
         title: 'פונקציית Govern ב-NIST',
         order: 4,
         estimatedTime: 5,
+        htmlPage: '/pages/the-boardroom-simulator-ceo-mode-part-3.html',
         content: {
           sections: [
             {
@@ -320,6 +326,7 @@ export const modules: Module[] = [
         title: 'סקירת NIST CSF 2.0',
         order: 1,
         estimatedTime: 6,
+        htmlPage: '/pages/nist-2.0-the-six-functions-part-1.html',
         content: {
           sections: [
             {
@@ -350,6 +357,7 @@ export const modules: Module[] = [
         title: 'מבנה הליבה - פונקציות וקטגוריות',
         order: 2,
         estimatedTime: 6,
+        htmlPage: '/pages/nist-implementation-profiles-tiers-part-2.html',
         content: {
           sections: [
             {
@@ -381,6 +389,7 @@ export const modules: Module[] = [
         title: 'פרופילים ודרגות (Tiers)',
         order: 3,
         estimatedTime: 5,
+        htmlPage: '/pages/nist-practice-action-matching-part-3.html',
         content: {
           sections: [
             {
@@ -410,6 +419,7 @@ export const modules: Module[] = [
         title: 'יישום NIST ו-ENISA',
         order: 4,
         estimatedTime: 5,
+        htmlPage: '/pages/organization-classification-wizard-part-3.html',
         content: {
           sections: [
             {
@@ -446,6 +456,7 @@ export const modules: Module[] = [
         title: 'תורת ההגנה בסייבר הישראלית',
         order: 5,
         estimatedTime: 6,
+        htmlPage: '/pages/israel-cyber-doctrine-dashboard-part-1.html',
         content: {
           sections: [
             {
@@ -501,6 +512,7 @@ export const modules: Module[] = [
         title: 'למה צריך תקנים?',
         order: 1,
         estimatedTime: 4,
+        htmlPage: '/pages/global-compliance-hub-part-2.html',
         content: {
           sections: [
             {
@@ -530,6 +542,7 @@ export const modules: Module[] = [
         title: 'ISO/IEC 27001',
         order: 2,
         estimatedTime: 5,
+        htmlPage: '/pages/identity-access-the-gatekeeper-part-1.html',
         content: {
           sections: [
             {
@@ -560,6 +573,7 @@ export const modules: Module[] = [
         title: 'GDPR - הגנת מידע אירופית',
         order: 3,
         estimatedTime: 5,
+        htmlPage: '/pages/risk-management-supply-chain-part-2.html',
         content: {
           sections: [
             {
@@ -590,6 +604,7 @@ export const modules: Module[] = [
         title: 'PCI-DSS ו-SOC 2',
         order: 4,
         estimatedTime: 5,
+        htmlPage: '/pages/interactive-risk-calculator-part-3.html',
         content: {
           sections: [
             {
@@ -664,6 +679,7 @@ export const modules: Module[] = [
         title: 'פונקציית Identify - זיהוי',
         order: 1,
         estimatedTime: 6,
+        htmlPage: '/pages/identify-asset-management-radar-part-1.html',
         content: {
           sections: [
             {
@@ -704,6 +720,7 @@ export const modules: Module[] = [
         title: 'פונקציית Protect - הגנה',
         order: 2,
         estimatedTime: 7,
+        htmlPage: '/pages/protect-defense-in-depth-part-2-1.html',
         content: {
           sections: [
             {
@@ -743,6 +760,7 @@ export const modules: Module[] = [
         title: 'פונקציית Detect - גילוי',
         order: 3,
         estimatedTime: 6,
+        htmlPage: '/pages/detect-soc-command-center-part-1.html',
         content: {
           sections: [
             {
@@ -781,6 +799,7 @@ export const modules: Module[] = [
         title: 'יישום בקרות הגנה',
         order: 4,
         estimatedTime: 5,
+        htmlPage: '/pages/the-security-lab-practice-part-3.html',
         content: {
           sections: [
             {
@@ -830,6 +849,7 @@ export const modules: Module[] = [
         title: 'רגולציית סייבר בסין',
         order: 1,
         estimatedTime: 6,
+        htmlPage: '/pages/global-threat-hunting-map.html',
         content: {
           sections: [
             {
@@ -859,6 +879,7 @@ export const modules: Module[] = [
         title: 'רגולציית סייבר: רוסיה ובריטניה',
         order: 2,
         estimatedTime: 6,
+        htmlPage: '/pages/anomaly-detection-analytics-part-2.html',
         content: {
           sections: [
             {
@@ -889,6 +910,7 @@ export const modules: Module[] = [
         title: 'Cyber Essentials ורגולציה גלובלית',
         order: 3,
         estimatedTime: 5,
+        htmlPage: '/pages/cyber-wargame-crisis-simulation-part-3.html',
         content: {
           sections: [
             {
@@ -932,6 +954,7 @@ export const modules: Module[] = [
         title: 'פונקציית Respond - תגובה',
         order: 1,
         estimatedTime: 6,
+        htmlPage: '/pages/respond-ir-war-room-playbooks-part-1.html',
         content: {
           sections: [
             {
@@ -972,6 +995,7 @@ export const modules: Module[] = [
         title: 'פונקציית Recover - התאוששות',
         order: 2,
         estimatedTime: 5,
+        htmlPage: '/pages/recover-bcp-lessons-learned-part-2.html',
         content: {
           sections: [
             {
@@ -1009,6 +1033,7 @@ export const modules: Module[] = [
         title: 'לקחים ושיפור מתמיד',
         order: 3,
         estimatedTime: 4,
+        htmlPage: '/pages/soc-analyst-simulation-part-3.html',
         content: {
           sections: [
             {
@@ -1053,6 +1078,7 @@ export const modules: Module[] = [
         title: 'מבוא לבינה מלאכותית',
         order: 1,
         estimatedTime: 5,
+        htmlPage: '/pages/privacy-risks-in-ai-lesson.html',
         content: {
           sections: [
             {
@@ -1082,6 +1108,7 @@ export const modules: Module[] = [
         title: 'סיכוני AI ואתגרים',
         order: 2,
         estimatedTime: 6,
+        htmlPage: '/pages/prompt-injection-simulation.html',
         content: {
           sections: [
             {
@@ -1118,6 +1145,7 @@ export const modules: Module[] = [
         title: 'NIST AI RMF 1.0',
         order: 3,
         estimatedTime: 5,
+        htmlPage: '/pages/identify-network-asset-scanner-part-1.html',
         content: {
           sections: [
             {
@@ -1153,6 +1181,7 @@ export const modules: Module[] = [
         title: 'רגולציית AI גלובלית',
         order: 4,
         estimatedTime: 5,
+        htmlPage: '/pages/rbac-lab-access-simulation-part-3.html',
         content: {
           sections: [
             {

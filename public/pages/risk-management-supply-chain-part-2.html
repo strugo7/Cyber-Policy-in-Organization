@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Risk Management &amp; Supply Chain (Part 2)</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script type='text/javascript' nonce='xRbA4fOBCwGIR4EnYXTsHw==' src='https://contribution.usercontent.google.com/-rzKncJ-qGJrMV6pUliJ8JT_dJayoc5dkf5JrlbFK6lTn1PoSa0qHySC-p9On0MtD5cV9urNo2VBPiJU5X7x2lt4rjyuOR4b4P7F5MwV6lP3eB_MCuChaAOwmX2C19_djytlH5rnMsldhP7sHfyIDANKA5gOMXXswVvW8kROXExdrKGnHkDD6_ulHKGO4qeq1ngAgpwz9HtIlHobbdU5hPwGtiHE7lGBZ_Vq2Gthl3toDykdg7h0P0CUuWn47ReqiDWWVXy2c5mIogVIE6jSIYSnw0nbF0VrioBCjBykcw9zHzekZav9uSWhtci8Y47JVbbrglprNjBr-K4BZ4yOpd1fS63msyAonXxeyGsEM3w6sbJUo-MDtfHyY6y5RUxWHye61qUHnJVD3RMZqnFHGWwClEBmkRQ1HyP4zaKIHm_wgeHCy50Er286a4rzJrgCcM6JJyHaS3uqUQJ8zVln3Pu78zYlbpz8HHPh7Hhngc7TA8tx0_js0OGyoWwzlUFmDipgY8RTcekhCweVQ2Ig9agQ-CBGKqOOeSyc0GNKuv8wEpugW3VXXdBuvUOETbl9Rq12qCJms8xPk1m9xh2A27OYeHWxWd8QANyuO5WqtmWAryAhMAuVaRygR3lHaE0vMa4Uq4EcZcDTsa37ngvL6u6HS3ls5drE2TmrYRF70XEOw3gObqlcfV-wT-tuiR3xYuFRcZUEFHkfIpe1CZyKKNH0KfQMZxE5xLgnIsvnwq8FEmWW-3w-a-62VSGwcHAUUJEF_MmjVKsdagLLAGu9CQi3hU7esDxEwP6sCw'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "card-dark": "#1a1f2e",
+                        "card-border": "#2e3648",
+                        "risk-low": "#10b981", // Emerald 500
+                        "risk-med": "#f59e0b", // Amber 500
+                        "risk-high": "#ef4444", // Red 500
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "Heebo", "sans-serif"],
+                        "hebrew": ["Heebo", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', sans-serif;
+        }
+        .gauge-arc {
+            stroke-dasharray: 100 100;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1s ease-in-out;
+        }
+        
+        .grid-bg {
+            background-image: radial-gradient(#2e3648 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Network Map Nodes */
+        .node-pulse {
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-hebrew overflow-x-hidden">
+
+<!-- Floating Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(35, 21, 48, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(127, 19, 236, 0.2);">
+<div class="container mx-auto px-4 max-w-7xl flex items-center justify-between py-3">
+<a href="/modules/standards-compliance/" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium">
+<span class="material-icons-round text-base">arrow_forward</span>
+חזרה למודול
+</a>
+<div class="text-sm text-gray-400" style="font-family: 'Heebo', sans-serif;">שיעור 3: GDPR</div>
+<div class="flex items-center gap-2">
+<a href="/pages/identity-access-the-gatekeeper-part-1.html" class="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+<span class="material-icons-round text-base">arrow_forward</span>
+הקודם
+</a>
+<a href="/pages/interactive-risk-calculator-part-3.html" class="flex items-center gap-1 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow transition-all text-sm">
+הבא
+<span class="material-icons-round text-base">arrow_back</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Top Navigation -->
+<header class="w-full bg-white dark:bg-card-dark border-b border-gray-200 dark:border-card-border sticky top-0 z-50">
+<div class="px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white font-bold">
+                    CS
+                </div>
+<h1 class="text-lg font-bold text-slate-800 dark:text-white hidden md:block">מערכת הגנת סייבר</h1>
+<div class="h-6 w-px bg-gray-300 dark:bg-gray-700 mx-2 hidden md:block"></div>
+<h2 class="text-primary font-medium text-sm md:text-base">חלק ב': ניהול סיכונים ושרשרת אספקה</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/5 relative text-gray-500 dark:text-gray-400 transition-colors">
+<span class="material-icons-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-risk-high rounded-full border-2 border-white dark:border-card-dark"></span>
+</button>
+<div class="flex items-center gap-3 pr-4 border-r border-gray-200 dark:border-gray-700">
+<div class="text-left hidden sm:block">
+<p class="text-sm font-semibold leading-none">ישראל ישראלי</p>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-1">מנהל אבטחה ראשי</p>
+</div>
+<div aria-label="User Avatar" class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-blue-400 flex items-center justify-center text-white text-xs font-bold ring-2 ring-white dark:ring-card-dark" role="img">
+                        YI
+                    </div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 p-6 lg:p-8 max-w-[1600px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column (Gauge & Roles) - Technically "Right" in RTL but logically distinct side content -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Risk Appetite Gauge Card -->
+<div class="bg-white dark:bg-card-dark rounded-xl border border-gray-200 dark:border-card-border p-6 shadow-sm">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-lg font-bold text-gray-800 dark:text-white">תיאבון סיכון ארגוני</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">מצב נוכחי לעומת יעד</p>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-icons-outlined">info</span>
+</button>
+</div>
+<div class="relative w-full aspect-[2/1] flex items-end justify-center mb-4 overflow-hidden">
+<!-- Gauge SVG -->
+<svg class="w-full h-full max-w-[280px]" viewbox="0 0 200 100">
+<!-- Background Arcs -->
+<path d="M 20 100 A 80 80 0 0 1 73 28" fill="none" opacity="0.2" stroke="#10b981" stroke-dasharray="1 2" stroke-width="12"></path> <!-- Green base -->
+<path d="M 73 28 A 80 80 0 0 1 127 28" fill="none" opacity="0.2" stroke="#f59e0b" stroke-dasharray="1 2" stroke-width="12"></path> <!-- Yellow base -->
+<path d="M 127 28 A 80 80 0 0 1 180 100" fill="none" opacity="0.2" stroke="#ef4444" stroke-dasharray="1 2" stroke-width="12"></path> <!-- Red base -->
+<!-- Active Arcs -->
+<path d="M 20 100 A 80 80 0 0 1 73 28" fill="none" stroke="#10b981" stroke-width="12"></path> <!-- Green (Conservative) -->
+<path d="M 73 28 A 80 80 0 0 1 127 28" fill="none" stroke="#f59e0b" stroke-width="12"></path> <!-- Yellow (Balanced) -->
+<path d="M 127 28 A 80 80 0 0 1 180 100" fill="none" opacity="0.3" stroke="#ef4444" stroke-width="12"></path> <!-- Red (Aggressive) -->
+<!-- Needle Wrapper (Rotated to point to center/yellow) -->
+<g style="transform-origin: 100px 100px; transform: rotate(0deg); transition: transform 1s ease-out;">
+<polygon fill="#e2e8f0" points="100,10 95,100 105,100"></polygon>
+<circle cx="100" cy="100" fill="#e2e8f0" r="5"></circle>
+</g>
+<!-- Labels inside SVG for positioning -->
+<text fill="#10b981" font-size="8" font-weight="bold" text-anchor="middle" x="35" y="90">שמרני</text>
+<text fill="#f59e0b" font-size="8" font-weight="bold" text-anchor="middle" x="100" y="45">מאוזן</text>
+<text fill="#ef4444" font-size="8" font-weight="bold" text-anchor="middle" x="165" y="90">אגרסיבי</text>
+</svg>
+</div>
+<div class="text-center mt-2">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-risk-med/10 border border-risk-med/20">
+<span class="w-2 h-2 rounded-full bg-risk-med"></span>
+<span class="text-sm font-medium text-risk-med">מאוזן (Balanced)</span>
+</div>
+<p class="text-xs text-gray-400 mt-3 px-4">מדיניות הסיכונים תואמת את הנחיות הדירקטוריון לרבעון הנוכחי.</p>
+</div>
+</div>
+<!-- Responsibility Hierarchy Card -->
+<div class="bg-white dark:bg-card-dark rounded-xl border border-gray-200 dark:border-card-border flex-1 shadow-sm flex flex-col">
+<div class="p-6 border-b border-gray-200 dark:border-card-border/50">
+<h3 class="text-lg font-bold text-gray-800 dark:text-white">היררכיית אחריות</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">מבנה ניהול אירועי סייבר</p>
+</div>
+<div class="p-6 flex-1 flex flex-col gap-6 relative">
+<!-- Connecting line for hierarchy -->
+<div class="absolute right-[2.6rem] top-10 bottom-10 w-px bg-gray-200 dark:bg-gray-700"></div>
+<!-- Role 1: Board -->
+<div class="relative flex items-center gap-4 z-10">
+<div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 text-primary">
+<span class="material-icons-outlined">account_balance</span>
+</div>
+<div class="bg-gray-50 dark:bg-white/5 p-3 rounded-lg flex-1 border border-gray-100 dark:border-white/5">
+<h4 class="font-bold text-gray-800 dark:text-white">דירקטוריון</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400">אישור אסטרטגיה ותיאבון סיכון</p>
+</div>
+</div>
+<!-- Role 2: CISO -->
+<div class="relative flex items-center gap-4 z-10">
+<div class="w-12 h-12 rounded-lg bg-primary flex items-center justify-center shrink-0 text-white shadow-lg shadow-primary/20">
+<span class="material-icons-outlined">security</span>
+</div>
+<div class="bg-primary/10 p-3 rounded-lg flex-1 border border-primary/20">
+<h4 class="font-bold text-primary dark:text-white">CISO - מנהל אבטחת מידע</h4>
+<p class="text-xs text-primary/80 dark:text-gray-300">ניהול שוטף ודיווח תקופתי</p>
+</div>
+</div>
+<!-- Role 3: IT Managers -->
+<div class="relative flex items-center gap-4 z-10">
+<div class="w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center shrink-0 text-gray-500 dark:text-gray-300 border border-gray-200 dark:border-gray-600">
+<span class="material-icons-outlined">dns</span>
+</div>
+<div class="bg-gray-50 dark:bg-white/5 p-3 rounded-lg flex-1 border border-gray-100 dark:border-white/5">
+<h4 class="font-bold text-gray-800 dark:text-white">מנהלי IT</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400">יישום בקרות ותחזוקת מערכות</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column (Supply Chain Map) - Main Content Area -->
+<div class="lg:col-span-8 flex flex-col h-full">
+<div class="bg-white dark:bg-card-dark rounded-xl border border-gray-200 dark:border-card-border h-full shadow-sm flex flex-col overflow-hidden relative">
+<!-- Map Header -->
+<div class="p-6 border-b border-gray-200 dark:border-card-border/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 z-20 bg-white dark:bg-card-dark">
+<div>
+<h3 class="text-lg font-bold text-gray-800 dark:text-white flex items-center gap-2">
+<span class="material-icons-outlined text-primary">hub</span>
+                            מפת שרשרת אספקה
+                        </h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 mt-1">ניטור בזמן אמת של ספקים ורמת הסיכון</p>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex items-center px-3 py-1 rounded bg-risk-high/10 border border-risk-high/20 text-risk-high text-xs font-bold animate-pulse">
+<span class="material-icons-outlined text-sm ml-1">warning</span>
+                            התראה פעילה: 1
+                        </div>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 text-xs font-medium transition-colors text-gray-600 dark:text-gray-300">
+<span class="material-icons-outlined text-sm">filter_list</span>
+                            סינון
+                        </button>
+</div>
+</div>
+<!-- Interactive Map Container -->
+<div class="flex-1 relative bg-slate-50 dark:bg-[#0f1115] overflow-hidden grid-bg p-8" dir="ltr">
+<!-- Decorative background grid lines/elements can be added here -->
+<!-- SVG Connections Layer -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 0;">
+<defs>
+<lineargradient id="lineGradientNormal" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#334155;stop-opacity:1"></stop> <!-- slate-700 -->
+<stop offset="100%" style="stop-color:#334155;stop-opacity:1"></stop>
+</lineargradient>
+<lineargradient id="lineGradientAlert" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#334155;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#ef4444;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<!-- Connections assuming absolute positioning of nodes. 
+                             Coordinates are approximations for a responsive layout using percentages or calc -->
+<!-- Line: Org to Cloud (Top Left) -->
+<line class="dark:stroke-slate-600" stroke="#334155" stroke-dasharray="5,5" stroke-width="2" x1="50%" x2="25%" y1="50%" y2="25%"></line>
+<!-- Line: Org to Cleaning (Bottom Left) -->
+<line class="dark:stroke-slate-600" stroke="#334155" stroke-width="2" x1="50%" x2="25%" y1="50%" y2="75%"></line>
+<!-- Line: Org to HVAC (Right) -->
+<line stroke="url(#lineGradientAlert)" stroke-width="3" x1="50%" x2="75%" y1="50%" y2="50%"></line>
+</svg>
+<!-- Nodes Container -->
+<div class="relative w-full h-full">
+<!-- Center Node: Organization -->
+<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-pointer">
+<div class="w-24 h-24 rounded-full bg-background-dark border-4 border-primary flex flex-col items-center justify-center shadow-[0_0_30px_rgba(19,91,236,0.3)] transition-all group-hover:scale-105 group-hover:shadow-[0_0_40px_rgba(19,91,236,0.5)] relative overflow-hidden">
+<!-- Subtle gradient overlay -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
+<span class="material-icons text-4xl text-white relative z-10">business</span>
+<span class="text-[10px] font-bold text-primary uppercase mt-1 relative z-10">HQ</span>
+</div>
+<div class="mt-3 bg-card-dark/80 backdrop-blur px-3 py-1 rounded border border-gray-700 text-center">
+<span class="block text-sm font-bold text-white">הארגון (Organization)</span>
+<span class="block text-xs text-green-400">מאובטח</span>
+</div>
+</div>
+<!-- Node: Cloud Provider (Top Left) -->
+<div class="absolute top-[25%] left-[25%] transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-card-dark border-2 border-slate-500 flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
+<span class="material-icons text-2xl text-slate-300">cloud</span>
+</div>
+<div class="mt-2 text-center w-32">
+<span class="block text-xs font-bold text-slate-700 dark:text-slate-300">ספק ענן (Cloud)</span>
+<span class="block text-[10px] text-slate-500">AWS / Azure</span>
+</div>
+</div>
+<!-- Node: Cleaning Service (Bottom Left) -->
+<div class="absolute top-[75%] left-[25%] transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center group cursor-pointer">
+<div class="w-16 h-16 rounded-full bg-card-dark border-2 border-slate-500 flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
+<span class="material-icons text-2xl text-slate-300">cleaning_services</span>
+</div>
+<div class="mt-2 text-center w-32">
+<span class="block text-xs font-bold text-slate-700 dark:text-slate-300">שירותי ניקיון</span>
+<span class="block text-[10px] text-slate-500">גישה פיזית בלבד</span>
+</div>
+</div>
+<!-- Node: HVAC Vendor (Right - ALERT) -->
+<div class="absolute top-[50%] left-[75%] transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center cursor-pointer">
+<!-- Alert Badge -->
+<div class="absolute -top-3 -right-3 z-20 w-8 h-8 rounded-full bg-risk-high flex items-center justify-center text-white border-2 border-background-dark animate-bounce shadow-lg">
+<span class="material-icons text-sm font-bold">priority_high</span>
+</div>
+<div class="node-pulse w-20 h-20 rounded-full bg-card-dark border-2 border-risk-high flex items-center justify-center relative">
+<span class="material-icons text-3xl text-risk-high">ac_unit</span>
+</div>
+<div class="mt-3 bg-risk-high/10 backdrop-blur px-3 py-1.5 rounded border border-risk-high/30 text-center w-40">
+<span class="block text-sm font-bold text-risk-high">ספק מיזוג (HVAC)</span>
+<span class="block text-[10px] text-risk-high/80 font-medium">זוהתה חולשת אבטחה קריטית</span>
+</div>
+<!-- Context Menu / Tooltip (Simulated) -->
+<div class="absolute top-24 left-1/2 -translate-x-1/2 w-48 bg-card-dark border border-card-border p-3 rounded-lg shadow-xl z-30 opacity-0 hover:opacity-100 transition-opacity pointer-events-none group-hover:pointer-events-auto">
+<div class="text-xs text-gray-300 mb-1 font-bold">פרטי אירוע:</div>
+<div class="text-[10px] text-gray-400 leading-tight">גישה מרחוק לא מורשית זוהתה במערכת הבקרה.</div>
+<button class="mt-2 w-full text-[10px] bg-risk-high hover:bg-red-600 text-white py-1 rounded">חסום גישה</button>
+</div>
+</div>
+</div>
+<!-- Legend -->
+<div class="absolute bottom-4 left-4 bg-white/90 dark:bg-card-dark/90 backdrop-blur p-3 rounded-lg border border-gray-200 dark:border-card-border shadow-lg" dir="rtl">
+<div class="text-xs font-bold text-gray-500 mb-2">מקרא מפה</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full border-2 border-primary bg-background-dark"></div>
+<span class="text-[10px] text-gray-600 dark:text-gray-300">צומת פנימי</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full border-2 border-slate-500 bg-card-dark"></div>
+<span class="text-[10px] text-gray-600 dark:text-gray-300">ספק צד ג'</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full border-2 border-risk-high bg-card-dark"></div>
+<span class="text-[10px] text-gray-600 dark:text-gray-300">סיכון גבוה</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Action Bar / Footer area -->
+<div class="lg:col-span-12 mt-2">
+<div class="bg-white dark:bg-card-dark rounded-xl p-4 flex flex-col md:flex-row items-center justify-between border border-gray-200 dark:border-card-border gap-4 shadow-sm">
+<div class="text-sm text-gray-500 dark:text-gray-400">
+                     עודכן לאחרונה: <span class="font-mono">14:30 12/10/2023</span>
+</div>
+<div class="flex gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors text-sm font-medium">
+                         ייצוא דוח PDF
+                     </button>
+<button class="flex-1 md:flex-none px-4 py-2 rounded-lg bg-primary hover:bg-blue-600 text-white transition-colors text-sm font-medium shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-icons text-sm">assessment</span>
+                         הפק דוח סיכונים מלא
+                     </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

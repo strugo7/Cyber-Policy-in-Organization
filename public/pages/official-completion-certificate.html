@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Certificate of Completion</title>
+<script type='text/javascript' nonce='ORy39+HQHK2jhIWIBeeNFQ==' src='https://contribution.usercontent.google.com/WjGnb9sVV0W_edQbN_JmqiDAq9aNiakk-QWBuRK46uw2iVM2hdeQKYNjK4vNUwbiVpwi-W7MS1fu5ed0YsbjbSPhrb8Fd45JxTYsjZjG2SnpPDt4hTlcz9CzzPjxLM77tdGCfDuvlMOZk44MId3TIW3D20VDJUGRDvutnK-R7qS02Ezb2lX5Zihl8WY8GKgMg9zyPWZ-33XaSNRWLSpQiM4uzNMrlCe9rxiHiYJMkmVUxJfpsNUucW_hfvXjsmm6XDKDv8OlvZBoJR8XqnA9xoj3bDSYeKFTD5aPtF0dXS-yF0h429CA3Cnqbb6p7GP9mmBqMBGtJG30lJ_qT-BMg3sx308jyz2Ualv-a19ecBps9_93ZTDrPmDVAN6FdjFXgvPl0B9dGBmkWVcfHNKaq5n-uvXR5rOuFT_9LFWcr2nDAKQT7Q19WyoX7lFHP5JuCPyFzIsn0dCcmYj9mLJK70hOMzZb4iHsPNuvwmswiS-KpW6wNQJECZ7gZ-1NWBGShNLw3oTnV8nzC7zqDz7-rjUL-W0-GQbc60HUDwZFghLxrqhFeX-Lx5R0CGtELaA_KyGgi19n4_ctii5D1NuhMkui4c174F_S4FplxgWAB3UX81g-8lxeA_fii0cAMypHUsKsxxq2PRh-by-pkmjtybaVaMd2mfppeA1k5qOLFbq5Bc_UeHo1H09qzec026qS4ctZs6Ewn35Q1Id1hf5_0ZAfdCxc7QEHv8Lx4hAWPw8VoS2X9paFxzr5mL1fQUAtJRyuIZyJB21ONZVesVuqhBnAjTYWH_t_T-UPSw'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<!-- Manrope for UI elements -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Frank Ruhl Libre for Traditional Hebrew Title -->
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Noto Serif Hebrew for general serif text -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Hebrew:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "primary-dark": "#0a3a9a",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "gold": "#C5A059",
+                        "gold-light": "#E5C585",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif-hebrew": ["Frank Ruhl Libre", "serif"],
+                        "handwriting": ["Segoe Script", "Brush Script MT", "cursive"], // Fallback for handwriting
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    backgroundImage: {
+                        'parchment': "url('https://www.transparenttextures.com/patterns/cream-paper.png')",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Styles for Print and specific certificate scaling */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #certificate-container, #certificate-container * {
+                visibility: visible;
+            }
+            #certificate-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                box-shadow: none;
+                transform: none !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            @page {
+                size: landscape;
+                margin: 0;
+            }
+        }
+
+        /* Handwritten font simulation for Hebrew if not available */
+        @font-face {
+            font-family: 'HebrewHand';
+            src: local('Guttman Yad-Brush'), local('Dana'), url('https://fonts.gstatic.com/s/rubikmarkerhatch/v4/Z9X4mZde9mCwN2u4yP_P7bM4O0y4.woff2') format('woff2'); /* Fallback URL just in case */
+        }
+        
+        .font-handwriting-hebrew {
+            font-family: 'HebrewHand', 'Brush Script MT', cursive;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(to bottom, #C5A059, #9A7B3A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .certificate-shadow {
+            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center justify-center py-10 font-display text-gray-800 dark:text-gray-100 overflow-x-hidden relative">
+<!-- Background Decoration -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-gold/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+</div>
+<!-- Main Content Area -->
+<main class="relative z-10 w-full max-w-7xl px-4 flex flex-col items-center gap-8">
+<!-- Breadcrumb / Back Navigation -->
+<div class="w-full flex justify-start mb-4 no-print">
+<a class="flex items-center gap-2 text-gray-500 hover:text-primary transition-colors text-sm font-medium" href="#">
+<span class="material-icons text-lg transform rotate-180">arrow_forward</span>
+                חזרה ללוח בקרה
+            </a>
+</div>
+<!-- Certificate Container -->
+<!-- Aspect Ratio locked roughly to A4 Landscape (297mm x 210mm ~ 1.414 ratio) -->
+<div class="relative bg-white text-gray-900 w-full max-w-[1100px] aspect-[1.414/1] md:aspect-[1.5/1] shadow-2xl rounded-sm overflow-hidden certificate-shadow transform transition-transform duration-500 hover:scale-[1.01]" id="certificate-container">
+<!-- Parchment Texture Overlay -->
+<div class="absolute inset-0 bg-parchment opacity-40 mix-blend-multiply z-[1]"></div>
+<!-- Border Frame -->
+<div class="absolute inset-4 border-4 border-primary z-[2]"></div>
+<div class="absolute inset-6 border-2 border-gold z-[2]"></div>
+<!-- Corner Ornaments (SVG) -->
+<div class="absolute top-6 right-6 z-[3] text-gold w-16 h-16">
+<svg class="w-full h-full transform rotate-90" fill="currentColor" viewbox="0 0 100 100">
+<path d="M10,10 L90,10 L90,20 L20,20 L20,90 L10,90 Z"></path>
+<path d="M30,30 L70,30 L30,70 Z" opacity="0.5"></path>
+</svg>
+</div>
+<div class="absolute top-6 left-6 z-[3] text-gold w-16 h-16">
+<svg class="w-full h-full transform rotate-0" fill="currentColor" viewbox="0 0 100 100">
+<path d="M10,10 L90,10 L90,20 L20,20 L20,90 L10,90 Z"></path>
+<path d="M30,30 L70,30 L30,70 Z" opacity="0.5"></path>
+</svg>
+</div>
+<div class="absolute bottom-6 right-6 z-[3] text-gold w-16 h-16">
+<svg class="w-full h-full transform rotate-180" fill="currentColor" viewbox="0 0 100 100">
+<path d="M10,10 L90,10 L90,20 L20,20 L20,90 L10,90 Z"></path>
+<path d="M30,30 L70,30 L30,70 Z" opacity="0.5"></path>
+</svg>
+</div>
+<div class="absolute bottom-6 left-6 z-[3] text-gold w-16 h-16">
+<svg class="w-full h-full transform -rotate-90" fill="currentColor" viewbox="0 0 100 100">
+<path d="M10,10 L90,10 L90,20 L20,20 L20,90 L10,90 Z"></path>
+<path d="M30,30 L70,30 L30,70 Z" opacity="0.5"></path>
+</svg>
+</div>
+<!-- Watermark Background -->
+<div class="absolute inset-0 flex items-center justify-center z-[1] opacity-[0.03] pointer-events-none">
+<svg class="w-96 h-96 text-primary" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path clip-rule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.352-.172-2.67-.485-3.935a.75.75 0 00-.722-.515 11.208 11.208 0 01-7.877-3.08zM12 17.25a5.25 5.25 0 100-10.5 5.25 5.25 0 000 10.5z" fill-rule="evenodd"></path>
+</svg>
+</div>
+<!-- Certificate Content -->
+<div class="relative z-[10] h-full flex flex-col items-center justify-between py-16 px-12 text-center">
+<!-- Top Section: Logo & Header -->
+<div class="flex flex-col items-center gap-6">
+<!-- Seal/Logo -->
+<div class="relative w-24 h-24 mb-2">
+<div class="absolute inset-0 bg-gold rounded-full opacity-10 blur-md"></div>
+<img alt="Gold seal with CPA initials for Cyber Policy Academy" class="w-full h-full rounded-full border-4 border-double border-primary shadow-lg p-1 bg-white object-cover" data-alt="Golden seal logo for Cyber Policy Academy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByrDsZMKZxvTja-VtPwKXs3go2S1vianMCrmt5DhRdYV8V-1K3rIeZdozVRJw4MDisyMGXl1Xx8tK0adD5FQAiPi6_avXtBuTP96qTu7m-HOXEzcFnZfqlo93OKZLBSTjiGbKxnIhgZyq_OtFpCTXA5X2JJU4QXAqQMqWejqaih7FJnXoq30k8Cmb7elCzwEP2m9asA9d0RtAA69ZzDZ9HExM8FTg3QcPp1goti4klJt5MlDhpcMXvgcleKbW35v88qWyK47ilGec"/>
+</div>
+<!-- Main Title -->
+<div class="space-y-2">
+<h1 class="font-serif-hebrew text-5xl md:text-6xl font-bold text-primary tracking-wide">תעודת סיום קורס</h1>
+<div class="h-1 w-32 bg-gold mx-auto rounded-full"></div>
+</div>
+</div>
+<!-- Middle Section: Recipient & Course -->
+<div class="flex flex-col items-center gap-2 w-full max-w-4xl">
+<p class="font-display text-lg text-gray-500 font-medium">מוענקת בגאווה ל:</p>
+<!-- Recipient Name -->
+<div class="relative py-4 px-12 mb-6">
+<h2 class="font-handwriting-hebrew text-5xl md:text-6xl text-gray-900 border-b-2 border-gray-300 pb-2 px-8 min-w-[300px]">
+                            ישראל ישראלי
+                        </h2>
+</div>
+<p class="font-display text-lg text-gray-600 mb-2">על סיום מוצלח של הקורס המקיף בנושא:</p>
+<!-- Course Title -->
+<h3 class="font-display text-3xl md:text-4xl font-bold text-primary-dark mt-2 mb-6 uppercase tracking-tight">
+                        אסטרטגיה ומדיניות סייבר (NIST 2.0)
+                    </h3>
+</div>
+<!-- Bottom Section: Signatures & Metadata -->
+<div class="w-full flex flex-col md:flex-row justify-between items-end mt-8 px-12">
+<!-- Signature 1 -->
+<div class="flex flex-col items-center gap-1">
+<div class="h-12 flex items-end">
+<img alt="Signature of the CEO" class="h-full w-auto opacity-80 filter grayscale contrast-150" data-alt="Digital handwritten signature in black ink" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIpsDhhL5L2yxk6ZFh_XgmCC41WAqzvD_HDMeoMNgcSvQHBUssv17s3MmTCsGm8PRGXfluIr0UkZuAKmguxjRWQtjWkIZCbvj6TA9XxwDjJJiWe_u4dv9rFDcNK5r0O6Y7rU0RmpDk4NF6NrHWnrAgTo-VELVGy33fFY7m-Lf2lJaWX8mQJwnJoJNWR1A88maPlLD1jcCaW4dvjJbfI9x8lkK0TUA4c_QbXddnKdOJEYb5UmaWYeJcLXOuKTHtCcnkKn7IGeOrEb4"/>
+</div>
+<div class="w-48 h-px bg-gray-400 mt-1 mb-2"></div>
+<p class="font-bold text-gray-800 text-sm">דוד כהן</p>
+<p class="text-xs text-primary font-medium uppercase tracking-wider">מנכ"ל האקדמיה</p>
+</div>
+<!-- Central Metadata Badge -->
+<div class="flex flex-col items-center justify-center gap-3 mb-2 md:mb-0">
+<div class="bg-primary/5 border border-primary/20 rounded-lg px-6 py-3 backdrop-blur-sm">
+<div class="flex flex-col items-center gap-1">
+<span class="text-xs text-gray-500 font-bold uppercase tracking-widest">תאריך הסמכה</span>
+<span class="font-display font-semibold text-lg text-primary">24 באוקטובר 2023</span>
+</div>
+<div class="w-full h-px bg-gray-200 my-2"></div>
+<div class="flex flex-col items-center gap-1">
+<span class="text-xs text-gray-500 font-bold uppercase tracking-widest">מזהה תעודה</span>
+<span class="font-mono text-sm text-gray-600 tracking-wider">CPA-IL-8829-X2</span>
+</div>
+</div>
+</div>
+<!-- Signature 2 -->
+<div class="flex flex-col items-center gap-1">
+<div class="h-12 flex items-end">
+<img alt="Signature of Head of Education" class="h-full w-auto opacity-80 filter grayscale contrast-150" data-alt="Digital handwritten signature in black ink" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLdfWXqTsy2cGpJEPaeboRQ3mBqUkazf9GkE9UApgHGd3D7pF-cnoijy8_HzrAcqKKi97MGiTXCbJM_VOOGKNr_ikK3X09u1ccSJRqPJLgfKe_kWe_hzBkOkkIdPis-q6794gNN0zxetHkACBzqm6pR7Yl7Bmm1F7yEvXEP3wL-fFlS1BeWRzPz9EA2ReU2hJGC5cWw_8EU1AaPO9ARxOJ8ShIL69gnPZdUdW7BpLcO534r5Ppwp8snMvFXJnNYDGt3gRYIdntwr8"/>
+</div>
+<div class="w-48 h-px bg-gray-400 mt-1 mb-2"></div>
+<p class="font-bold text-gray-800 text-sm">ד"ר שרה לוי</p>
+<p class="text-xs text-primary font-medium uppercase tracking-wider">ראש מחלקת חינוך</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Bar -->
+<div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 no-print w-full px-4 max-w-md">
+<div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-md border border-white/20 dark:border-gray-700/50 shadow-xl rounded-2xl p-2 flex items-center justify-between gap-2">
+<!-- Download Button -->
+<button class="flex-1 bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-md hover:shadow-lg group">
+<span class="material-icons text-xl group-hover:-translate-y-0.5 transition-transform">download</span>
+<span>הורד כ-PDF</span>
+</button>
+<!-- Share Button -->
+<button class="flex-1 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 text-primary dark:text-blue-400 border border-gray-200 dark:border-gray-600 font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-200 shadow-sm hover:shadow-md group">
+<svg class="w-5 h-5 fill-current group-hover:-translate-y-0.5 transition-transform" viewbox="0 0 24 24">
+<path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path>
+</svg>
+<span>שתף בלינקדאין</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

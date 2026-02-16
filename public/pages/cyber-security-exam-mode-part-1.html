@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cyber Security Exam Mode</title>
+<script type='text/javascript' nonce='dARWU75bs8MBbWJXP8S25Q==' src='https://contribution.usercontent.google.com/eW5eu8LJhKil6CZKP0yRVgmIVlrRxMxJtopxR_gngve_Fa2553RdD_SWuulDE3BeIChSZlbgQynQB1LM9p27kssy74mBGJln0PqJxeJlbNWzUKJRDBu-V7d5ZHa15LmEx5gpAWeKzkxpieBIRbxrf5hafMO4brjH2LnjDywVjInCrrs0gPiYPNFiMvEKW5Gk0cPx6E8VKUAHTqLuE314JneqGaXdhqN8gQJFpXT2YfSnZKOYjct6CRP9ZHdI2vHfDCQDuSzpFn-KCp5w_ycvlvGxARWgpFJJ1J8xSbKMX14gtm6J0C6zrlSLqgb7_ZVW9PF8F2Bo8RIv_MFOpyRv7aBRtFILAA49Eipy-0SjXBEUEQd3QY4rPxvHeOn8VOOF7uYenNxRcjnGa1Fb6N1ZM1nhvzRFQ96s-5e4GohkILIwcHnpzdKDm0EX405BDcidvqBpL_NUvR3nTN0zKpfIzHYaWPJ5SasWMguU6zPln0IPB0cW2gGq8X3zTqTG7yDaBBQDlvWNBL1J7BBkZ4IiL1xfM9-vivTtBf8E4izveSzStDl8vSrn0GjA5fS8OhvpRSzN4J8H3SP8ArZx-xLHEZ8n7m4gbWfnYr1Fb2RokOt9B2WkY_a5bXdMPEVMguelTh3m-0Zj6sTDg83i6sl8O7KYfCn-F4J71RNuzxDwxZx8Mcn4uvT0zy2RTrJkY1WbPn7-6ma-YSAwr4kD-Rv0VQw9IMPiHGcKkLFA_O3LLFbUltDKvi-bnPujeW-fnHyTr3_EF7Bd2jB_-CXM1kflmc48u9RD8pMItXs9Ng'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2330d",
+                        "background-light": "#f8f6f5",
+                        "background-dark": "#221310",
+                        "selection-blue": "#3b82f6", // Adding specific blue for the selection state as requested
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "Heebo", "sans-serif"], // Added Heebo for better Hebrew support
+                        "body": ["Heebo", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 15px rgba(242, 51, 13, 0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', sans-serif; /* Default for Hebrew text */
+        }
+        .font-display {
+            font-family: 'Lexend', 'Heebo', sans-serif; /* Use Lexend for numbers/headings but fallback to Heebo */
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col transition-colors duration-200 text-gray-800 dark:text-gray-100">
+<!-- Top Bar -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 h-16">
+<div class="max-w-5xl mx-auto h-full px-4 sm:px-6 flex items-center justify-between gap-4">
+<!-- Right Side: Question Counter (RTL Layout means this is visually on the Right) -->
+<div class="flex items-center gap-2 min-w-[120px]">
+<span class="text-sm font-medium text-gray-500 dark:text-gray-400">שאלה</span>
+<span class="text-lg font-bold text-gray-900 dark:text-white font-display">5</span>
+<span class="text-sm font-medium text-gray-500 dark:text-gray-400">מתוך</span>
+<span class="text-lg font-bold text-gray-900 dark:text-white font-display">30</span>
+</div>
+<!-- Center: Progress Bar -->
+<div class="flex-1 max-w-md hidden sm:block">
+<div class="h-2 w-full bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 15%"></div>
+</div>
+</div>
+<!-- Left Side: Timer (RTL Layout means this is visually on the Left) -->
+<div class="flex items-center gap-2 min-w-[100px] justify-end ltr:flex-row-reverse">
+<span class="material-icons text-primary text-xl">timer</span>
+<span class="text-xl font-bold text-primary font-display tracking-wide">29:59</span>
+</div>
+</div>
+<!-- Mobile Progress Bar -->
+<div class="h-1 w-full bg-gray-100 dark:bg-gray-800 sm:hidden">
+<div class="h-full bg-primary transition-all duration-500 ease-out" style="width: 15%"></div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
+<div class="w-full max-w-4xl space-y-8">
+<!-- Question Card -->
+<div class="bg-white dark:bg-[#2a1a17] rounded-2xl shadow-soft p-6 sm:p-10 relative border border-gray-100 dark:border-white/5">
+<!-- Header with Tag and Hint -->
+<div class="flex justify-between items-start mb-6">
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full border border-primary/20">
+                        יסודות הסייבר
+                    </span>
+<button class="group flex items-center gap-2 text-gray-400 hover:text-primary transition-colors text-sm font-medium">
+<span class="material-icons text-xl group-hover:scale-110 transition-transform">lightbulb_outline</span>
+<span>רמז</span>
+</button>
+</div>
+<!-- The Question -->
+<h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white leading-tight mb-8">
+                    מהו ההבדל העיקרי בין אבטחת מידע להגנת סייבר?
+                </h1>
+<!-- Answer Options -->
+<div class="space-y-4">
+<!-- Option 1 -->
+<label class="group relative flex items-center p-4 sm:p-5 rounded-xl border-2 border-transparent bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer transition-all duration-200">
+<input class="hidden" name="answer" type="radio"/>
+<div class="flex-shrink-0 w-6 h-6 rounded-full border-2 border-gray-300 group-hover:border-primary/50 mr-4 ml-4 flex items-center justify-center transition-colors"></div>
+<span class="text-lg text-gray-700 dark:text-gray-200 font-medium">אבטחת מידע מתמקדת רק בחומרה, בעוד הגנת סייבר מתמקדת בתוכנה.</span>
+</label>
+<!-- Option 2 (Selected) -->
+<label class="relative flex items-center p-4 sm:p-5 rounded-xl border-2 border-selection-blue bg-blue-50/50 dark:bg-blue-900/20 cursor-pointer transition-all duration-200 shadow-sm z-10">
+<input checked="" class="hidden" name="answer" type="radio"/>
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-selection-blue border-2 border-selection-blue mr-4 ml-4 flex items-center justify-center text-white">
+<span class="material-icons text-sm font-bold">check</span>
+</div>
+<span class="text-lg text-gray-900 dark:text-white font-semibold">אבטחת מידע מגנה על מידע בכל תצורה, בעוד הגנת סייבר מתמקדת במרחב הקיברנטי.</span>
+<div class="absolute inset-y-0 right-0 w-1 bg-selection-blue rounded-r-xl"></div>
+</label>
+<!-- Option 3 -->
+<label class="group relative flex items-center p-4 sm:p-5 rounded-xl border-2 border-transparent bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer transition-all duration-200">
+<input class="hidden" name="answer" type="radio"/>
+<div class="flex-shrink-0 w-6 h-6 rounded-full border-2 border-gray-300 group-hover:border-primary/50 mr-4 ml-4 flex items-center justify-center transition-colors"></div>
+<span class="text-lg text-gray-700 dark:text-gray-200 font-medium">אין הבדל, אלו מונחים נרדפים לחלוטין.</span>
+</label>
+<!-- Option 4 -->
+<label class="group relative flex items-center p-4 sm:p-5 rounded-xl border-2 border-transparent bg-gray-50 dark:bg-white/5 hover:bg-gray-100 dark:hover:bg-white/10 cursor-pointer transition-all duration-200">
+<input class="hidden" name="answer" type="radio"/>
+<div class="flex-shrink-0 w-6 h-6 rounded-full border-2 border-gray-300 group-hover:border-primary/50 mr-4 ml-4 flex items-center justify-center transition-colors"></div>
+<span class="text-lg text-gray-700 dark:text-gray-200 font-medium">הגנת סייבר מתייחסת רק לארגונים צבאיים.</span>
+</label>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Navigation Footer -->
+<div class="sticky bottom-0 z-40 p-4 bg-gradient-to-t from-background-light via-background-light/95 to-transparent dark:from-background-dark dark:via-background-dark/95 pb-6 pt-12 pointer-events-none">
+<div class="max-w-4xl mx-auto flex justify-between items-center pointer-events-auto">
+<!-- Next Button (Left in RTL means visually Left) -->
+<!-- Note: In RTL context, Next usually points to the 'Left' direction if flow is right-to-left, but arrow icon should point left -->
+<button class="flex items-center gap-3 bg-primary hover:bg-red-600 text-white px-8 py-3 rounded-xl shadow-lg shadow-primary/30 transition-all hover:translate-y-[-2px] active:translate-y-0 font-bold text-lg ltr:flex-row-reverse">
+<span>הבא</span>
+<span class="material-icons">arrow_back</span>
+</button>
+<!-- Previous Button (Right in RTL means visually Right) -->
+<button class="flex items-center gap-2 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white px-6 py-3 rounded-xl transition-colors font-medium">
+<span class="material-icons">arrow_forward</span>
+<span>הקודם</span>
+</button>
+</div>
+</div>
+</body></html>

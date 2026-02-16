@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Govern: Corporate Strategy Core</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Heebo:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script type='text/javascript' nonce='nkGWPR/3e79RsZRwnOaowQ==' src='https://contribution.usercontent.google.com/8uYuUnNC_HUP_zY4tq_NkBiRdsgZfArdUCCZKdD1diiqzg94I5oNs_dcUJDl2e7YncI9_iHzAZYo-RU5GZCTORNIUYuj_6GYr8fSA0KTirFTyDY6t0Ec5MiCYqX7ViK7GHRahj_jS4uLyMJjOhnhnSaLc2s8WfACaCs-QI_YW2QOmwWPsZKIB4Div7Fr7u-Doeq6Ifov9tvZJly_pd2nffqjWgUvFr3vEeb2cVRApWocVqgT1maXvln9ZhxWhJpKQEbnzGNVq0NrOK06K080MAsvYb85Snh1BVukWwKsr3EMHvBeWEflyHfeWdAZafkFxY2SXpvcsKS1ekn7OneRXYZ7OX-Dfh_Z-PVL-TlW3dqHKMbZ6QUNJn2Ac5T1S3ujWcdB54g7FsjhbAfrKpRS3tvKwlpoSR2DTgjBEvaG1Uyh1bv3D_DarFyL36wJDUrQVrBqmrFH0gGIHMS5KCHyjrQ-dkfykuFb_yBAIyRbAiIeMc8LhWyr9QmVKjUZagxpA-eLRUoVJJZhDwdtu3zfPz7dpPV9YMnvLgh7InfTcGlVt5UXKSokWa3oNHGNiaHtkUW8XZg3YEaqtMG4YD09BT9-7X6C-ktJop7KCLg3CG10tRSrSecYE1tEzAiQ-A5fbB13_gYoCIATQeB0TyNkJnUMPXifvsgCKfkc7_sxs0Jw1VaT8YFt22F6CQ2MbPxe0RENT8wvM1QoZkBmeuY0R5DLtk1ZABMNYTlF9FZPQfhQrzcfiNwKmPHZlgyAgEaqPZT5MqJNeoudhKNZIp-MeYbYjJsy-FTE3x1qig'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "primary-dark": "#0a3690",
+                        "accent-gold": "#C5A059", // Gold accent for the theme
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Heebo", "Public Sans", "sans-serif"], // Heebo is great for Hebrew
+                        "sans": ["Heebo", "Public Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for timeline */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* 3D Pillar Effect CSS illustration */
+        .pillar {
+            position: relative;
+            width: 80px;
+            height: 220px;
+            background: linear-gradient(90deg, #e2e8f0 0%, #f8fafc 20%, #cbd5e1 50%, #f8fafc 80%, #e2e8f0 100%);
+            border-left: 1px solid #94a3b8;
+            border-right: 1px solid #94a3b8;
+            margin: 0 auto;
+            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        }
+        .pillar::before, .pillar::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 12px);
+            z-index: 10;
+            top: 0;
+            left: 0;
+        }
+        
+        .pillar-base {
+            width: 120px;
+            height: 40px;
+            background: linear-gradient(to bottom, #cbd5e1, #94a3b8);
+            margin: 0 auto;
+            border-radius: 4px;
+            position: relative;
+            z-index: 20;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .pillar-capital {
+            width: 110px;
+            height: 35px;
+            background: linear-gradient(to bottom, #f1f5f9, #cbd5e1);
+            margin: 0 auto 0 auto;
+            position: relative;
+            z-index: 20;
+            border-bottom: 4px solid #94a3b8;
+            border-radius: 2px;
+        }
+
+        .pillar-roof {
+            width: 0; 
+            height: 0; 
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 70px solid #1152d4; /* Primary Blue Roof */
+            margin: 0 auto;
+            position: relative;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+            z-index: 30;
+        }
+        .pillar-roof::after {
+            content: '';
+            position: absolute;
+            top: 70px;
+            left: -100px;
+            width: 200px;
+            height: 15px;
+            background: #0a3690;
+        }
+        
+        .gold-border {
+            border: 1px solid #C5A059;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display antialiased min-h-screen flex flex-col">
+
+<!-- Floating Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(35, 21, 48, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(127, 19, 236, 0.2);">
+<div class="container mx-auto px-4 max-w-7xl flex items-center justify-between py-3">
+<a href="/modules/governance/" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium">
+<span class="material-icons-round text-base">arrow_forward</span>
+חזרה למודול
+</a>
+<div class="text-sm text-gray-400" style="font-family: 'Heebo', sans-serif;">שיעור 1: אסטרטגיית סייבר</div>
+<div class="flex items-center gap-2">
+
+<a href="/pages/data-shield-awareness-part-2.html" class="flex items-center gap-1 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow transition-all text-sm">
+הבא
+<span class="material-icons-round text-base">arrow_back</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Navbar -->
+<nav class="sticky top-0 z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center gap-4">
+<div class="flex-shrink-0 flex items-center">
+<span class="material-icons text-primary text-3xl">security</span>
+<span class="mr-2 text-xl font-bold tracking-tight text-slate-900 dark:text-white">CyberCore</span>
+</div>
+<div class="hidden sm:ml-6 sm:flex sm:space-x-8 sm:space-x-reverse">
+<a class="border-primary text-slate-900 dark:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#">משילות (Govern)</a>
+<a class="border-transparent text-slate-500 dark:text-slate-400 hover:border-slate-300 hover:text-slate-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#">הגנה (Protect)</a>
+<a class="border-transparent text-slate-500 dark:text-slate-400 hover:border-slate-300 hover:text-slate-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" href="#">זיהוי (Detect)</a>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="bg-primary/10 hover:bg-primary/20 text-primary p-2 rounded-full transition-colors">
+<span class="material-icons text-xl">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-accent-gold p-[2px]">
+<img alt="User avatar" class="h-full w-full rounded-full object-cover border-2 border-white dark:border-slate-900" data-alt="Profile picture of a corporate executive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb8h09Y4wbs_QcgwgKR6yIjwF_LAAKl8PRxnhEIcIyrhpxQhOgGYAkBnUk-cLDmwL_aiBmUpJSpj1hHXfBeAo_NZC1e4R6FEijZQFUw4I3IrS2ORR-c9mRdswzkwvVUHNHesNjJFIfd0CTYMYKIS5u_d_3YhvHQineK87ohAWLY4DUpulmTx1ImZu0oY68wW-29QZgBaIt_cUPu5waDfv5MeauUBFzeCV_vdFDSWx97QLPw3iKBjYYP1QiMLbyd_h9zufwHU1xPkU"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 pt-20 pb-8">
+<!-- Header Section -->
+<header class="mb-10 relative overflow-hidden rounded-2xl bg-gradient-to-l from-primary-dark via-primary to-primary text-white p-8 shadow-lg">
+<!-- Decorative Gold Accent -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-accent-gold/20 rounded-full blur-3xl -mr-10 -mt-10"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+<div>
+<div class="flex items-center gap-2 text-primary-100 mb-2 text-sm font-medium">
+<span class="bg-white/20 px-2 py-0.5 rounded text-xs backdrop-blur-sm">NIST CSF 2.0</span>
+<span class="material-icons text-sm transform rotate-180">arrow_right_alt</span>
+<span>קטגוריה ראשית</span>
+</div>
+<h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-2">
+                        חלק א': משילות (Govern) - המוח הארגוני
+                    </h1>
+<p class="text-blue-100 text-lg max-w-2xl leading-relaxed">
+                        בניית התשתית האסטרטגית לניהול סיכונים וקבלת החלטות.
+                    </p>
+</div>
+<!-- Variant Indicator -->
+<div class="flex flex-col items-end">
+<span class="text-xs uppercase tracking-wider text-blue-200 mb-1">התקדמות</span>
+<div class="flex items-center gap-1">
+<div class="h-2 w-8 bg-accent-gold rounded-full"></div>
+<div class="h-2 w-8 bg-white/20 rounded-full"></div>
+<div class="h-2 w-8 bg-white/20 rounded-full"></div>
+</div>
+<span class="text-sm mt-2 font-bold">שלב 1 מתוך 3</span>
+</div>
+</div>
+</header>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Case Study Alert (RTL: Left is secondary content visually, but comes later in DOM if not careful, sticking to grid-cols logic) -->
+<!-- In RTL, visually left is actually the last column if we think LTR, but standard grid follows HTML order.
+                 We want the alert on the side. Let's put it on the visual LEFT (which is column start in RTL if dir=rtl is set on HTML tag, column 1 starts at right). 
+                 Wait, if dir="rtl", grid-cols-12 starts from right. So col-span-3 at start is RIGHT side.
+                 We want the alert on the side. Let's put main content in middle/right and alert on left.
+                 So Alert should be the last div in the HTML structure if we want it on the left? No.
+                 If dir=rtl:
+                 [Col 1 (Right)] [Col 2] ... [Col 12 (Left)]
+                 We want Alert on Left? Or Right? 
+                 Hebrew users scan Right to Left. Important context usually on Right. 
+                 The prompt says "A side alert card". Let's place it on the LEFT side (end of flow) to act as a cautionary tale alongside the main content.
+            -->
+<!-- Main Center Content (Spans 8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-8 order-1 lg:order-1">
+<!-- Quote Box -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-sm border-r-4 border-accent-gold relative overflow-hidden">
+<span class="material-icons absolute top-4 left-4 text-6xl text-slate-100 dark:text-slate-700/50 -z-0 transform rotate-180">format_quote</span>
+<div class="relative z-10">
+<h3 class="text-accent-gold font-bold text-sm tracking-widest uppercase mb-3">הגדרה רשמית</h3>
+<p class="text-2xl md:text-3xl font-serif text-slate-800 dark:text-white leading-relaxed font-medium">
+                            "קביעת האסטרטגיה, המדיניות והציפיות"
+                        </p>
+<div class="mt-4 flex items-center gap-2">
+<div class="h-px w-12 bg-slate-300 dark:bg-slate-600"></div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">תפקיד פונקציית ה-Govern בארגון המודרני</p>
+</div>
+</div>
+</div>
+<!-- 3D Pillar Visualization -->
+<div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-700 p-8 flex flex-col items-center justify-center relative min-h-[500px]">
+<div class="absolute inset-0 bg-grid-slate-100 dark:bg-grid-slate-700/30 [mask-image:linear-gradient(0deg,white,transparent)] rounded-2xl"></div>
+<!-- Background Label -->
+<div class="absolute top-8 right-8 z-10">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20">
+                            מבנה ארגוני
+                        </span>
+</div>
+<!-- The Pillar Construction -->
+<div class="relative z-20 flex flex-col items-center transform transition-transform hover:scale-105 duration-500">
+<!-- Roof (Strategy) -->
+<div class="relative mb-1 group cursor-pointer">
+<div class="pillar-roof border-b-primary group-hover:border-b-primary-dark transition-colors"></div>
+<div class="absolute top-16 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold text-lg text-center w-full px-2">
+                                Cyber Strategy
+                            </div>
+<!-- Tooltip/Label -->
+<div class="absolute -right-32 top-10 bg-slate-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                החזון והיעדים
+                            </div>
+</div>
+<!-- Capital -->
+<div class="pillar-capital shadow-sm"></div>
+<!-- Shaft (Govern) -->
+<div class="pillar flex items-center justify-center">
+<h2 class="transform -rotate-90 text-4xl font-black text-slate-400 tracking-widest opacity-40 select-none">GOVERN</h2>
+</div>
+<!-- Base (Policy) -->
+<div class="pillar-base mt-0 flex items-center justify-center relative group">
+<span class="text-slate-700 font-bold text-sm tracking-wider">POLICY</span>
+<div class="absolute -left-32 top-2 bg-slate-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                התשתית הרגולטורית
+                            </div>
+</div>
+<!-- Reflection / Shadow -->
+<div class="w-40 h-4 bg-black/20 blur-lg rounded-[100%] mt-4"></div>
+</div>
+<div class="mt-12 text-center max-w-lg mx-auto">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">עמוד התווך של הארגון</h3>
+<p class="text-slate-500 dark:text-slate-400">
+                            ללא תשתית משילות (Govern) חזקה, טכנולוגיות ההגנה קורסות תחת לחץ. האיור מדגים כיצד האסטרטגיה נשענת על מדיניות יציבה.
+                        </p>
+</div>
+<!-- Interactive Points -->
+<div class="absolute bottom-8 flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary transition-colors text-sm font-medium">
+<span class="material-icons text-base">visibility</span>
+                            צפה בפירוט מדיניות
+                        </button>
+</div>
+</div>
+</div>
+<!-- Right Column (In RTL layout this is visually Left): Case Study Alert -->
+<div class="lg:col-span-4 order-2 lg:order-2">
+<div class="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-red-100 dark:border-red-900/30 overflow-hidden sticky top-24">
+<!-- Header -->
+<div class="bg-red-50 dark:bg-red-900/20 p-6 border-b border-red-100 dark:border-red-900/30">
+<div class="flex items-start justify-between">
+<div>
+<div class="flex items-center gap-2 text-red-600 dark:text-red-400 mb-1">
+<span class="material-icons text-xl">warning</span>
+<span class="text-xs font-bold uppercase tracking-wider">Case Study Alert</span>
+</div>
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Target Breach (2013)</h3>
+</div>
+<span class="text-4xl font-black text-red-100 dark:text-red-900/40 select-none">-40%</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 mt-2">
+                            דוגמה לכשל משילותי שהוביל לנזק עצום.
+                        </p>
+</div>
+<!-- Timeline -->
+<div class="p-6 relative">
+<!-- Vertical Line -->
+<div class="absolute top-8 bottom-8 right-[2.25rem] w-0.5 bg-slate-200 dark:bg-slate-700"></div>
+<div class="space-y-8 relative">
+<!-- Timeline Item 1 -->
+<div class="flex gap-4 relative">
+<div class="flex-shrink-0 z-10">
+<div class="h-4 w-4 rounded-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-500 mt-1"></div>
+</div>
+<div>
+<span class="text-xs font-mono text-slate-400">Step 1: Infiltration</span>
+<h4 class="font-bold text-slate-800 dark:text-slate-200">HVAC Vendor Hacked</h4>
+<p class="text-xs text-slate-500 mt-1">
+                                        תוקפים השיגו גישה דרך ספק צד ג' (Fazio Mechanical) שלא נוהל כראוי.
+                                    </p>
+</div>
+</div>
+<!-- Timeline Item 2 -->
+<div class="flex gap-4 relative">
+<div class="flex-shrink-0 z-10">
+<div class="h-4 w-4 rounded-full bg-white dark:bg-slate-800 border-2 border-slate-300 dark:border-slate-500 mt-1"></div>
+</div>
+<div>
+<span class="text-xs font-mono text-slate-400">Step 2: Lateral Movement</span>
+<h4 class="font-bold text-slate-800 dark:text-slate-200">Network Pivot</h4>
+<p class="text-xs text-slate-500 mt-1">
+                                        התוקפים נעו מהרשת החיצונית לרשת הקופות (POS) ללא התראות אפקטיביות.
+                                    </p>
+</div>
+</div>
+<!-- Timeline Item 3 -->
+<div class="flex gap-4 relative">
+<div class="flex-shrink-0 z-10">
+<div class="h-4 w-4 rounded-full bg-red-100 border-2 border-red-500 mt-1 flex items-center justify-center">
+<div class="h-1.5 w-1.5 bg-red-500 rounded-full"></div>
+</div>
+</div>
+<div>
+<span class="text-xs font-mono text-red-500 font-bold">CRITICAL FAILURE</span>
+<h4 class="font-bold text-slate-800 dark:text-slate-200">Data Exfiltration</h4>
+<p class="text-xs text-slate-500 mt-1">
+                                        40 מיליון כרטיסי אשראי נגנבו. מערכות ההגנה התריעו אך הצוות התעלם.
+                                    </p>
+</div>
+</div>
+<!-- Timeline Item 4 -->
+<div class="flex gap-4 relative">
+<div class="flex-shrink-0 z-10">
+<div class="h-4 w-4 rounded-full bg-slate-800 dark:bg-white border-2 border-slate-800 dark:border-white mt-1"></div>
+</div>
+<div>
+<span class="text-xs font-mono text-slate-400">Step 4: Impact</span>
+<h4 class="font-bold text-slate-800 dark:text-slate-200">CEO Resigns</h4>
+<p class="text-xs text-slate-500 mt-1">
+                                        מנכ"ל טארגט, גרג סטיינהאפל, מתפטר בעקבות הפרצה.
+                                    </p>
+</div>
+</div>
+</div>
+<!-- Lesson Learned Box -->
+<div class="mt-8 bg-slate-50 dark:bg-slate-700/50 rounded p-4 border border-slate-200 dark:border-slate-700">
+<h5 class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400 mb-1">המסקנה האסטרטגית</h5>
+<p class="text-sm font-medium text-slate-800 dark:text-slate-200">
+                                כשלי Govern (ניהול ספקים, פיקוח על התראות) הם הגורם לפריצה, לא הטכנולוגיה עצמה.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Navigation Footer -->
+<div class="mt-12 border-t border-slate-200 dark:border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+<button class="text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons transform rotate-180">arrow_right_alt</span>
+<span>חזור לתפריט ראשי</span>
+</button>
+<div class="flex items-center gap-4">
+<span class="text-sm text-slate-400 hidden sm:block">חלק 1 מתוך 3</span>
+<button class="bg-primary hover:bg-primary-dark text-white shadow-lg shadow-primary/30 flex items-center gap-2 px-6 py-3 rounded-lg transition-all transform hover:translate-y-[-2px]">
+<span>המשך לחלק ב': ניהול סיכונים</span>
+<span class="material-icons transform rotate-180">arrow_right_alt</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Simple Footer -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 mt-auto">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+<div class="flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 dark:text-slate-400">
+<p>© 2023 CyberCore Security. כל הזכויות שמורות.</p>
+<div class="flex space-x-6 space-x-reverse mt-4 md:mt-0">
+<a class="hover:text-primary" href="#">פרטיות</a>
+<a class="hover:text-primary" href="#">תנאי שימוש</a>
+<a class="hover:text-primary" href="#">תמיכה</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

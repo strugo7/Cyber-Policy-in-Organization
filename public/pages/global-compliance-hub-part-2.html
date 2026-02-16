@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Global Compliance Hub - International Hub</title>
+<!-- Tailwind CSS -->
+<script type='text/javascript' nonce='nXiimdBYxqNnGkgJ7d9Qxg==' src='https://contribution.usercontent.google.com/4K-x8UDv5YAeLek2jX1vkUOU5KCBVE9yhWPygYEOcBbOTCgLpOig3aT6BvgblhpP_y2ZshEIatw-oNAh6nr0KHXCS_mxTLnXWznwuUAHCv5pJ_KqBzbBoHIdqKp6pbk4_CMd4-WncPu3aVjPCddJ31I1eOqLCm1r9wb9ejO8ZfMwX3yyIq5kQG-7VX1pp5eA_yUFHNKLjTnPa_EPGfttQginljJGnr788eyuWltKnODvDvi342wpgNiaolsD44FG6852MoeOnxXb3sh1XQ-jRyocjqM-12nDbWaQYDIgzo1jToun6bu0FsFQK8MHseImEzs-AQGk_7HJekQiMfjZ3uNb71doMsFZqP2fA95SSTtjVqBaOJDBRd4WcuVG52cNm9TIxwIOiJi8MKFIuQh--1eahS4wYPBup9aEPK9X0OkA6JA2In1LNmfSuAY2M-fJCWmu3Tt9nwJIpFwmPAzbitiYPjdDNQG-Y5jPmzFtakyXmI1xoCAcjNlcFOe6G4V3thDhSlgb-TJzNY2jOXm81VC3yNYPAYwwX3qVcAWdj5aS3HDj1xlRkz3EA3LVipncsAbwSj-0YCVd4OKvEvrteYwCRn6gB80mDmASYEnAxpqrjnCr6bjlzh3o2PGNlePTKkuU81hN3wdYI1t2Mh0j1Pac13NQv9zIwtxO49T_BSAolWIvuZfJSniZxAEDGZKmGdEpHw-1_qCp_3cDRHSEkyuinkiVKSTbhOGb12xle9WbLShzldGYD5qjAkd6yQg42O0hGRDuLd0KUExMB6FL0Z2R4ZlAypllTOAnzg'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1152d4",
+              "background-light": "#f6f6f8",
+              "background-dark": "#101622",
+              "card-dark": "#161e2e", // Slightly lighter than background-dark for cards
+              "card-hover": "#1c263a", // Hover state for cards
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"] // Added sans-serif fallback
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<!-- Google Fonts & Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom scrollbar for dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101622;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #374151;
+        }
+        
+        /* Tooltip styles */
+        .tooltip-container:hover .tooltip-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .tooltip-content {
+            transition: all 0.2s ease-in-out;
+            transform: translateY(10px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display min-h-screen flex flex-col overflow-x-hidden transition-colors duration-300">
+
+<!-- Floating Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(35, 21, 48, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(127, 19, 236, 0.2);">
+<div class="container mx-auto px-4 max-w-7xl flex items-center justify-between py-3">
+<a href="/modules/standards-compliance/" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium">
+<span class="material-icons-round text-base">arrow_forward</span>
+חזרה למודול
+</a>
+<div class="text-sm text-gray-400" style="font-family: 'Heebo', sans-serif;">שיעור 1: למה צריך תקנים?</div>
+<div class="flex items-center gap-2">
+
+<a href="/pages/identity-access-the-gatekeeper-part-1.html" class="flex items-center gap-1 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow transition-all text-sm">
+הבא
+<span class="material-icons-round text-base">arrow_back</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Top Navigation Bar -->
+<nav class="w-full border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#101622]/90 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo & Branding -->
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-icons text-xl">shield</span>
+</div>
+<span class="font-bold text-xl tracking-tight">CyberGuard <span class="text-primary font-normal">Hub</span></span>
+</div>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-500 dark:text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">סקירה כללית</a>
+<a class="text-primary relative py-2 transition-colors" href="#">
+                        תקינה בינלאומית
+                        <span class="absolute bottom-0 right-0 w-full h-0.5 bg-primary rounded-full"></span>
+</a>
+<a class="hover:text-primary transition-colors" href="#">ניהול סיכונים</a>
+<a class="hover:text-primary transition-colors" href="#">דוחות וביקורת</a>
+</div>
+<!-- User Profile & Notifications -->
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors relative">
+<span class="material-icons-outlined text-slate-500 dark:text-slate-400">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-[#101622]"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-gradient-to-tr from-primary to-blue-400 p-[2px]">
+<img alt="User Profile" class="rounded-full w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTFvWS1NWqTpm5MysykWOdmP0kTK6GRW8tU2AfdVLVBTkxhYyAYL60wsYk8lccmE0f-7vOqeYYq0Ap9_VzAl_5k3TBIsm7lo2rU4nl8lja6N4uemwFV5-SKvbPuyyVUGD5AvOSJoqkdnlptM9GiLsudZzyiwcIA07_s6B4sykgulNnPktx5YhBEPQbB4YgAtGfwL6dv_RAvyOPa7iH9b8u4cIJjSCOH6GN2MxwT-J5E3Iu3yARyljZEHimTHDCxrS3QIRiVOJHpS8"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8 w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white">מרכז הציות הבינלאומי</h1>
+<p class="text-slate-500 dark:text-slate-400 mt-1 text-sm">ניהול ומעקב אחר סטנדרטים גלובליים לאבטחת מידע</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors text-sm font-medium">
+<span class="material-icons-outlined text-lg">filter_list</span>
+                    סינון
+                </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg bg-primary hover:bg-blue-700 text-white transition-colors shadow-lg shadow-primary/20 text-sm font-medium">
+<span class="material-icons-outlined text-lg">add</span>
+                    הוסף תקן חדש
+                </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[minmax(180px,auto)]">
+<!-- ISO 27001 Card (Large Featured Card - 2x2) -->
+<div class="col-span-1 md:col-span-2 lg:col-span-2 row-span-2 bg-white dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all duration-300 shadow-sm relative overflow-hidden group">
+<!-- Decorative background glow -->
+<div class="absolute -top-20 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl group-hover:bg-primary/10 transition-colors"></div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-primary">
+<span class="material-icons-outlined text-2xl">verified_user</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h2 class="text-xl font-bold">ISO 27001</h2>
+<div class="tooltip-container relative">
+<span class="material-icons-outlined text-slate-400 text-sm cursor-help hover:text-primary transition-colors">info</span>
+<div class="tooltip-content absolute z-50 bottom-full right-0 mb-2 w-64 p-3 bg-slate-800 dark:bg-slate-700 text-white text-xs rounded shadow-xl opacity-0 invisible pointer-events-none">
+                                            תקן בינלאומי לניהול אבטחת מידע, המגדיר דרישות להקמה, יישום, תחזוקה ושיפור מתמיד של מערכת ניהול אבטחת מידע (ISMS).
+                                            <div class="absolute -bottom-1 right-2 w-2 h-2 bg-slate-800 dark:bg-slate-700 transform rotate-45"></div>
+</div>
+</div>
+</div>
+<p class="text-xs text-slate-500 font-medium tracking-wide uppercase mt-1">אבטחת מידע ארגונית</p>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold border border-green-200 dark:border-green-900">תואם</span>
+</div>
+<!-- PDCA Cycle Visualization -->
+<div class="flex items-center justify-center my-6 relative">
+<!-- Simplified CSS PDCA representation -->
+<div class="relative w-48 h-48">
+<!-- Outer Ring -->
+<div class="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800"></div>
+<!-- Progress Arc (approx 85%) -->
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-slate-200 dark:text-slate-800" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary transition-all duration-1000 ease-out" cx="96" cy="96" fill="transparent" r="88" stroke="currentColor" stroke-dasharray="552" stroke-dashoffset="82" stroke-width="8"></circle>
+</svg>
+<!-- Inner Content -->
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-4xl font-bold text-slate-900 dark:text-white">85%</span>
+<span class="text-xs text-slate-500 mt-1">ציון התאמה</span>
+</div>
+<!-- PDCA Labels -->
+<div class="absolute top-2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-card-dark px-2 text-xs font-bold text-primary">Plan</div>
+<div class="absolute right-2 top-1/2 translate-x-1/2 -translate-y-1/2 bg-card-dark px-2 text-xs font-bold text-primary">Do</div>
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 translate-y-1/2 bg-card-dark px-2 text-xs font-bold text-slate-500">Check</div>
+<div class="absolute left-2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-card-dark px-2 text-xs font-bold text-slate-500">Act</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 mt-auto">
+<div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg">
+<span class="block text-xs text-slate-500 mb-1">ביקורת אחרונה</span>
+<span class="block font-semibold">15 ינואר, 2023</span>
+</div>
+<div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-lg">
+<span class="block text-xs text-slate-500 mb-1">פערים פתוחים</span>
+<span class="block font-semibold text-orange-500">3 קריטיים</span>
+</div>
+</div>
+<button class="w-full mt-4 py-2.5 rounded-lg bg-primary text-white font-medium text-sm hover:bg-blue-600 transition-colors">
+                        צפה בפרטי התקן
+                    </button>
+</div>
+</div>
+<!-- GDPR Card (2x1 Horizontal) -->
+<div class="col-span-1 md:col-span-2 lg:col-span-2 bg-gradient-to-br from-[#003399] to-[#002266] rounded-xl p-6 text-white relative overflow-hidden group shadow-lg">
+<!-- EU Stars Pattern Background -->
+<div class="absolute right-0 top-0 opacity-10 transform translate-x-10 -translate-y-10">
+<span class="material-icons text-9xl">star</span>
+</div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-white/10 flex items-center justify-center backdrop-blur-sm">
+<span class="material-icons text-yellow-400">flag</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold">GDPR</h3>
+<div class="tooltip-container relative">
+<span class="material-icons-outlined text-white/50 text-sm cursor-help hover:text-white transition-colors">info</span>
+<div class="tooltip-content absolute z-50 bottom-full right-0 mb-2 w-64 p-3 bg-white text-slate-900 text-xs rounded shadow-xl opacity-0 invisible pointer-events-none">
+                                            תקנות הגנה על מידע כללי של האיחוד האירופי. מסדיר את האופן שבו חברות מעבדות מידע אישי של אזרחי האיחוד.
+                                            <div class="absolute -bottom-1 right-2 w-2 h-2 bg-white transform rotate-45"></div>
+</div>
+</div>
+</div>
+<span class="text-xs text-white/70">האיחוד האירופי</span>
+</div>
+</div>
+<span class="px-2 py-1 rounded bg-white/20 text-white text-xs backdrop-blur-md">בתהליך</span>
+</div>
+<div class="mt-6 mb-2">
+<h4 class="text-2xl font-bold tracking-tight mb-1">"הזכות להישכח"</h4>
+<p class="text-white/70 text-sm max-w-md">3 בקשות מחיקת מידע ממתינות לאישור הממונה על הגנת הפרטיות.</p>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex -space-x-2 space-x-reverse overflow-hidden">
+<img alt="User Avatar" class="inline-block h-8 w-8 rounded-full ring-2 ring-[#003399]" data-alt="User Avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2q2f4Nc4nORGnewnhS4YtVARV05MNQXouOsgXOCRd2NuUNhOeIYfHOZyxY1mZBOnpJWCg_8hFV7VmI6aoYLs-7XhvfzGjYiiB11QFjB3-f3aEzZQXyl25nX4R_ysWJclLwcH2jjE7i60G_OPcHqWQ9ky6XOCd0ZX6J_5oVNO6PuVrbfCzvz8Wm5YH4ovWigsvqrB0mRyEYyYYmjCglACwOylzYqbdQuF8OYZOjeiIAA2P9EsRbH8_c19QpAfH-Vh2wdfCw_tmPK0"/>
+<img alt="User Avatar" class="inline-block h-8 w-8 rounded-full ring-2 ring-[#003399]" data-alt="User Avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATNq1X8e0ykAOqiyMLVUgFj4XK-vTRlIQNkZPIqPQuXBFaMw1cWDEchWt7ZcQtXyc0Eikd8FKztDRHJb8HvRwi9zlpimWlm3cRj7Fcd4Pu6i6Gtc6y-qcti3YriKzcM1PF0RkVHLxFd9pCjtRAFM9356OSelPjk6LXSArRs7m_HpW6FN25370Gafeb6lHhsAY5w-rttZN8eQ5YskbGsiF1FjZpcswmvIBRvSgxbFHhWscNSya_uiy70w2Env8hVUPdxa1Ln3jXv9U"/>
+<img alt="User Avatar" class="inline-block h-8 w-8 rounded-full ring-2 ring-[#003399]" data-alt="User Avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnXCW0YgBb6VngDRE6IR3Gk_GXuVnGb3xujir5wyID-RCez9MM0kaKKHN6ZrIIo14keQo4haQbeeMB7-x8pyys9Q8yUmM5IAkpA95GXKeo1mLuIXgRC73zU6Hv6z146xUT8J71hINzv5BpVhvtEyXo3RISFRFpLX3P34jTcPUkeoOAJlGLB0Iqx58Ita8U7QCNOFYAld_tEFXXS0FmQxZz_fu-7s7AOyRzq-wCFD3qzNsVR2lWDtpDU_5EOYqlEHfqOSCTIU0cqgs"/>
+</div>
+<button class="px-4 py-2 bg-white text-[#003399] rounded-lg text-sm font-semibold hover:bg-slate-100 transition-colors">
+                            נהל בקשות
+                        </button>
+</div>
+</div>
+</div>
+<!-- SOC2 Card (1x1 Vertical) -->
+<div class="col-span-1 md:col-span-1 bg-white dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all shadow-sm group">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold">SOC2 Type II</h3>
+<div class="tooltip-container relative">
+<span class="material-icons-outlined text-slate-400 text-sm cursor-help hover:text-primary transition-colors">info</span>
+<div class="tooltip-content absolute z-50 bottom-full -right-20 mb-2 w-56 p-3 bg-slate-800 dark:bg-slate-700 text-white text-xs rounded shadow-xl opacity-0 invisible pointer-events-none">
+                                מסגרת ביקורת המבטיחה כי ספקי שירות מנהלים את הנתונים שלך בצורה מאובטחת כדי להגן על האינטרסים של הארגון ופרטיות הלקוחות.
+                                <div class="absolute -bottom-1 right-24 w-2 h-2 bg-slate-800 dark:bg-slate-700 transform rotate-45"></div>
+</div>
+</div>
+</div>
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+</div>
+<div class="flex flex-col items-center justify-center py-4 relative">
+<!-- Cloud Icon with Glow -->
+<div class="relative z-10 mb-4">
+<div class="absolute inset-0 bg-blue-500/20 blur-xl rounded-full"></div>
+<span class="material-icons-outlined text-6xl text-primary relative z-10">cloud_done</span>
+</div>
+<p class="font-bold text-slate-900 dark:text-white">מוכן לביקורת</p>
+<p class="text-xs text-slate-500 mt-1 text-center">כל הבקרות תקינות</p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/50">
+<div class="flex justify-between items-center text-sm">
+<span class="text-slate-500">זמינות</span>
+<span class="text-green-500 font-bold">99.99%</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-green-500 h-1.5 rounded-full" style="width: 99.99%"></div>
+</div>
+</div>
+</div>
+<!-- MLPS China Card (1x1 Vertical) -->
+<div class="col-span-1 md:col-span-1 bg-white dark:bg-card-dark rounded-xl p-6 border border-slate-200 dark:border-slate-800 hover:border-primary/50 transition-all shadow-sm">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-2">
+<h3 class="text-lg font-bold">MLPS 2.0</h3>
+<div class="tooltip-container relative">
+<span class="material-icons-outlined text-slate-400 text-sm cursor-help hover:text-primary transition-colors">info</span>
+<div class="tooltip-content absolute z-50 bottom-full -right-20 mb-2 w-56 p-3 bg-slate-800 dark:bg-slate-700 text-white text-xs rounded shadow-xl opacity-0 invisible pointer-events-none">
+                                Multi-Level Protection Scheme (סין). מערכת הסמכה לאבטחת סייבר הנדרשת מכל החברות הפועלות בסין.
+                                <div class="absolute -bottom-1 right-24 w-2 h-2 bg-slate-800 dark:bg-slate-700 transform rotate-45"></div>
+</div>
+</div>
+</div>
+<div class="px-2 py-0.5 rounded border border-orange-500/30 text-orange-500 text-[10px] font-bold">LEVEL 3</div>
+</div>
+<div class="flex flex-col items-center justify-center py-2 relative group">
+<!-- Shield Icon -->
+<div class="relative w-16 h-16 flex items-center justify-center mb-4 transition-transform group-hover:scale-110 duration-300">
+<span class="material-icons text-6xl text-red-700/80 absolute">security</span>
+<span class="material-icons text-3xl text-yellow-500 absolute mb-1">star</span>
+</div>
+<p class="font-bold text-slate-900 dark:text-white">בניטור</p>
+<p class="text-xs text-slate-500 mt-1 text-center">נדרש חידוש אישור</p>
+</div>
+<div class="mt-4 space-y-3">
+<div class="flex items-center gap-3 p-2 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
+<span class="material-icons-outlined text-slate-400 text-sm">dns</span>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-300">שרת מקומי</span>
+<span class="text-[10px] text-green-500">שנחאי (פעיל)</span>
+</div>
+</div>
+<button class="w-full text-xs font-medium text-primary hover:text-blue-400 transition-colors text-right">
+                        &gt; הצג דוח הצפנה
+                    </button>
+</div>
+</div>
+<!-- News / Updates Widget (Small Text based) -->
+<div class="col-span-1 md:col-span-3 lg:col-span-4 bg-primary/5 border border-primary/10 rounded-xl p-4 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary shrink-0">
+<span class="material-icons-outlined">campaign</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-slate-900 dark:text-white">עדכון רגולטורי חדש</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400">טיוטת תיקון לתקנות הגנת הפרטיות (אבטחת מידע) פורסמה לעיון הציבור.</p>
+</div>
+</div>
+<a class="text-sm font-medium text-primary hover:underline whitespace-nowrap ml-4" href="#">קרא עוד</a>
+</div>
+</div>
+</main>
+</body></html>

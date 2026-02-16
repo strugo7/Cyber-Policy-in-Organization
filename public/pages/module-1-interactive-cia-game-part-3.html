@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 1: Interactive CIA Game (Part 3)</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script type='text/javascript' nonce='MUuYi81Qrp3IiG4aGU+Piw==' src='https://contribution.usercontent.google.com/8PxpcFflFYRYNDi0UcqH6YCom1IVE1v1pgCjvkiK0uLBp8uOfIc1Q5NhXC3Kaapj1KFrUivI61K-Dyis2VcCPI4RUepwRxuUlqqUe3R3gDlMrg_7bCRUq-eZgV4e0F0WD9RfotDEJ_bqWXSZZBak7Y2Wh7kWbxQ7RWfNDSnpi_zVC-bJmREmd6uk296bwgsjau9Ge8Ljrq20jEg-LVMgcV2Wab-EkvscUaoIdrJsVS2lBdNnB0NPBoTL4brFn0LYeWlW1ayL2SjEHVRXNyksCRWvjMUC_LVHdeRxWIgdlwiyQz-Dt-DALds-Q2CI9OtIsp9wKgx3Bsm4SC6wqzgaYTm4ROfbWb6xz8R1g66jvoVX77reSgzpk-ym9ynXFJAkvGxDCLb50HIKn2haVycwWZs3yGJ24QoAk9TQpVLhnPupgDoEO2EJC7nJnnia23-zZ2Q_ec4RVdj3NMBSzAMZEbefUpF-S7OChZ9ca6tiyYgXQUHRcpIo6AeqzgyjlFj8TMbMp3mGLPVY5tpSCT43YRgX1KJrTur4GE7B9KeGh_2vre7Ks_slFGd02wYxy1fkzGLUgLIaOBv3XrL_jEhYQ6_9lQP5ZQf37FchFSyoUbX0eSAiE3KEmCUKNshybl-Nx7H2dj75ZXrimFQ4uUheEAQ4mHLKF4O_nOu0BvgfbWQ6EB77_9wlbJgGblCx08deHb2wq0lWKSDK_BpmUI7bcr76WMjZliD-o0hm5LNwswcLe-TxPfyonHb47Fl5qnOjAhAYfxxEaPjg1J5Im_adjfEcPQ5nBtiecihJ4g'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7f13ec",
+                        "primary-light": "#a65bf4",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                        "zone-blue": "#3b82f6",
+                        "zone-green": "#10b981",
+                        "zone-yellow": "#f59e0b",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Heebo", "sans-serif"],
+                        "hebrew": ["Heebo", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                    boxShadow: {
+                        "neon-primary": "0 0 20px rgba(127, 19, 236, 0.3)",
+                        "neon-blue": "0 0 20px rgba(59, 130, 246, 0.3)",
+                        "neon-green": "0 0 20px rgba(16, 185, 129, 0.3)",
+                        "neon-yellow": "0 0 20px rgba(245, 158, 11, 0.3)",
+                        "card-depth": "-4px 4px 0px rgba(255,255,255,0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', sans-serif; /* Set Hebrew font as default */
+        }
+        .pattern-grid {
+            background-image: radial-gradient(rgba(127, 19, 236, 0.15) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        /* Custom dragging simulation styles */
+        .drag-preview {
+            transform: rotate(-3deg) scale(1.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            cursor: grabbing;
+        }
+        .stacked-card:nth-child(1) { transform: translateY(0) scale(1); opacity: 1; z-index: 30; }
+        .stacked-card:nth-child(2) { transform: translateY(12px) scale(0.96); opacity: 0.6; z-index: 20; }
+        .stacked-card:nth-child(3) { transform: translateY(24px) scale(0.92); opacity: 0.3; z-index: 10; }
+
+        @keyframes pulse-success {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+        .success-pulse {
+            animation: pulse-success 1.5s infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-800 dark:text-slate-100 overflow-hidden flex flex-col">
+
+<!-- Floating Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(35, 21, 48, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(127, 19, 236, 0.2);">
+<div class="container mx-auto px-4 max-w-7xl flex items-center justify-between py-3">
+<a href="/modules/intro-and-threats/" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium">
+<span class="material-icons-round text-base">arrow_forward</span>
+חזרה למודול
+</a>
+<div class="text-sm text-gray-400" style="font-family: 'Heebo', sans-serif;">שיעור 4: תקיפות סייבר היסטוריות</div>
+<div class="flex items-center gap-2">
+<a href="/modules/intro-and-threats/?startLesson=2" class="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+<span class="material-icons-round text-base">arrow_forward</span>
+הקודם
+</a>
+<a href="/" class="flex items-center gap-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-4 rounded-lg shadow transition-all text-sm">
+סיום מודול
+<span class="material-icons-round text-base">check</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Navigation / Header -->
+<header class="w-full h-16 border-b border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md flex items-center justify-between px-6 z-50">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">C</div>
+<div class="flex flex-col">
+<span class="text-xs text-primary dark:text-primary-light font-bold uppercase tracking-wider">מודול 1: יסודות סייבר</span>
+<span class="text-sm font-medium">משחק ה-CIA</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex flex-col items-end">
+<span class="text-xs text-slate-500 dark:text-slate-400">התקדמות</span>
+<div class="w-32 h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden mt-1">
+<div class="h-full bg-primary w-2/3 rounded-full"></div>
+</div>
+</div>
+<button class="w-10 h-10 rounded-lg bg-slate-200 dark:bg-slate-800 flex items-center justify-center hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+<span class="material-icons-round text-slate-600 dark:text-slate-300">pause</span>
+</button>
+</div>
+</header>
+<!-- Main Game Area -->
+<main class="flex-grow relative flex items-center justify-center p-4 md:p-8">
+<!-- Background decorative elements -->
+<div class="absolute inset-0 pattern-grid pointer-events-none opacity-20"></div>
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-zone-blue/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="w-full max-w-7xl h-full flex flex-col">
+<!-- Game Instruction -->
+<div class="text-center mb-8 md:mb-12 relative z-10">
+<h1 class="text-3xl md:text-4xl font-display font-bold text-white mb-2 drop-shadow-lg">
+                    תרגול: איזה עקרון <span class="text-primary-light">CIA</span> נפגע?
+                </h1>
+<p class="text-slate-400 text-lg">גרור את הכרטיס לקטגוריה המתאימה</p>
+</div>
+<!-- Game Board -->
+<div class="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8 items-center h-full">
+<!-- DROP ZONES (Left Side in RTL) -->
+<!-- Order in DOM is reversed visually by RTL, so Left visual is actually last in DOM or needs explicit order -->
+<!-- However, in RTL: Right is Start, Left is End. -->
+<!-- We want Cards on Right (Start), Zones on Left (End). -->
+<!-- ZONES COLUMN (Left Visual / End of layout) -->
+<div class="lg:col-span-7 h-full flex flex-col justify-center gap-4 lg:gap-6 order-2 lg:order-last">
+<!-- Confidentiality Zone -->
+<div class="relative group">
+<div class="absolute inset-0 bg-zone-blue/20 rounded-xl blur-md group-hover:bg-zone-blue/30 transition-all duration-300"></div>
+<div class="relative h-28 md:h-36 border-2 border-dashed border-zone-blue/40 bg-background-dark/80 backdrop-blur-sm rounded-xl flex items-center justify-between px-8 transition-all hover:border-zone-blue hover:scale-[1.02] cursor-pointer">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full bg-zone-blue/20 flex items-center justify-center border border-zone-blue/50 shadow-neon-blue">
+<span class="material-icons-round text-zone-blue text-3xl">lock</span>
+</div>
+<div class="text-right">
+<h3 class="text-2xl font-bold text-zone-blue font-display">סודיות</h3>
+<p class="text-sm text-slate-400">Confidentiality</p>
+</div>
+</div>
+<span class="material-icons-round text-slate-600 text-4xl opacity-20">shield</span>
+</div>
+</div>
+<!-- Integrity Zone -->
+<div class="relative group">
+<div class="absolute inset-0 bg-zone-green/20 rounded-xl blur-md group-hover:bg-zone-green/30 transition-all duration-300"></div>
+<div class="relative h-28 md:h-36 border-2 border-dashed border-zone-green/40 bg-background-dark/80 backdrop-blur-sm rounded-xl flex items-center justify-between px-8 transition-all hover:border-zone-green hover:scale-[1.02] cursor-pointer">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full bg-zone-green/20 flex items-center justify-center border border-zone-green/50 shadow-neon-green">
+<span class="material-icons-round text-zone-green text-3xl">verified_user</span>
+</div>
+<div class="text-right">
+<h3 class="text-2xl font-bold text-zone-green font-display">שלמות</h3>
+<p class="text-sm text-slate-400">Integrity</p>
+</div>
+</div>
+<span class="material-icons-round text-slate-600 text-4xl opacity-20">shield</span>
+</div>
+</div>
+<!-- Availability Zone (Target for current card) -->
+<!-- Simulating a "Hover" state here as if the card is about to be dropped -->
+<div class="relative group z-20">
+<div class="absolute -inset-1 bg-zone-yellow/30 rounded-2xl blur-lg transition-all duration-300 animate-pulse"></div>
+<div class="relative h-28 md:h-36 border-4 border-dashed border-zone-yellow bg-zone-yellow/10 backdrop-blur-sm rounded-xl flex items-center justify-between px-8 transition-all scale-[1.03]">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full bg-zone-yellow/20 flex items-center justify-center border border-zone-yellow/50 shadow-neon-yellow relative">
+<span class="material-icons-round text-zone-yellow text-3xl">bolt</span>
+<!-- Success Checkmark Indicator (As requested) -->
+<div class="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center shadow-lg success-pulse border-2 border-white dark:border-background-dark z-50">
+<span class="material-icons-round text-white text-lg">check</span>
+</div>
+</div>
+<div class="text-right">
+<h3 class="text-2xl font-bold text-zone-yellow font-display">זמינות</h3>
+<p class="text-sm text-slate-400">Availability</p>
+</div>
+</div>
+<!-- Success Feedback Text Overlay inside zone -->
+<div class="hidden md:flex items-center gap-2 px-3 py-1 bg-green-500/20 border border-green-500 rounded-full">
+<span class="text-xs font-bold text-green-400">נכון! בחירה מצוינת</span>
+</div>
+</div>
+</div>
+</div>
+<!-- CARDS COLUMN (Right Visual / Start of Layout) -->
+<div class="lg:col-span-5 flex items-center justify-center h-full relative order-1 lg:order-first">
+<!-- Card Stack Container -->
+<div class="relative w-full max-w-sm aspect-[4/5] flex items-center justify-center">
+<!-- Base/Empty Placeholder -->
+<div class="absolute w-64 h-80 bg-slate-800/30 border-2 border-slate-700/50 rounded-2xl flex items-center justify-center">
+<span class="text-slate-600 font-bold text-sm">אין כרטיסים נוספים</span>
+</div>
+<!-- Card 3 (Bottom) -->
+<div class="absolute w-72 h-80 bg-background-dark border border-slate-700 rounded-2xl shadow-xl stacked-card flex flex-col p-6 items-center justify-center">
+<div class="w-full h-2 bg-slate-800 rounded mb-4"></div>
+<div class="w-2/3 h-2 bg-slate-800 rounded"></div>
+</div>
+<!-- Card 2 (Middle) -->
+<div class="absolute w-72 h-80 bg-background-dark border border-slate-700 rounded-2xl shadow-xl stacked-card flex flex-col p-6 items-center justify-center">
+<div class="w-12 h-12 rounded-full bg-slate-800 mb-4"></div>
+<div class="w-full h-3 bg-slate-800 rounded mb-2"></div>
+<div class="w-3/4 h-3 bg-slate-800 rounded"></div>
+</div>
+<!-- Card 1 (Active/Top) - Simulating Drag towards Availability Zone -->
+<!-- Inline style to simulate the drag position -->
+<div class="absolute w-72 h-80 bg-white dark:bg-[#231a2e] border-2 border-primary/50 rounded-2xl shadow-2xl p-6 flex flex-col items-center text-center justify-between cursor-grabbing z-50 drag-preview" style="left: -15%; top: 10%;">
+<!-- Card Header -->
+<div class="w-full flex justify-between items-center text-xs text-slate-400 font-medium uppercase tracking-wider">
+<span>תרחיש #4</span>
+<span class="bg-primary/20 text-primary px-2 py-1 rounded">התקפה פעילה</span>
+</div>
+<!-- Icon -->
+<div class="w-20 h-20 rounded-full bg-red-500/10 flex items-center justify-center my-4 relative">
+<div class="absolute inset-0 bg-red-500/20 rounded-full animate-ping opacity-20"></div>
+<span class="material-icons-round text-red-500 text-4xl">warning</span>
+</div>
+<!-- Content -->
+<div class="mb-4">
+<h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2 leading-snug">
+                                    אתר החברה נפל עקב עומס (DDoS)
+                                </h2>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                                    משתמשים מדווחים כי אינם מצליחים לגשת לשירותי הענן של הארגון.
+                                </p>
+</div>
+<!-- Footer/Hint -->
+<div class="w-full pt-4 border-t border-slate-200 dark:border-slate-700">
+<span class="text-xs text-slate-400 flex items-center justify-center gap-1">
+<span class="material-icons-round text-sm">touch_app</span>
+                                    גרור לאזור המתאים
+                                </span>
+</div>
+<!-- Ghost Image Background -->
+<img class="absolute inset-0 w-full h-full object-cover opacity-5 pointer-events-none rounded-2xl mix-blend-overlay" data-alt="Abstract server room lights texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB94JSUFMlRpx7ZdcYvYqKCQvX3sqPmZL9lO4TGsbji0uqCbJVqeEqRwcbG_7w7ZdSl6R3GC2CTAlN2ysF16Ie7HatabfHQkI3gHgor6KGO3tWIdcJsGHjuHUbpuIKadG3wBFIeWDnKqVNwY5r9KaIRWICmBZ84F7S-59ogWQDDFZOiU4Nrr0r63UQSa51qf2JTuPUbxCUnDRdwMCSBa1nT3yDW6zi2dQsRHdr7ZMNIsMJ7k8P1fRL_j5jcmJ-1IyN2URc8ElGtmbY"/>
+</div>
+<!-- Connection Line (Visual Guide for Drag) -->
+<svg class="absolute pointer-events-none z-0 hidden lg:block" style="width: 200%; height: 200%; left: -80%; top: -20%; opacity: 0.4;">
+<path class="animate-pulse" d="M 500 250 Q 300 250 150 350" fill="none" stroke="#f59e0b" stroke-dasharray="8 4" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Footer Stats -->
+<div class="h-16 flex items-center justify-between border-t border-slate-800 mt-4 text-sm text-slate-500">
+<div class="flex gap-6">
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                        הצלחות: 3
+                    </span>
+<span class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-500"></span>
+                        שגיאות: 0
+                    </span>
+</div>
+<div>
+                    ניקוד נוכחי: <span class="text-white font-bold">350</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Toast Notification (Success Feedback) -->
+<div class="fixed bottom-8 left-1/2 transform -translate-x-1/2 md:left-8 md:translate-x-0 z-50 animate-bounce">
+<div class="bg-background-dark border border-green-500/30 shadow-neon-green rounded-lg p-4 flex items-center gap-4 max-w-sm">
+<div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center shrink-0">
+<span class="material-icons-round text-green-400">check_circle</span>
+</div>
+<div>
+<h4 class="text-green-400 font-bold text-sm mb-0.5">תשובה נכונה!</h4>
+<p class="text-slate-300 text-xs">התקפת DDoS פוגעת בזמינות השירות למשתמשים לגיטימיים.</p>
+</div>
+</div>
+</div>
+</body></html>

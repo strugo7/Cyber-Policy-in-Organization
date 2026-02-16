@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Protect: Defense in Depth (Part 2)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script type='text/javascript' nonce='bMUAjUPGpIMP5/iv7R5VHg==' src='https://contribution.usercontent.google.com/dKwKs6xna1PeXj98zlUYWmuZmdbaU9McF-IiHYTXRvwBvgOhvwObQIK4v64XEE1XE0TwdnKdMS2qyb_zzcABFJs_oa5IsU8mCel76JXbItc3y_hrZG_-gSq60Y9uv10lVAiBCesT9uivu0PyniDcWtxa5Cx8uy7magSbo88tY5Gw-7YQjBDv8v92Gfxh42KR-eMYpNv-P1Ml2XqBUJ8eSYQCiUDBBqGedviaWeIjyF8Btq-WWs6J8MkTk2C3zaTGkZDI_OMkNIzno2LJh2uXJO5x9yneobQ3gogJ0RFyk8hDrn3DKIkTKcJvGuV2VzeqVL29YtkdFuzm5yyi0IlNm_RwMy77CMl7DTUSu6hORISZkKV8Mt0BUzeE5LOP57tqc-7j5LlxaskvzSaXYbarnhEdA-kfJQrXbjaUYSr4MmeLCtKr5xniWHXTO4HpySg0qHiAcWbDEBy06ws3KiPSibqVsVonsA07cZ0n0lofYz6J6ikQkC5ejJW19qnSsU_aMeSIqrAptYQY-7NPVtCr6kmFxDoJwoWcTkoCeZxhPEzsIjfRdiP7jcAMN8A5rvXIQMb7PPvJgKMY5qq0JGvJI-VS6S2HELZzYE5NoziVB1XhN9C4-MzoKAxrifc3D7bN07mNx9hSFtWM98CyNlD0SxC9B3uNCDFMaD0kw8DrKuvqjVJfOKd7s3Cul5V96EQB8OYS5CnK1zw2cRZc7fyxXemPa1ogCLiaurCBqjg31LXeBX2_70YlvgEXLmyjUmMSYKXCF_TpW9qfHkIJY0GVEBI4Ud30aM5_0I1v7w'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7f13ec",
+                        "primary-dark": "#5e0eb0",
+                        "primary-light": "#9b4df1",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#191022",
+                        "surface-dark": "#231530",
+                        "metallic-dark": "#2a2a35",
+                        "alert-red": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans", "Heebo", "sans-serif"],
+                        "body": ["Heebo", "Public Sans", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                    backgroundImage: {
+                        'vault-pattern': "radial-gradient(circle at center, #2d1f3f 0%, #191022 100%)",
+                        'metallic-gradient': "linear-gradient(145deg, #373745 0%, #2a2a35 100%)",
+                        'shield-gradient': "linear-gradient(180deg, rgba(127, 19, 236, 0.1) 0%, rgba(127, 19, 236, 0.05) 100%)",
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(127, 19, 236, 0.3)',
+                        'glow-strong': '0 0 40px rgba(127, 19, 236, 0.5)',
+                        'metallic': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', 'Public Sans', sans-serif;
+        }
+        
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #191022; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a3b5e; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7f13ec; 
+        }
+
+        .metallic-text {
+            background: linear-gradient(to bottom, #e2e8f0, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .shield-ring {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .shield-ring:hover {
+            stroke: #7f13ec;
+            filter: drop-shadow(0 0 8px #7f13ec);
+            transform: scale(1.02);
+            transform-origin: center;
+        }
+
+        .active-layer {
+            border-color: #7f13ec;
+            background: linear-gradient(145deg, rgba(127, 19, 236, 0.15) 0%, rgba(35, 21, 48, 0.8) 100%);
+            box-shadow: 0 0 20px rgba(127, 19, 236, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen flex flex-col overflow-hidden bg-vault-pattern">
+
+<!-- Floating Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(35, 21, 48, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(127, 19, 236, 0.2);">
+<div class="container mx-auto px-4 max-w-7xl flex items-center justify-between py-3">
+<a href="/modules/nist-functions/" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium">
+<span class="material-icons-round text-base">arrow_forward</span>
+חזרה למודול
+</a>
+<div class="text-sm text-gray-400" style="font-family: 'Heebo', sans-serif;">שיעור 2: פונקציית Protect</div>
+<div class="flex items-center gap-2">
+<a href="/pages/identify-asset-management-radar-part-1.html" class="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+<span class="material-icons-round text-base">arrow_forward</span>
+הקודם
+</a>
+<a href="/pages/detect-soc-command-center-part-1.html" class="flex items-center gap-1 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow transition-all text-sm">
+הבא
+<span class="material-icons-round text-base">arrow_back</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Top Navigation / Header -->
+<header class="w-full h-20 border-b border-white/10 bg-surface-dark/50 backdrop-blur-md flex items-center justify-between px-8 z-20">
+<!-- Right Side: Logo & Breadcrumbs -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-glow">
+<span class="material-icons-round text-white text-2xl">security</span>
+</div>
+<span class="text-xl font-bold tracking-wide text-white">CyberGuard</span>
+</div>
+<div class="h-6 w-px bg-white/10"></div>
+<nav class="flex items-center text-sm font-medium text-slate-400 gap-2">
+<span>מודול 4</span>
+<span class="material-icons-round text-base rotate-180">chevron_right</span>
+<span class="text-primary-light">חלק ב': הגנה</span>
+</nav>
+</div>
+<!-- Left Side: User Profile & Status -->
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20">
+<div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+<span class="text-xs font-medium text-primary-light">מערכת מאובטחת</span>
+</div>
+<div class="flex items-center gap-3 pl-2 border-l border-white/10">
+<div class="text-left hidden md:block">
+<p class="text-sm font-medium text-white">דניאל כהן</p>
+<p class="text-xs text-slate-400">אנליסט אבטחה</p>
+</div>
+<img alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-primary/30" data-alt="User profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmfppwINWBfa3hY53eYWWzJWgI3i0Vv1I8UxX5Y2q0_BU90uCnj_4hkSaUVeonrAC7GyH6o_DZvBQL4ht1KIPvLGiqmQ97YbJ3qb25GfFF6qWOoNQ_CLE7URg1WgVCjIFAfh4VmuXtFB64idnMT39Sv1nZ7asfMDpYOkeu8Q0a1LawdYTtLo8y_T5Q02IRVjAqZCToBbqCgSuIrzCXNcmDkZL2zR8vIgB2nQAl8vgp_otKC1mMf4KImWXskushyZ0fjxW0EepeFDg"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 grid grid-cols-12 gap-8 p-8 relative overflow-hidden">
+<!-- Decorative Background Elements -->
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+<div class="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-1/4 left-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[80px]"></div>
+</div>
+<!-- Left Sidebar: Context & DLP Alert (Col 3) -->
+<aside class="col-span-12 lg:col-span-3 flex flex-col gap-6 relative z-10 order-2 lg:order-1">
+<!-- Description Card -->
+<div class="bg-surface-dark border border-white/5 rounded-xl p-6 shadow-xl relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary group-hover:bg-primary-light transition-colors"></div>
+<h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+<span class="material-icons-round text-primary">info</span>
+                    הקשר הגנתי
+                </h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-4">
+                    הגנה לעומק (Defense in Depth) היא אסטרטגיה המשתמשת במספר שכבות הגנה כדי להגן על המידע. אם שכבה אחת נפרצת, השכבות האחרות בולמות את ההתקפה.
+                </p>
+<div class="flex items-center gap-2 text-xs text-slate-500 bg-white/5 p-2 rounded">
+<span class="material-icons-round text-sm">timer</span>
+<span>זמן מוערך: 15 דקות</span>
+</div>
+</div>
+<!-- DLP Alert Widget (Floating/Active) -->
+<div class="bg-surface-dark/80 backdrop-blur-sm border border-alert-red/30 rounded-xl p-0 shadow-lg shadow-alert-red/5 overflow-hidden animate-pulse-slow">
+<div class="bg-alert-red/10 p-4 border-b border-alert-red/10 flex items-center justify-between">
+<h4 class="text-alert-red font-bold text-sm flex items-center gap-2">
+<span class="material-icons-round">warning</span>
+                        התראת DLP פעילה
+                    </h4>
+<span class="text-[10px] bg-alert-red text-white px-2 py-0.5 rounded-full font-bold">נחסם</span>
+</div>
+<div class="p-5">
+<div class="flex gap-4 items-start mb-4">
+<div class="w-10 h-10 rounded bg-slate-800 flex items-center justify-center shrink-0 border border-white/10">
+<span class="material-icons-round text-slate-400">file_present</span>
+</div>
+<div>
+<p class="text-sm font-medium text-white">passwords_db_2023.xlsx</p>
+<p class="text-xs text-slate-400 mt-1">זוהה ניסיון העברה לכונן חיצוני</p>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between text-xs text-slate-500">
+<span>משתמש:</span>
+<span class="text-slate-300">אורח_חיצוני</span>
+</div>
+<div class="flex justify-between text-xs text-slate-500">
+<span>זמן:</span>
+<span class="text-slate-300">14:32:05</span>
+</div>
+<div class="flex justify-between text-xs text-slate-500">
+<span>מדיניות:</span>
+<span class="text-primary-light">חסום PII</span>
+</div>
+</div>
+<button class="w-full mt-4 bg-alert-red/10 hover:bg-alert-red/20 text-alert-red text-xs font-bold py-2 px-4 rounded border border-alert-red/20 transition-all flex items-center justify-center gap-2">
+                        צפה בפרטי אירוע
+                        <span class="material-icons-round text-sm rotate-180">arrow_right_alt</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Center: Shield Visualization (Col 6) -->
+<section class="col-span-12 lg:col-span-6 flex flex-col items-center justify-start pt-4 relative z-10 order-1 lg:order-2">
+<div class="text-center mb-10">
+<h1 class="text-4xl md:text-5xl font-display font-bold metallic-text mb-2 tracking-tight">שכבות ההגנה</h1>
+<div class="h-1 w-24 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto rounded-full shadow-glow"></div>
+<p class="text-slate-400 mt-4 text-lg">בקרת גישה, הצפנה ומודעות ארגונית</p>
+</div>
+<!-- Interactive Shield SVG -->
+<div class="relative w-full max-w-lg aspect-square flex items-center justify-center group perspective-1000">
+<!-- Background glow behind shields -->
+<div class="absolute inset-0 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
+<svg class="w-full h-full drop-shadow-2xl transform transition-transform duration-700 hover:scale-105" viewbox="0 0 400 400">
+<defs>
+<radialgradient cx="50%" cy="50%" fx="50%" fy="50%" id="shieldGradient" r="50%">
+<stop offset="0%" style="stop-color:#2a2a35;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#191022;stop-opacity:1"></stop>
+</radialgradient>
+<lineargradient id="metallicStroke" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#4b5563;stop-opacity:1"></stop>
+<stop offset="50%" style="stop-color:#9ca3af;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#4b5563;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<!-- Outer Shield: MFA & Access -->
+<g class="cursor-pointer group/outer" onclick="alert(&#39;MFA Layer Selected&#39;)">
+<path class="shield-ring transition-all duration-300" d="M200,20 Q350,20 350,150 Q350,280 200,380 Q50,280 50,150 Q50,20 200,20 Z" fill="rgba(30, 41, 59, 0.4)" stroke="url(#metallicStroke)" stroke-width="2"></path>
+<!-- Animated border highlight on hover -->
+<path class="opacity-0 group-hover/outer:opacity-100 transition-opacity duration-300 animate-[spin_10s_linear_infinite_reverse]" d="M200,20 Q350,20 350,150 Q350,280 200,380 Q50,280 50,150 Q50,20 200,20 Z" fill="none" stroke="#7f13ec" stroke-dasharray="20 10" stroke-width="3" style="transform-origin: 200px 200px;"></path>
+<text class="text-[10px] font-bold uppercase tracking-widest pointer-events-none group-hover/outer:fill-white transition-colors" fill="#94a3b8" text-anchor="middle" x="200" y="70">מעגל חיצוני: גישה</text>
+</g>
+<!-- Middle Shield: Encryption -->
+<g class="cursor-pointer group/middle">
+<path class="shield-ring transition-all duration-300 delay-75" d="M200,60 Q300,60 300,160 Q300,260 200,340 Q100,260 100,160 Q100,60 200,60 Z" fill="rgba(42, 42, 53, 0.6)" stroke="url(#metallicStroke)" stroke-width="2"></path>
+<path class="opacity-0 group-hover/middle:opacity-60 transition-opacity duration-300" d="M200,60 Q300,60 300,160 Q300,260 200,340 Q100,260 100,160 Q100,60 200,60 Z" fill="none" stroke="#7f13ec" stroke-width="2"></path>
+<text class="text-[10px] font-bold uppercase tracking-widest pointer-events-none group-hover/middle:fill-white transition-colors" fill="#94a3b8" text-anchor="middle" x="200" y="100">מעגל אמצעי: הצפנה</text>
+</g>
+<!-- Inner Shield: Awareness -->
+<g class="cursor-pointer group/inner">
+<path class="shield-ring transition-all duration-300 delay-150 drop-shadow-[0_0_10px_rgba(127,19,236,0.5)]" d="M200,100 Q250,100 250,170 Q250,230 200,290 Q150,230 150,170 Q150,100 200,100 Z" fill="url(#shieldGradient)" stroke="#7f13ec" stroke-width="3"></path>
+<!-- Center Icon -->
+<foreignobject height="48" width="48" x="176" y="150">
+<div class="flex items-center justify-center w-full h-full text-white">
+<span class="material-icons-round text-3xl animate-pulse">lock</span>
+</div>
+</foreignobject>
+</g>
+</svg>
+<!-- Floating Labels connected to shield layers -->
+<div class="absolute top-10 -right-4 md:-right-16 flex items-center gap-2 animate-[float_4s_ease-in-out_infinite]">
+<div class="w-3 h-3 bg-slate-400 rounded-full shadow-glow"></div>
+<span class="text-xs text-slate-300 bg-surface-dark px-2 py-1 rounded border border-white/10">MFA</span>
+</div>
+<div class="absolute bottom-20 -left-4 md:-left-16 flex items-center gap-2 flex-row-reverse animate-[float_5s_ease-in-out_infinite_1s]">
+<div class="w-3 h-3 bg-primary rounded-full shadow-glow"></div>
+<span class="text-xs text-slate-300 bg-surface-dark px-2 py-1 rounded border border-white/10">הצפנה</span>
+</div>
+</div>
+</section>
+<!-- Right Sidebar: Layer Details (Col 3) -->
+<aside class="col-span-12 lg:col-span-3 flex flex-col justify-center gap-4 relative z-10 order-3">
+<!-- Card 1: Outer Layer -->
+<div class="bg-metallic-gradient border border-white/10 rounded-lg p-5 hover:border-primary/50 transition-all cursor-pointer group hover:-translate-x-2">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-lg bg-surface-dark flex items-center justify-center border border-white/5 shadow-inner group-hover:bg-primary/20 transition-colors">
+<span class="material-icons-round text-slate-300 group-hover:text-primary">badge</span>
+</div>
+<h3 class="text-white font-bold text-sm">מעגל חיצוני</h3>
+</div>
+<h4 class="text-primary-light font-bold text-xs mb-1">MFA &amp; הרשאות מינימליות</h4>
+<p class="text-slate-400 text-xs leading-relaxed">
+                    וידוא זהות המשתמש במספר אמצעים והגבלת גישה רק למה שנחוץ לביצוע התפקיד.
+                </p>
+</div>
+<!-- Card 2: Middle Layer -->
+<div class="bg-metallic-gradient border border-white/10 rounded-lg p-5 active-layer scale-105 shadow-glow-strong z-20 transition-all cursor-pointer">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-lg bg-surface-dark flex items-center justify-center border border-white/5 shadow-inner bg-primary/20">
+<span class="material-icons-round text-primary">folder_zip</span>
+</div>
+<h3 class="text-white font-bold text-sm">מעגל אמצעי</h3>
+</div>
+<h4 class="text-primary-light font-bold text-xs mb-1">הצפנת מידע</h4>
+<p class="text-slate-300 text-xs leading-relaxed">
+                    הגנה על המידע עצמו כך שגם אם נגנב, הוא אינו קריא ללא מפתח ההצפנה המתאים (Data at Rest/Transit).
+                </p>
+</div>
+<!-- Card 3: Inner Layer -->
+<div class="bg-metallic-gradient border border-white/10 rounded-lg p-5 hover:border-primary/50 transition-all cursor-pointer group hover:-translate-x-2">
+<div class="flex items-center gap-3 mb-3">
+<div class="w-10 h-10 rounded-lg bg-surface-dark flex items-center justify-center border border-white/5 shadow-inner group-hover:bg-primary/20 transition-colors">
+<span class="material-icons-round text-slate-300 group-hover:text-primary">verified_user</span>
+</div>
+<h3 class="text-white font-bold text-sm">מעגל פנימי</h3>
+</div>
+<h4 class="text-primary-light font-bold text-xs mb-1">מודעות עובדים</h4>
+<p class="text-slate-400 text-xs leading-relaxed">
+                    "החומה האנושית" - הכשרת עובדים לזהות דיוג (Phishing) ולפעול בבטחה היא ההגנה האחרונה והחשובה ביותר.
+                </p>
+</div>
+</aside>
+<!-- Bottom Status Bar -->
+<footer class="col-span-12 mt-auto pt-6 border-t border-white/5 flex justify-between items-center text-xs text-slate-500 order-4">
+<div class="flex items-center gap-4">
+<span>סטטוס מערכת: <span class="text-green-400">תקין</span></span>
+<span>גרסה: 4.2.0</span>
+</div>
+<div class="flex gap-2">
+<button class="bg-surface-dark hover:bg-white/5 text-white px-4 py-2 rounded-lg border border-white/10 transition-colors">הקודם</button>
+<button class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-lg shadow-glow transition-colors font-bold">הבא: תרגול מעשי</button>
+</div>
+</footer>
+</main>
+<!-- Map image data for compliance -->
+<img class="hidden" data-alt="Abstract map representing global cyber threat data" data-location="Global Cyber Map" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNVOdqgY4x9sJWHHGlfFUNdMEjoxP5rXqo0jxx_9E0549qhzbjnQYq487g8I6k3Jz7lHMQQLU8NO1eWscPEX7kIxfV5af4m6xCljZH7fTOhd43vHZwCYdOyfltNkwgvOIn1uvJ9eX2btERG6qRjVlsiJ5vWbmo4-H5tSQvyKJqk1hOvevuOsEnHYi4e0StscVdPtNtZcN0t1n2rx4GrQu50AVdhq8ZOCXOReC4bCxzRPSUaIGmjKEMgegDwS9sVjsi-PpADdKWBRY"/>
+</body></html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Anomaly Detection Analytics</title>
+<script type='text/javascript' nonce='6AqWUnK4WMM7AuCMRRxHHw==' src='https://contribution.usercontent.google.com/rI-hGGLEN4sMnrxP_Pxk9_ZDKtK3Dmanf_TEmfJXed5l5DfCUN1OjUazkxfDIFloNuG049c_nG4RQ2KoIvz6Fw5Dea4laTjdoJ2BH_zl-jAFzP7cLsFnw4lckPM0zghuO1-yozkSaqnlVlFAGXBz9lY3X_Sz1MpJtdaJdL_8qPTf13Ib5hyZoxzqR5eBE5IaczKeMB8W4Tn4xq7ekzy9y69Po9kKsWwYKS1ZZCkmh4-UkhOCGd2GmSKfMq4g4NSzdocl_xfRPMr53heVY1QK82jApVyPSckEL5SBzD3JU6gJHSFQJrNX0DN4cjuVzbQ1ndr2XMifBoSg1DRJfG1MdBaEIYAardV2JElmIMMT1j3vY6vEdvLyRHixgoFU8w2_LpofTyEiUuSPh7OR4m8-b7XQ0LfNOLobMlAfrpvC0K8zF8Zp2s16gXvTOYBye_b51wL9OL91iNhjHxXkU51JshF4EDj_Vgp3vjGWvaqVEXMmICau6mhoqXDvE3quUhQ7aGQeABiX5XGMZ6VZPP0-qHT5LWy8ii6TVTxQ_SSUJuEgRTbHX9MFIiY2DcocUTtKrEg287CnBSUJuJ9u2H5RaDwSeJmU6sepaNfr9PUO0Ij_c3Jgupi49FJcFVIdh6LiW6-UCIvvZ5UzDqQseiagtzo-yrNegKsuGH7BLGLk6-BhYZFzmxo0-P_KW6FwZnp4LDKcgwrk_sm8ItNifzOAXCzEl3tgzNO_ftFbTQoQHFljJ9P2s_6aAsmiMIkRC0t_aCQj_GdBzQjpNO5af1r1MGXHKH7rC4xiHOENSA'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                        "alert-red": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "Heebo", "sans-serif"],
+                        "body": ["Heebo", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom chart styles since we can't use JS libraries */
+        .chart-grid {
+            background-image: linear-gradient(to right, #1f2937 1px, transparent 1px),
+                              linear-gradient(to bottom, #1f2937 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .tooltip-arrow {
+            width: 0; 
+            height: 0; 
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #1f2937;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display min-h-screen flex flex-col">
+
+<!-- Floating Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(35, 21, 48, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(127, 19, 236, 0.2);">
+<div class="container mx-auto px-4 max-w-7xl flex items-center justify-between py-3">
+<a href="/modules/global-cyber-policy/" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium">
+<span class="material-icons-round text-base">arrow_forward</span>
+חזרה למודול
+</a>
+<div class="text-sm text-gray-400" style="font-family: 'Heebo', sans-serif;">שיעור 2: רוסיה ובריטניה</div>
+<div class="flex items-center gap-2">
+<a href="/pages/global-threat-hunting-map.html" class="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+<span class="material-icons-round text-base">arrow_forward</span>
+הקודם
+</a>
+<a href="/pages/cyber-wargame-crisis-simulation-part-3.html" class="flex items-center gap-1 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow transition-all text-sm">
+הבא
+<span class="material-icons-round text-base">arrow_back</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Navbar -->
+<nav class="border-b border-primary/20 bg-background-light dark:bg-[#151b28] sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center gap-8">
+<div class="flex-shrink-0 flex items-center gap-2">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-icons text-white text-sm">security</span>
+</div>
+<span class="font-bold text-lg tracking-tight">CyberShield.io</span>
+</div>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors" href="#">דשבורד ראשי</a>
+<a class="bg-primary/10 text-primary px-3 py-2 rounded-md text-sm font-medium" href="#">זיהוי אנומליות</a>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors" href="#">ניהול הרשאות</a>
+<a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors" href="#">דוחות</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full text-slate-500 hover:bg-primary/10 hover:text-primary transition-colors relative">
+<span class="material-icons">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-alert-red rounded-full ring-2 ring-background-dark"></span>
+</button>
+<div class="h-8 w-8 rounded-full bg-gradient-to-tr from-primary to-blue-400 flex items-center justify-center text-white font-bold text-xs ring-2 ring-primary/20">
+                        ד.כ
+                    </div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<nav aria-label="Breadcrumb" class="flex mb-2">
+<ol class="flex items-center space-x-2 space-x-reverse">
+<li>
+<a class="text-slate-500 hover:text-slate-300 text-sm" href="#">דף הבית</a>
+</li>
+<li class="text-slate-600">/</li>
+<li>
+<a class="text-slate-500 hover:text-slate-300 text-sm" href="#">ניתוח איומים</a>
+</li>
+<li class="text-slate-600">/</li>
+<li aria-current="page" class="text-primary font-medium text-sm">ניתוח מעמיק</li>
+</ol>
+</nav>
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
+                    חלק ב': זיהוי אנומליות <span class="text-slate-500 dark:text-slate-400 font-normal text-2xl">(Anomalies)</span>
+</h1>
+<p class="mt-2 text-slate-600 dark:text-slate-400 max-w-2xl text-sm">
+                    מערכת בינה מלאכותית לניתוח סטיות בתעבורת הרשת בזמן אמת. הנתונים מתעדכנים כל 5 דקות.
+                </p>
+</div>
+<div class="flex gap-3">
+<button class="inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-700 rounded-lg shadow-sm text-sm font-medium text-slate-700 dark:text-slate-300 bg-white dark:bg-[#151b28] hover:bg-slate-50 dark:hover:bg-[#1c2433] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+<span class="material-icons text-base ml-2">file_download</span>
+                    ייצוא דוח
+                </button>
+<button class="inline-flex items-center px-4 py-2 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-primary hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+<span class="material-icons text-base ml-2">play_arrow</span>
+                    הרץ סריקה מחדש
+                </button>
+</div>
+</div>
+<!-- Main Chart Section -->
+<div class="bg-white dark:bg-[#151b28] rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm mb-8 overflow-hidden">
+<div class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+<div>
+<h2 class="text-lg font-semibold text-slate-900 dark:text-white">ניתוח תעבורה בזמן אמת</h2>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">השוואה בין בייסליין (Normal) לפעילות נוכחית</p>
+</div>
+<div class="flex items-center gap-4 text-xs font-medium">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-slate-400/30 border border-slate-400 border-dashed"></span>
+<span class="text-slate-500 dark:text-slate-400">צפי רגיל (Baseline)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-alert-red shadow-[0_0_8px_rgba(239,68,68,0.5)]"></span>
+<span class="text-alert-red">פעילות חריגה (Anomaly)</span>
+</div>
+</div>
+</div>
+<div class="p-6 relative h-[400px]">
+<!-- Y-Axis Labels -->
+<div class="absolute right-0 top-0 bottom-10 w-12 flex flex-col justify-between text-xs text-slate-500 font-mono text-right pr-2 py-4">
+<span>100 TB</span>
+<span>75 TB</span>
+<span>50 TB</span>
+<span>25 TB</span>
+<span>0 TB</span>
+</div>
+<!-- Chart Area -->
+<div class="mr-14 h-full relative chart-grid border-l border-b border-slate-700/50">
+<!-- X-Axis Labels (Time) - Note: LTR layout inside chart for time usually, but positioned RTL context -->
+<div class="absolute bottom-[-30px] left-0 right-0 flex justify-between text-xs text-slate-500 font-mono px-4">
+<span>06:00</span>
+<span>05:00</span>
+<span>04:00</span>
+<span class="text-alert-red font-bold">03:00</span>
+<span>02:00</span>
+<span>01:00</span>
+<span>00:00</span>
+<span>23:00</span>
+</div>
+<!-- Baseline (Grey Dashed Line) - SVG Approximation -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none">
+<path d="M1000,280 Q900,290 800,270 T600,260 T400,280 T200,270 T0,280" fill="none" opacity="0.4" stroke="#64748b" stroke-dasharray="5,5" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<!-- Area fill for baseline -->
+<path d="M1000,280 Q900,290 800,270 T600,260 T400,280 T200,270 T0,280 V360 H1000 Z" fill="#64748b" opacity="0.05"></path>
+</svg>
+<!-- Anomaly Line (Red) - Spike at 03:00 (approx 45% across from right in RTL context or calculate specifically) -->
+<!-- Assuming 03:00 is around 40-50% from right -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none">
+<!-- Path: Starts normal, spikes massively around 40-50%, then drops -->
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgb(239,68,68);stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:rgb(239,68,68);stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path class="drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]" d="M1000,285 Q900,288 800,275 T600,265 L550,50 L500,280 T200,275 T0,285" fill="none" stroke="#ef4444" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+<!-- Area fill for anomaly -->
+<path d="M1000,285 Q900,288 800,275 T600,265 L550,50 L500,280 T200,275 T0,285 V360 H1000 Z" fill="url(#grad1)"></path>
+<!-- The Spike Point Circle -->
+<circle cx="550" cy="50" fill="#101622" r="6" stroke="#ef4444" stroke-width="3"></circle>
+</svg>
+<!-- Tooltip for the spike -->
+<div class="absolute top-[10px] left-[calc(50%-20px)] transform translate-x-1/2 flex flex-col items-center animate-bounce">
+<div class="bg-background-dark border border-slate-700 text-white text-xs px-3 py-2 rounded shadow-lg mb-1 whitespace-nowrap z-10">
+<div class="font-bold text-alert-red flex items-center gap-1">
+<span class="material-icons text-[14px]">warning</span>
+                                חריגה קריטית
+                            </div>
+<div>העלאת נתונים בשעה 03:00</div>
+<div class="text-slate-400 text-[10px] mt-1 font-mono">Volume: 98.4 TB (+450%)</div>
+</div>
+<div class="tooltip-arrow border-t-slate-700"></div>
+<div class="w-[1px] h-[30px] border-l border-dashed border-alert-red/50"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Metric Cards Grid -->
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">תרחישי איום פעילים</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1: 3:00 AM Logins -->
+<div class="bg-white dark:bg-[#151b28] rounded-xl border border-slate-200 dark:border-slate-800 p-6 relative group hover:border-alert-red/50 transition-colors cursor-pointer">
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-alert-red/10 text-alert-red">
+                        קריטי
+                    </span>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg group-hover:bg-alert-red/10 group-hover:text-alert-red transition-colors">
+<span class="material-icons text-slate-600 dark:text-slate-300 group-hover:text-alert-red">schedule</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">חריגת זמן</p>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mt-1">כניסות בשעות חריגות</h4>
+</div>
+</div>
+<div class="mt-6 flex items-end justify-between">
+<div>
+<div class="text-3xl font-display font-bold text-slate-900 dark:text-white">03:00 <span class="text-sm text-slate-500 font-normal">AM</span></div>
+<p class="text-xs text-slate-500 mt-1">ממוצע רגיל: 08:00 - 18:00</p>
+</div>
+<div class="text-right">
+<div class="text-alert-red font-medium text-sm flex items-center justify-end gap-1">
+<span>24 משתמשים</span>
+<span class="material-icons text-sm">group_add</span>
+</div>
+</div>
+</div>
+<div class="mt-4 w-full bg-slate-200 dark:bg-slate-700 rounded-full h-1.5 overflow-hidden">
+<div class="bg-alert-red h-1.5 rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<!-- Card 2: 100GB Uploads -->
+<div class="bg-white dark:bg-[#151b28] rounded-xl border border-slate-200 dark:border-slate-800 p-6 relative group hover:border-yellow-500/50 transition-colors cursor-pointer">
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-500/10 text-yellow-500">
+                        אזהרה
+                    </span>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg group-hover:bg-yellow-500/10 group-hover:text-yellow-500 transition-colors">
+<span class="material-icons text-slate-600 dark:text-slate-300 group-hover:text-yellow-500">cloud_upload</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">חריגת נפח</p>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mt-1">נפח העלאה חריג</h4>
+</div>
+</div>
+<div class="mt-6 flex items-end justify-between">
+<div>
+<div class="text-3xl font-display font-bold text-slate-900 dark:text-white">100 <span class="text-sm text-slate-500 font-normal">GB</span></div>
+<p class="text-xs text-slate-500 mt-1">ממוצע: 2.4 GB</p>
+</div>
+<div class="text-right">
+<div class="text-yellow-500 font-medium text-sm flex items-center justify-end gap-1">
+<span>+4,000%</span>
+<span class="material-icons text-sm">trending_up</span>
+</div>
+</div>
+</div>
+<!-- Mini visualization for volume -->
+<div class="mt-4 flex gap-1 h-8 items-end">
+<div class="w-1/6 bg-slate-700 rounded-sm h-[10%]"></div>
+<div class="w-1/6 bg-slate-700 rounded-sm h-[15%]"></div>
+<div class="w-1/6 bg-slate-700 rounded-sm h-[12%]"></div>
+<div class="w-1/6 bg-slate-700 rounded-sm h-[20%]"></div>
+<div class="w-1/6 bg-yellow-500 rounded-sm h-[100%] shadow-[0_0_10px_rgba(234,179,8,0.3)]"></div>
+<div class="w-1/6 bg-slate-700 rounded-sm h-[15%]"></div>
+</div>
+</div>
+<!-- Card 3: Unauthorized Access -->
+<div class="bg-white dark:bg-[#151b28] rounded-xl border border-slate-200 dark:border-slate-800 p-6 relative group hover:border-alert-red/50 transition-colors cursor-pointer">
+<div class="absolute top-4 left-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-alert-red/10 text-alert-red">
+                        חסימה מיידית
+                    </span>
+</div>
+<div class="flex items-start gap-4">
+<div class="p-3 bg-slate-100 dark:bg-slate-800 rounded-lg group-hover:bg-alert-red/10 group-hover:text-alert-red transition-colors">
+<span class="material-icons text-slate-600 dark:text-slate-300 group-hover:text-alert-red">lock_person</span>
+</div>
+<div>
+<p class="text-sm font-medium text-slate-500 dark:text-slate-400">חריגת הרשאה</p>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mt-1">גישה לא מורשית</h4>
+</div>
+</div>
+<div class="mt-6 flex items-end justify-between">
+<div>
+<div class="text-xl font-display font-bold text-slate-900 dark:text-white">Admin Panel</div>
+<p class="text-xs text-slate-500 mt-1">IP Source: 192.168.1.105 (Unknown)</p>
+</div>
+<div class="text-right">
+<button class="text-xs bg-alert-red text-white px-3 py-1.5 rounded hover:bg-red-700 transition-colors shadow-lg shadow-red-900/20">
+                            חסום גישה
+                        </button>
+</div>
+</div>
+<div class="mt-5 border-t border-slate-200 dark:border-slate-700 pt-3">
+<div class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-icons text-sm">history</span>
+<span>ניסיון אחרון: לפני 2 דקות</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Detail Table Preview -->
+<div class="mt-8 bg-white dark:bg-[#151b28] rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">לוג אירועים חריגים</h3>
+<a class="text-sm text-primary hover:text-blue-400 font-medium" href="#">הצג הכל ←</a>
+</div>
+<div class="overflow-x-auto">
+<table class="min-w-full divide-y divide-slate-200 dark:divide-slate-800">
+<thead class="bg-slate-50 dark:bg-[#1c2433]">
+<tr>
+<th class="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">זמן אירוע</th>
+<th class="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">סוג איום</th>
+<th class="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">מקור (Source)</th>
+<th class="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">חומרה</th>
+<th class="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider" scope="col">סטטוס</th>
+<th class="relative px-6 py-3" scope="col">
+<span class="sr-only">Actions</span>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-[#151b28]">
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 font-mono">03:00:05</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-white">Data Exfiltration</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Server-DB-02</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-alert-red font-bold">Critical</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-500">
+                                    בבדיקה
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-primary hover:text-blue-400" href="#">חקור</a>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 font-mono">03:01:12</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 dark:text-white">Multiple Failed Logins</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">User: d_cohen</td>
+<td class="px-6 py-4 whitespace-nowrap text-sm text-yellow-500 font-medium">Medium</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-500">
+                                    טופל
+                                </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+<a class="text-primary hover:text-blue-400" href="#">חקור</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</body></html>

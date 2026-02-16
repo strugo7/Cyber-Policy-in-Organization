@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NIST Implementation: Profiles &amp; Tiers</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script type='text/javascript' nonce='j/veg57LH4g1YSDuNIM0OA==' src='https://contribution.usercontent.google.com/UI88F9ccrK4XBUkOgWtTA4iyUnzregah675k1_2ts5J6orMD2p9tbFtuzLoMoZTmdWfxOUF8TFkRbqXwmN2DVuLwARKINR9RVSQf2whsf6TKYHKDBC9jXe1hYN5mcDXTVDqBEKbP2C2o-1uWBMQ5doAeHWqeztbjDoK3TT79B_C8Pljg0V9O7rB1kF19DEJU20606-LYa-pNoWlEHVB8TbFRr4_hyP67OqGvXOfO6pL6cpNqqe3cEtxUSbNP1-RgKmRwP124IdMce94ZNJfaFUEv5c6pxJPRWK3JamlHoMekudTonDmdwTXAocQm_da5i35U8LwbVo5dw8JOXNKahcU9pmt2_kqTpYo2zhTPmzaj8bdLm1bLkJN4KiGj9Tr4ToLWLRXu1hFMUIbBlgESk706Nf69DqkYBDL0ys2ywjLhfUYZet_2KjAdaj3Sjg4x6i6wYOVV-kQ0S9Q6IQDSyBlrgW7ER2LB7or1j4Od-vqR2m-51Ysr_0zL0_fe1-8GVROK_I9vHBOhUVCTlJtuJRjco4h7PDamclQu8djFRUSwjqFbm3qAuG9xrSnJWhko73AqG2XLz2o9qJXlN6-4pU9nPcRg6CDc9kbPUE8tkUTCqBQyuwAstHOJaXMmoMyreTd51ee_HQwq9aAvl3k-qSAy0yT1q49wo22Zrx90ihLeKkEeWn8Bv9lu66mc3NdI_vVvgRiiK_reFKsp4husVud2No_nTE8BI6WMmSEqAD8M4F-tumVz34NYhw7UzWDHw-uATk-G-ekQimEkTiDgukSNMv023St8-PkGAw'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#137fec",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101922",
+              "slate-custom": "#e2e8f0", 
+            },
+            fontFamily: {
+              "display": ["Public Sans", "Heebo", "sans-serif"],
+              "body": ["Heebo", "Public Sans", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+            boxShadow: {
+                'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', 'Public Sans', sans-serif;
+        }
+        .font-en {
+            font-family: 'Public Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 min-h-screen flex overflow-hidden">
+
+<!-- Floating Navigation Bar -->
+<nav class="fixed top-0 left-0 right-0 z-50" style="background: rgba(35, 21, 48, 0.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(127, 19, 236, 0.2);">
+<div class="container mx-auto px-4 max-w-7xl flex items-center justify-between py-3">
+<a href="/modules/nist-framework/" class="flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm font-medium">
+<span class="material-icons-round text-base">arrow_forward</span>
+חזרה למודול
+</a>
+<div class="text-sm text-gray-400" style="font-family: 'Heebo', sans-serif;">שיעור 2: מבנה הליבה</div>
+<div class="flex items-center gap-2">
+<a href="/pages/nist-2.0-the-six-functions-part-1.html" class="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm py-2 px-3 rounded-lg hover:bg-white/10">
+<span class="material-icons-round text-base">arrow_forward</span>
+הקודם
+</a>
+<a href="/pages/nist-practice-action-matching-part-3.html" class="flex items-center gap-1 bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow transition-all text-sm">
+הבא
+<span class="material-icons-round text-base">arrow_back</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Sidebar (Right side for RTL) -->
+<aside class="w-64 bg-white dark:bg-[#15202b] border-l border-slate-200 dark:border-slate-700 hidden md:flex flex-col z-10 shrink-0">
+<div class="h-16 flex items-center justify-center border-b border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-2">
+<span class="material-icons text-primary text-3xl">security</span>
+<span class="text-xl font-bold tracking-tight text-slate-800 dark:text-white font-en">CyberGuard</span>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors group" href="#">
+<span class="material-icons group-hover:text-primary">dashboard</span>
+<span class="font-medium">לוח בקרה</span>
+</a>
+<div class="pt-4 pb-2 px-3">
+<p class="text-xs font-semibold text-slate-400 uppercase tracking-wider font-en">NIST Framework</p>
+</div>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors group" href="#">
+<span class="material-icons group-hover:text-primary">assessment</span>
+<span class="font-medium">סקירה כללית</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 bg-primary/10 text-primary rounded-lg transition-colors font-medium shadow-sm ring-1 ring-primary/20" href="#">
+<span class="material-icons">Tune</span>
+<span>יישום ופרופילים</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors group" href="#">
+<span class="material-icons group-hover:text-primary">list_alt</span>
+<span class="font-medium">תוכנית עבודה</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-3">
+<img alt="User Avatar" class="w-10 h-10 rounded-full shadow-sm" data-alt="User profile avatar image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUNleOxUped7R4IFEZqa5SQrlkTYefXIAa9KGoArj3f39A0TTHlz5ftmH3wSpnKV3xd4NsN3DrYwkDcTEMhG3wJg3wr2IKunyeQMA7FZWyLcM-taS22i0S5nY0wt7Jk-exHMps8L9pmJqrOU8tD4PfeRxjaYZdM4_o9hqeU2tbO8anb0HEkuabZ_MaVmqEHGjZ6Wtzy6jYf2Qbre8E7SVhgPzObb3KZLRR8-tAqVQxAf91rN2sBiH9-eNNiNyqdPwG1GTJOq0gMs4"/>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-slate-900 dark:text-white truncate">דוד כהן</p>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate">מנהל אבטחת מידע</p>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons text-xl">settings</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+<!-- Header -->
+<header class="h-16 bg-white dark:bg-[#15202b]/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 flex items-center justify-between px-6 z-10">
+<div class="flex flex-col justify-center">
+<nav class="flex items-center text-xs text-slate-500 dark:text-slate-400 mb-0.5">
+<a class="hover:text-primary transition-colors" href="#">בית</a>
+<span class="mx-2 text-slate-300">/</span>
+<a class="hover:text-primary transition-colors font-en" href="#">NIST</a>
+<span class="mx-2 text-slate-300">/</span>
+<span class="text-slate-800 dark:text-slate-200 font-medium">יישום</span>
+</nav>
+<h1 class="text-xl font-bold text-slate-900 dark:text-white leading-tight">יישום NIST: פרופילים ורמות</h1>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 transition-all shadow-sm">
+<span class="material-icons text-lg">picture_as_pdf</span>
+<span>ייצוא PDF</span>
+</button>
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-blue-600 rounded-lg transition-all shadow-md shadow-blue-500/20">
+<span class="material-icons text-lg">edit</span>
+<span>עריכת הגדרות</span>
+</button>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-6 md:p-8 space-y-6">
+<!-- Metrics Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6">
+<!-- Metric 1 -->
+<div class="bg-white dark:bg-[#15202b] rounded-xl p-5 border border-slate-100 dark:border-slate-700 shadow-soft flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">ציון התאמה כולל</p>
+<h3 class="text-3xl font-bold text-slate-800 dark:text-white font-en">68%</h3>
+<p class="text-sm text-green-500 mt-1 flex items-center gap-1 font-en">
+<span class="material-icons text-sm">trending_up</span>
+                            +4.2%
+                        </p>
+</div>
+<div class="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center text-primary">
+<span class="material-icons">donut_large</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-white dark:bg-[#15202b] rounded-xl p-5 border border-slate-100 dark:border-slate-700 shadow-soft flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">פערים פעילים</p>
+<h3 class="text-3xl font-bold text-slate-800 dark:text-white font-en">12</h3>
+<p class="text-sm text-amber-500 mt-1 flex items-center gap-1">
+<span class="material-icons text-sm">warning</span>
+                            דורש טיפול
+                        </p>
+</div>
+<div class="w-12 h-12 rounded-full bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center text-amber-500">
+<span class="material-icons">difference</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-white dark:bg-[#15202b] rounded-xl p-5 border border-slate-100 dark:border-slate-700 shadow-soft flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">רמת יישום נוכחית</p>
+<h3 class="text-3xl font-bold text-primary dark:text-blue-400 font-en">Tier 2</h3>
+<p class="text-sm text-slate-400 mt-1">מיודע סיכון</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center text-slate-400">
+<span class="material-icons">layers</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-white dark:bg-[#15202b] rounded-xl p-5 border border-slate-100 dark:border-slate-700 shadow-soft flex items-center justify-between">
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">יעד שנתי</p>
+<h3 class="text-3xl font-bold text-slate-800 dark:text-white font-en">Tier 3</h3>
+<p class="text-sm text-slate-400 mt-1">נותרו 4 חודשים</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-green-50 dark:bg-green-900/30 flex items-center justify-center text-green-500">
+<span class="material-icons">flag</span>
+</div>
+</div>
+</div>
+<!-- Main Dashboard Area (2 Cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-auto lg:h-[500px]">
+<!-- Subsection A: Radar Chart (2/3 width) -->
+<div class="lg:col-span-2 bg-white dark:bg-[#15202b] rounded-xl shadow-soft border border-slate-100 dark:border-slate-700 p-6 flex flex-col relative">
+<div class="flex items-center justify-between mb-2">
+<div>
+<h2 class="text-lg font-bold text-slate-800 dark:text-white">פרופילים: רצוי מול מצוי</h2>
+<p class="text-sm text-slate-500">ניתוח פערים לפי 5 הפונקציות של NIST</p>
+</div>
+<!-- Legend -->
+<div class="flex items-center gap-4 text-sm bg-slate-50 dark:bg-slate-800/50 p-2 rounded-lg border border-slate-100 dark:border-slate-700">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary/20 border-2 border-primary"></span>
+<span class="text-slate-600 dark:text-slate-300">פרופיל יעד</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-transparent border-2 border-rose-500"></span>
+<span class="text-slate-600 dark:text-slate-300">פרופיל נוכחי</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-6 h-px border-t border-dashed border-slate-400"></span>
+<span class="text-slate-600 dark:text-slate-300">פער</span>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full h-full flex items-center justify-center relative">
+<!-- SVG Radar Chart -->
+<div class="w-full h-full max-w-[500px] max-h-[400px] relative">
+<!-- Tooltip for Work Plan -->
+<div class="absolute top-[35%] right-[20%] z-20 hidden lg:block animate-pulse">
+<div class="bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 text-xs px-2 py-1 rounded shadow-md border border-slate-200 dark:border-slate-600 whitespace-nowrap flex items-center gap-1">
+<span class="w-2 h-2 bg-rose-500 rounded-full"></span>
+<span>תוכנית עבודה</span>
+</div>
+<div class="w-px h-8 bg-slate-300 border-l border-dashed absolute left-1/2 -bottom-8"></div>
+</div>
+<svg class="w-full h-full drop-shadow-sm" viewbox="0 0 400 360">
+<!-- Grid Lines (Pentagons) -->
+<g class="text-slate-200 dark:text-slate-700" fill="none" stroke="currentColor" stroke-width="1">
+<path d="M200,40 L352,150 L294,329 L106,329 L48,150 Z"></path>
+<path d="M200,70 L322,158 L275,301 L125,301 L78,158 Z"></path>
+<path d="M200,100 L291,166 L256,273 L144,273 L109,166 Z"></path>
+<path d="M200,130 L261,174 L238,245 L162,245 L139,174 Z"></path>
+<!-- Axes -->
+<line x1="200" x2="200" y1="185" y2="40"></line>
+<line x1="200" x2="352" y1="185" y2="150"></line>
+<line x1="200" x2="294" y1="185" y2="329"></line>
+<line x1="200" x2="106" y1="185" y2="329"></line>
+<line x1="200" x2="48" y1="185" y2="150"></line>
+</g>
+<!-- Labels -->
+<g class="text-xs font-medium fill-slate-500 dark:fill-slate-400 font-en" text-anchor="middle">
+<text class="text-sm font-bold fill-slate-700 dark:fill-slate-200" x="200" y="25">IDENTIFY (זיהוי)</text>
+<text class="text-sm font-bold fill-slate-700 dark:fill-slate-200" text-anchor="start" x="375" y="150">PROTECT</text>
+<text class="text-xs fill-slate-500" text-anchor="start" x="375" y="168">(הגנה)</text>
+<text class="text-sm font-bold fill-slate-700 dark:fill-slate-200" x="310" y="350">DETECT (גילוי)</text>
+<text class="text-sm font-bold fill-slate-700 dark:fill-slate-200" x="90" y="350">RESPOND (תגובה)</text>
+<text class="text-sm font-bold fill-slate-700 dark:fill-slate-200" text-anchor="end" x="25" y="150">RECOVER</text>
+<text class="text-xs fill-slate-500" text-anchor="end" x="25" y="168">(התאוששות)</text>
+</g>
+<!-- Target Profile (Blue Fill) -->
+<path d="M200,55 L335,154 L280,315 L115,315 L60,154 Z" fill="#137fec" fill-opacity="0.15" stroke="#137fec" stroke-dasharray="4,2" stroke-width="2"></path>
+<!-- Current Profile (Red Stroke) -->
+<path d="M200,100 L300,160 L240,290 L140,260 L90,180 Z" fill="rgba(244, 63, 94, 0.05)" stroke="#f43f5e" stroke-width="3"></path>
+<!-- Points for Current -->
+<circle cx="200" cy="100" fill="#f43f5e" r="4"></circle>
+<circle cx="300" cy="160" fill="#f43f5e" r="4"></circle>
+<circle cx="240" cy="290" fill="#f43f5e" r="4"></circle>
+<circle cx="140" cy="260" fill="#f43f5e" r="4"></circle>
+<circle cx="90" cy="180" fill="#f43f5e" r="4"></circle>
+</svg>
+</div>
+</div>
+</div>
+<!-- Subsection B: Tiers (1/3 width) -->
+<div class="lg:col-span-1 bg-white dark:bg-[#15202b] rounded-xl shadow-soft border border-slate-100 dark:border-slate-700 p-6 flex flex-col">
+<div class="mb-6">
+<h2 class="text-lg font-bold text-slate-800 dark:text-white">רמות יישום (Tiers)</h2>
+<p class="text-sm text-slate-500">סטטוס בגרות ארגונית נוכחי</p>
+</div>
+<div class="flex-1 flex flex-col justify-end pb-4">
+<!-- Staircase container -->
+<div class="w-full h-64 flex items-end gap-2 px-2" dir="rtl">
+<!-- Note: in RTL, first element is on the Right. So Step 1 is first. -->
+<!-- Step 1: Grey -->
+<div class="flex-1 flex flex-col gap-2 group cursor-pointer">
+<div class="text-center transition-opacity opacity-50 group-hover:opacity-100">
+<span class="text-xs font-bold text-slate-400 font-en">Tier 1</span>
+</div>
+<div class="w-full h-[25%] bg-slate-200 dark:bg-slate-700 rounded-t-lg relative group-hover:bg-slate-300 transition-colors">
+<!-- Label inside -->
+<div class="absolute bottom-2 w-full text-center text-xs font-bold text-slate-500 transform -rotate-0 md:rotate-0">
+                                        חלקי
+                                    </div>
+</div>
+</div>
+<!-- Step 2: Yellow (Current) -->
+<div class="flex-1 flex flex-col gap-2 group cursor-pointer relative">
+<!-- Badge indicating current -->
+<div class="absolute -top-10 left-1/2 -translate-x-1/2 bg-white dark:bg-slate-800 shadow-md border border-amber-200 rounded-full px-2 py-0.5 whitespace-nowrap z-10">
+<span class="text-[10px] font-bold text-amber-600 uppercase tracking-wide">סטטוס נוכחי</span>
+<div class="absolute bottom-[-5px] left-1/2 -translate-x-1/2 w-2 h-2 bg-white dark:bg-slate-800 border-r border-b border-amber-200 rotate-45"></div>
+</div>
+<div class="text-center">
+<span class="text-xs font-bold text-amber-600 font-en">Tier 2</span>
+</div>
+<div class="w-full h-[50%] bg-amber-300/80 dark:bg-amber-600/80 rounded-t-lg relative group-hover:bg-amber-300 transition-colors shadow-[0_0_15px_rgba(251,191,36,0.3)]">
+<div class="absolute bottom-2 w-full text-center text-xs font-bold text-amber-900 dark:text-amber-100 px-1 leading-tight">
+                                        מיודע סיכון
+                                    </div>
+</div>
+</div>
+<!-- Step 3: Blue (Target) -->
+<div class="flex-1 flex flex-col gap-2 group cursor-pointer">
+<div class="text-center">
+<span class="text-xs font-bold text-primary font-en">Tier 3</span>
+</div>
+<div class="w-full h-[75%] bg-primary dark:bg-blue-600 rounded-t-lg relative group-hover:bg-blue-500 transition-colors shadow-sm ring-2 ring-offset-2 ring-primary ring-offset-white dark:ring-offset-[#15202b]">
+<!-- Target Flag -->
+<div class="absolute -top-3 right-[-4px] text-primary dark:text-blue-400 bg-white dark:bg-slate-800 rounded-full p-0.5 shadow-sm border border-slate-100">
+<span class="material-icons text-[14px]">flag</span>
+</div>
+<div class="absolute bottom-2 w-full text-center text-xs font-bold text-white px-1 leading-tight">
+                                        ניתן לשחזור
+                                    </div>
+</div>
+</div>
+<!-- Step 4: Green -->
+<div class="flex-1 flex flex-col gap-2 group cursor-pointer">
+<div class="text-center opacity-70 group-hover:opacity-100">
+<span class="text-xs font-bold text-emerald-600 font-en">Tier 4</span>
+</div>
+<div class="w-full h-[100%] bg-emerald-400 dark:bg-emerald-600 rounded-t-lg relative group-hover:bg-emerald-500 transition-colors opacity-60 group-hover:opacity-100">
+<div class="absolute bottom-2 w-full text-center text-xs font-bold text-white">
+                                        אדפטיבי
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Description text below stairs -->
+<div class="mt-4 p-3 bg-slate-50 dark:bg-slate-800/50 rounded-lg text-xs text-slate-600 dark:text-slate-400 border border-slate-100 dark:border-slate-700">
+<strong class="block mb-1 text-slate-800 dark:text-slate-200">Tier 2: מיודע סיכון</strong>
+                        הארגון מודע לסיכוני סייבר אך חסר תהליכים מוסדרים לרוחב הארגון. המידע אינו משותף באופן עקבי.
+                    </div>
+</div>
+</div>
+<!-- Bottom Section: Work Plan Table -->
+<div class="bg-white dark:bg-[#15202b] rounded-xl shadow-soft border border-slate-100 dark:border-slate-700 overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
+<div>
+<h2 class="text-lg font-bold text-slate-800 dark:text-white">תוכנית עבודה לצמצום פערים</h2>
+<p class="text-sm text-slate-500">פעולות נדרשות למעבר מ-Current Profile ל-Target Profile</p>
+</div>
+<button class="text-primary hover:text-blue-700 text-sm font-medium">הצג הכל</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-right">
+<thead class="bg-slate-50 dark:bg-slate-800/50 text-slate-500 dark:text-slate-400">
+<tr>
+<th class="px-6 py-4 font-medium">קטגוריה (NIST Function)</th>
+<th class="px-6 py-4 font-medium">פעילות נדרשת</th>
+<th class="px-6 py-4 font-medium">דחיפות</th>
+<th class="px-6 py-4 font-medium">אחראי</th>
+<th class="px-6 py-4 font-medium">סטטוס</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 dark:divide-slate-700">
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-medium bg-purple-50 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 font-en">
+                                        PROTECT
+                                    </span>
+</td>
+<td class="px-6 py-4 text-slate-800 dark:text-slate-200 font-medium">
+                                    הטמעת אימות דו-שלבי (MFA) לכל המערכות הקריטיות
+                                </td>
+<td class="px-6 py-4">
+<span class="text-rose-500 font-medium flex items-center gap-1">
+<span class="material-icons text-sm">priority_high</span> גבוהה
+                                    </span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">
+                                    צוות תשתיות
+                                </td>
+<td class="px-6 py-4">
+<div class="w-full bg-slate-200 rounded-full h-2 w-24 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 45%"></div>
+</div>
+<span class="text-xs text-slate-400 mt-1 block font-en">45%</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 font-en">
+                                        DETECT
+                                    </span>
+</td>
+<td class="px-6 py-4 text-slate-800 dark:text-slate-200 font-medium">
+                                    שדרוג מערכת ה-SIEM וחיבור לוגים משרתים ארגוניים
+                                </td>
+<td class="px-6 py-4">
+<span class="text-amber-500 font-medium">בינונית</span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">
+                                    מרכז SOC
+                                </td>
+<td class="px-6 py-4">
+<div class="w-full bg-slate-200 rounded-full h-2 w-24 overflow-hidden">
+<div class="bg-primary h-2 rounded-full" style="width: 15%"></div>
+</div>
+<span class="text-xs text-slate-400 mt-1 block font-en">15%</span>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-colors group">
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 font-en">
+                                        RECOVER
+                                    </span>
+</td>
+<td class="px-6 py-4 text-slate-800 dark:text-slate-200 font-medium">
+                                    ביצוע תרגיל התאוששות מאסון (DRP) שנתי
+                                </td>
+<td class="px-6 py-4">
+<span class="text-slate-500 font-medium">נמוכה</span>
+</td>
+<td class="px-6 py-4 text-slate-600 dark:text-slate-400">
+                                    מנהל IT
+                                </td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center gap-1 text-slate-400 text-xs">
+<span class="material-icons text-sm">schedule</span> טרם החל
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Overlay for mobile sidebar (hidden in this desktop view but good practice) -->
+<div class="fixed inset-0 bg-black/50 z-0 hidden"></div>
+</body></html>

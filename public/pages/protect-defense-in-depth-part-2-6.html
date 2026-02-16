@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Threats: The Dark Side (Part 1)</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&amp;family=Heebo:wght@300;400;500;700&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script type='text/javascript' nonce='SKwWMf+3LWbUKZtdUeNkug==' src='https://contribution.usercontent.google.com/B665Gy-4MOwKTbhm73yAYXKlXriIjJ3nPywYbrrIA8ic8jj6eKlVqY834TuiJp7E73fcORIbC46s4Vf1XmTeH5iI0V0uF-2QHvsvuAvHik4AvJ32OTahCxOD_oosTZFkTZO9-CGiopdckMhoMYlw3bvUkFMtAp5tDZgmUdxpUZQlVpN1vDtru12pVAL4TMCPdXMWpX3mb8HWAb8zjOjbRHvtUtrDmFY8Yol7ultbDtFsQzgxBFe6HGyG1gVUYza5TKYKxOXmrYkZWWXeUz-v1q8XhCKdjoiBR6ED4IJ2eKxI6qjDizTM8juC4fKnQC8yVP0SPs-9TSD0GhC8ZYy4eZntKCv3X5D0qA9-NlObCeSwXy2AML1sH9DIki4-kB9P6JPCEMy40X2mH82H7vdQPp3QUHqaN-Ff8dDEKNFHXGGkxqpFRk0dJ6q0t_WzIsE1IbtTqd02_OqB-YKSTiXhCklTv9lA1u-6OPWnZGszKfEQmbFPkRZYzfJAxUpAAt5w_VEqIk2BvGcmeI-tMXpzThLgKvOBeoNWY1SWE-QEtBsULabV19v-BWlaQobLydvubkJHVz5_0Z6JrmssNhDRLdrBlZfGsoeHKbADNwJzw6gXw2utOOaDunJ6dtiAvYnF1MIXhub4DehPinJtVR5iKgS25OjPTe5bXd0T3X4v5ntMLbYnoyAhuCYd1k3MtdB7gRSjkjSqYV8Bcy8ZA0wlt-5wpTNvqpafAEIW5sBDqbeMcNltwdho5SlSgrS56OZHAhJururAx4y3C2emXL-ove6gxyjFzz0smX25bg'></script><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "ai-purple": "#a855f7",
+                        "ai-blue": "#0ea5e9",
+                        "ai-dark": "#030014",
+                        "ai-card": "rgba(255, 255, 255, 0.03)",
+                        "defense-blue": "#3b82f6",
+                    },
+                    fontFamily: {
+                        "display": ["Share Tech Mono", "Heebo", "monospace"],
+                        "body": ["Heebo", "Public Sans", "sans-serif"],
+                        "mono": ["Share Tech Mono", "monospace"],
+                    },
+                    backgroundImage: {
+                        'neural-pattern': "radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, rgba(3, 0, 20, 0) 50%)",
+                        'grid-pattern': "linear-gradient(rgba(14, 165, 233, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 165, 233, 0.05) 1px, transparent 1px)",
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'glitch': 'glitch 1s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        glitch: {
+                            '2%, 64%': { transform: 'translate(2px,0) skew(0deg)' },
+                            '4%, 60%': { transform: 'translate(-2px,0) skew(0deg)' },
+                            '62%': { transform: 'translate(0,0) skew(5deg)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Heebo', 'Public Sans', sans-serif;
+            background-color: #030014;
+        }
+        .font-mono-tech {
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .glass-panel {
+            background: rgba(13, 12, 34, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.1), inset 0 0 20px rgba(14, 165, 233, 0.05);
+        }
+        .holo-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .holo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
+        }
+        .holo-card:hover::before {
+            left: 200%;
+        }
+        .holo-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(168, 85, 247, 0.5);
+            box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.3);
+        }
+        .glitch-text {
+            position: relative;
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #030014;
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -1px 0 #0ea5e9;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -1px 0 #a855f7;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% { clip: rect(11px, 9999px, 89px, 0); }
+            20% { clip: rect(96px, 9999px, 19px, 0); }
+            40% { clip: rect(50px, 9999px, 2px, 0); }
+            60% { clip: rect(10px, 9999px, 78px, 0); }
+            80% { clip: rect(75px, 9999px, 33px, 0); }
+            100% { clip: rect(38px, 9999px, 62px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(22px, 9999px, 3px, 0); }
+            40% { clip: rect(88px, 9999px, 56px, 0); }
+            60% { clip: rect(5px, 9999px, 20px, 0); }
+            80% { clip: rect(44px, 9999px, 91px, 0); }
+            100% { clip: rect(12px, 9999px, 76px, 0); }
+        }
+        .bg-neural-grid {
+            background-image: radial-gradient(circle at center, #a855f7 1px, transparent 1px), radial-gradient(circle at center, #0ea5e9 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body class="bg-ai-dark text-slate-100 min-h-screen flex flex-col overflow-hidden relative">
+<div class="fixed inset-0 z-0 bg-neural-grid animate-pulse-slow"></div>
+<div class="fixed inset-0 z-0 bg-gradient-to-br from-ai-dark via-ai-dark to-purple-900/20"></div>
+<div class="fixed top-[-20%] right-[-10%] w-[600px] h-[600px] bg-ai-purple/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none"></div>
+<div class="fixed bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-ai-blue/10 blur-[100px] rounded-full mix-blend-screen pointer-events-none"></div>
+<header class="w-full h-20 border-b border-ai-purple/30 bg-ai-dark/80 backdrop-blur-md flex items-center justify-between px-8 z-30 relative">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-ai-purple to-ai-blue flex items-center justify-center shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+<span class="material-icons-round text-white text-2xl">psychology</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm text-ai-blue font-mono tracking-widest uppercase">Cyber Defense</span>
+<span class="text-lg font-bold tracking-wide text-white">AI Threats Module</span>
+</div>
+</div>
+<div class="h-8 w-px bg-white/10 mx-2"></div>
+<nav class="flex items-center text-sm font-medium text-slate-400 gap-2 font-mono">
+<span>מודול 5</span>
+<span class="material-icons-round text-base rotate-180 text-ai-purple">chevron_right</span>
+<span class="text-ai-purple font-bold glitch-text" data-text="חלק א&#39;: כשה-AI תוקף">חלק א': כשה-AI תוקף</span>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3 pl-2 border-l border-white/10">
+<div class="text-left hidden md:block">
+<p class="text-sm font-medium text-white">דניאל כהן</p>
+<p class="text-xs text-ai-blue">חניך מצטיין</p>
+</div>
+<div class="relative group cursor-pointer">
+<img alt="User Avatar" class="w-10 h-10 rounded-full border-2 border-ai-blue/50 p-0.5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmfppwINWBfa3hY53eYWWzJWgI3i0Vv1I8UxX5Y2q0_BU90uCnj_4hkSaUVeonrAC7GyH6o_DZvBQL4ht1KIPvLGiqmQ97YbJ3qb25GfFF6qWOoNQ_CLE7URg1WgVCjIFAfh4VmuXtFB64idnMT39Sv1nZ7asfMDpYOkeu8Q0a1LawdYTtLo8y_T5Q02IRVjAqZCToBbqCgSuIrzCXNcmDkZL2zR8vIgB2nQAl8vgp_otKC1mMf4KImWXskushyZ0fjxW0EepeFDg"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-ai-dark"></div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-center p-8 relative z-10 w-full max-w-7xl mx-auto">
+<div class="text-center mb-12 relative">
+<h1 class="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-ai-purple via-white to-ai-blue mb-4 tracking-tighter uppercase glitch-text pb-2" data-text="AI THREATS">
+                AI THREATS
+            </h1>
+<p class="text-ai-blue/80 font-mono text-lg tracking-[0.3em] uppercase mb-2">The Dark Side of Intelligence</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full px-4 md:px-0">
+<div class="holo-card rounded-xl p-8 group flex flex-col items-center text-center animate-float" style="animation-delay: 0s;">
+<div class="w-20 h-20 mb-6 relative">
+<div class="absolute inset-0 bg-ai-purple/20 rounded-full blur-xl group-hover:bg-ai-purple/40 transition-all"></div>
+<div class="relative bg-black/40 rounded-full w-full h-full flex items-center justify-center border border-ai-purple/30 group-hover:border-ai-purple transition-all">
+<span class="material-symbols-outlined text-4xl text-ai-purple">face_retouching_off</span>
+</div>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Deepfakes</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    זיוף וידאו ואודיו באמצעות למידה עמוקה. יצירת דמויות פיקטיביות או התחזות לבכירים לצורך הונאה ומניפולציה.
+                </p>
+<div class="mt-auto w-full">
+<div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-ai-purple w-[85%] shadow-[0_0_10px_#a855f7]"></div>
+</div>
+<div class="flex justify-between text-xs font-mono text-ai-purple mt-2">
+<span>רמת איום</span>
+<span>גבוהה מאוד</span>
+</div>
+</div>
+</div>
+<div class="holo-card rounded-xl p-8 group flex flex-col items-center text-center animate-float" style="animation-delay: 1.5s;">
+<div class="w-20 h-20 mb-6 relative">
+<div class="absolute inset-0 bg-ai-blue/20 rounded-full blur-xl group-hover:bg-ai-blue/40 transition-all"></div>
+<div class="relative bg-black/40 rounded-full w-full h-full flex items-center justify-center border border-ai-blue/30 group-hover:border-ai-blue transition-all">
+<span class="material-symbols-outlined text-4xl text-ai-blue">smart_toy</span>
+<span class="material-symbols-outlined text-xl text-red-500 absolute -bottom-1 -right-1 bg-black rounded-full p-0.5">phishing</span>
+</div>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Automated Phishing</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    בוטים חכמים המייצרים קמפיינים של דיוג (Phishing) מותאמים אישית בקנה מידה עצום, ללא מגע יד אדם.
+                </p>
+<div class="mt-auto w-full">
+<div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-ai-blue w-[70%] shadow-[0_0_10px_#0ea5e9]"></div>
+</div>
+<div class="flex justify-between text-xs font-mono text-ai-blue mt-2">
+<span>רמת איום</span>
+<span>גבוהה</span>
+</div>
+</div>
+</div>
+<div class="holo-card rounded-xl p-8 group flex flex-col items-center text-center animate-float" style="animation-delay: 3s;">
+<div class="w-20 h-20 mb-6 relative">
+<div class="absolute inset-0 bg-red-500/20 rounded-full blur-xl group-hover:bg-red-500/40 transition-all"></div>
+<div class="relative bg-black/40 rounded-full w-full h-full flex items-center justify-center border border-red-500/30 group-hover:border-red-500 transition-all">
+<span class="material-symbols-outlined text-4xl text-red-500">database</span>
+<span class="material-symbols-outlined text-xl text-red-500 absolute top-0 right-0 animate-pulse">warning</span>
+</div>
+</div>
+<h3 class="text-2xl font-bold text-white mb-3">Data Poisoning</h3>
+<p class="text-slate-400 text-sm leading-relaxed mb-6">
+                    החדרת מידע זדוני למאגרי הלימוד של המערכת, הגורמת למודל ה-AI לקבל החלטות שגויות או מסוכנות בעתיד.
+                </p>
+<div class="mt-auto w-full">
+<div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+<div class="h-full bg-red-500 w-[60%] shadow-[0_0_10px_#ef4444]"></div>
+</div>
+<div class="flex justify-between text-xs font-mono text-red-500 mt-2">
+<span>רמת איום</span>
+<span>בינונית-גבוהה</span>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute top-1/4 left-10 text-ai-purple/20 font-mono text-[10px] hidden lg:block select-none pointer-events-none vertical-rl" style="writing-mode: vertical-rl;">
+            NEURAL_NET::INIT<br/>
+            TRAINING_MODEL::V.4.2<br/>
+            EPOCH::9921
+        </div>
+<div class="absolute bottom-1/4 right-10 text-ai-blue/20 font-mono text-[10px] hidden lg:block select-none pointer-events-none">
+            &gt; DETECTING ANOMALIES<br/>
+            &gt; SYSTEM INTEGRITY: 89%<br/>
+            &gt; AI COUNTERMEASURES: ONLINE
+        </div>
+</main>
+<div class="w-full bg-gradient-to-r from-blue-900/90 to-defense-blue/90 backdrop-blur-md border-t border-defense-blue/40 py-4 px-8 z-30 relative overflow-hidden">
+<div class="absolute inset-0 bg-[url(&#39;data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==&#39;)] opacity-30"></div>
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/20 animate-pulse">
+<span class="material-icons-round text-white">shield</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-lg leading-tight">זיהוי אנומליות מהיר יותר מאדם</h4>
+<p class="text-blue-200 text-xs">מערכות הגנה מבוססות AI לומדות מדפוסים בזמן אמת</p>
+</div>
+</div>
+<button class="bg-white text-defense-blue px-6 py-2 rounded font-bold text-sm hover:bg-blue-50 transition-colors shadow-lg shadow-blue-900/50 flex items-center gap-2">
+<span>למד עוד על ההגנה</span>
+<span class="material-icons-round text-sm rotate-180">arrow_right_alt</span>
+</button>
+</div>
+</div>
+
+</body></html>
