@@ -17,6 +17,7 @@ export interface Lesson {
   content: LessonContent;
   order: number;
   estimatedTime: number;
+  htmlPage?: string; // Optional path to a standalone HTML page in public/pages/
 }
 
 export interface LessonContent {

@@ -55,6 +55,7 @@ export const modules: Module[] = [
         title: 'משולש ה-CIA',
         order: 2,
         estimatedTime: 5,
+        htmlPage: '/pages/module-1-cyber-foundations-part-1.html',
         content: {
           sections: [
             {
